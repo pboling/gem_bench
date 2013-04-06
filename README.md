@@ -19,7 +19,7 @@ You *may not* need to add this gem to your project.  You have two options:
 
 ### Option 1
 
-Just install it, and require it in your`irb`/`console` session when you want to use it.
+Just install it, and require it in your`irb`/`console` session when you want to use it.  However, if you load your console with `bundle exec` then you only have access to gems in the gemfile, so either load without `bundle exec` or add it to the gemfile.
 
     $ gem install gem_bench
 
@@ -37,7 +37,7 @@ And then execute:
 
 ## Usage
 
-Fire up ab `irb` session or a `rails console` and then:
+Fire up an `irb` session or a `rails console` and then:
 
     >> require 'gem_bench'
     => true
