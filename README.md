@@ -9,11 +9,13 @@ It is a fact of RubyGems that many of them do not need to be loaded by your app 
 It is a fact of Bundler that you don't know which ones need to be 'required' while staring at the Gemfile.
 It is a fact of Heroku that you only have 60 precious seconds to get your app loaded before ❨╯°□°❩╯︵┻━┻
 
-This gem helps by telling you which gems are being loaded during app boot that don't need to be.
+This gem helps by telling you which gems are don't need to be loaded during boot time.
+
+You can even use it to evaluate your project's actual Gemfile for easy peasy boot time savings. (see Advanced Usage)
 
 ## Installation
 
-You **DO NOT** need to add this gem to your project.
+You *may not* need to add this gem to your project.  You have two options:
 
 ### Option 1
 
@@ -39,52 +41,59 @@ Fire up ab `irb` session or a `rails console` and then:
 
     >> require 'gem_bench'
     => true
-    >> team = GemBench.check(true) # true => print output, false => just returns a GemBench::Team object you can inspect.
+    >> team = GemBench.check({verbose: true}) # verbose: true => print output, verbose: false => just returns a GemBench::Team object you can inspect.
 
 Here is an example `irb` session where I have installed only `gem_bench`, `rails`, and `bundler`.  For the first run I don't require any gems besides `gem_bench`.
 
     ∴ irb
     >> require 'gem_bench'
     => true
-    >> team = GemBench.check(true) # true => print output, false => just returns a GemBench::Team object you can inspect.
+    >> team = GemBench.check({verbose: true})
     [GemBench] will search for gems in ["/Users/pboling/.rvm/gems/ruby-1.9.3-head@foss/gems", "/Users/pboling/.rvm/gems/ruby-1.9.3-head@global/gems", "/Users/pboling/.rvm/gems/ruby-1.9.3-head@foss/bundler/gems"]
-    [GemBench] detected 0 loaded gems (2 will be skipped by GemBench)
+    [GemBench] detected 0 loaded gems (excluding the 2 GemBench is configured to skip)
     [GemBench] Found no gems to load at boot.
-    [GemBench] 0 gems to skip require in Gemfile (require => false):
-    => #<GemBench::Team:0x007fd4451207c0 @paths=["/Users/pboling/.rvm/gems/ruby-1.9.3-head@foss/gems", "/Users/pboling/.rvm/gems/ruby-1.9.3-head@global/gems", "/Users/pboling/.rvm/gems/ruby-1.9.3-head@foss/bundler/gems"], @excluded=[["bundler", "1.2.3"], ["gem_bench", "0.0.1"]], @all=[], @starters=[], @benchers=[], @verbose=true>
+    [GemBench] No gems were evaluated by GemBench.
+    [GemBench] Usage: Require a gem in this session to evaluate it.
+      Example:
+        require 'rails'
+        GemBench.check({verbose: true})
 
 For the second run I require rails, and now I can see which rails dependencies are not required at boot time:
 
     >> require 'rails'
     => true
-    >> team = GemBench.check(true)
+    >> team = GemBench.check({verbose: true})
     [GemBench] will search for gems in ["/Users/pboling/.rvm/gems/ruby-1.9.3-head@foss/gems", "/Users/pboling/.rvm/gems/ruby-1.9.3-head@global/gems", "/Users/pboling/.rvm/gems/ruby-1.9.3-head@foss/bundler/gems"]
-    [GemBench] detected 14 loaded gems (2 will be skipped by GemBench)
-    You might want to verify that activesupport v3.2.13 really has a Railtie (or Rails::Engine).  Check here:
+    [GemBench] detected 14 loaded gems (excluding the 2 GemBench is configured to skip)
+    You might want to verify that activesupport v3.2.13 really has a Rails::Railtie or Rails::Engine.  Check these files:
       ["/Users/pboling/.rvm/gems/ruby-1.9.3-head@foss/gems/activesupport-3.2.11/lib/active_support/i18n_railtie.rb", 146]
-    You might want to verify that actionpack v3.2.13 really has a Railtie (or Rails::Engine).  Check here:
+    You might want to verify that actionpack v3.2.13 really has a Rails::Railtie or Rails::Engine.  Check these files:
       ["/Users/pboling/.rvm/gems/ruby-1.9.3-head@foss/gems/actionpack-3.2.11/lib/action_controller/railtie.rb", 248]
-    You might want to verify that railties v3.2.13 really has a Railtie (or Rails::Engine).  Check here:
+    You might want to verify that railties v3.2.13 really has a Rails::Railtie or Rails::Engine.  Check these files:
       ["/Users/pboling/.rvm/gems/ruby-1.9.3-head@foss/gems/railties-3.2.11/lib/rails/application/configuration.rb", 245]
-    [GemBench] 3 gems to load at boot:
+    [GemBench] 3 gems need to be loaded at boot time:
     [GemBench] If you want to check for false positives, the files to check for Railties and Engines are listed above:
       gem 'activesupport', '~> 3.2.13'
       gem 'actionpack', '~> 3.2.13'
       gem 'railties', '~> 3.2.13'
-    [GemBench] 11 gems to skip require in Gemfile (require => false):
-      gem 'i18n', :require => false, '~> 0.6.1'
-      gem 'builder', :require => false, '~> 3.0.4'
-      gem 'activemodel', :require => false, '~> 3.2.13'
-      gem 'rack-cache', :require => false, '~> 1.2'
-      gem 'rack', :require => false, '~> 1.4.5'
-      gem 'rack-test', :require => false, '~> 0.6.2'
-      gem 'journey', :require => false, '~> 1.0.4'
-      gem 'hike', :require => false, '~> 1.2.1'
-      gem 'tilt', :require => false, '~> 1.3.3'
-      gem 'sprockets', :require => false, '~> 2.2.2'
-      gem 'erubis', :require => false, '~> 2.7.0'
+    [GemBench] Evaluated 14 gems and found 11 gems to skip require in Gemfile (require: false):
+      gem 'i18n', require: false, '~> 0.6.1'
+      gem 'builder', require: false, '~> 3.0.4'
+      gem 'activemodel', require: false, '~> 3.2.13'
+      gem 'rack-cache', require: false, '~> 1.2'
+      gem 'rack', require: false, '~> 1.4.5'
+      gem 'rack-test', require: false, '~> 0.6.2'
+      gem 'journey', require: false, '~> 1.0.4'
+      gem 'hike', require: false, '~> 1.2.1'
+      gem 'tilt', require: false, '~> 1.3.3'
+      gem 'sprockets', require: false, '~> 2.2.2'
+      gem 'erubis', require: false, '~> 2.7.0'
 
 See that?  Lots of those gems that rails brings don't need to be required when your app boots!
+
+## Advanced Usage
+
+
 
 ## Contributing
 

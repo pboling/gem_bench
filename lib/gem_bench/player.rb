@@ -1,8 +1,6 @@
 module GemBench
   class Player
 
-    DO_NOT_SCAN = []
-
     attr_accessor :name, :version, :state, :stats
 
     def initialize(options = {})
@@ -13,25 +11,30 @@ module GemBench
     end
 
     def path_glob
-      "#{self.name}*/lib/**/*.rb"
+      GemBench::PATH_GLOB.call(self.name)
     end
 
     def set_starter(file_path)
       scan = begin
-        if DO_NOT_SCAN.include? self.name
+        if GemBench::DO_NOT_SCAN.include? self.name
           false
         else
-          File.read(file_path) =~ /Rails::Engine|Rails::Railtie/
+          File.read(file_path) =~ GemBench::RAILTIE_REGEX
         end
       end
       self.stats << [file_path,scan] if scan
       self.state = !!scan ?
-        'starter' :
-        'bench'
+        GemBench::PLAYER_STATES[:starter] :
+        GemBench::PLAYER_STATES[:bench]
     end
 
     def starter?
-      self.state == 'starter'
+      self.state == GemBench::PLAYER_STATES[:starter]
+    end
+
+    # Used to find the line of the Gemfile which creates the primary dependency on this gem
+    def gemfile_regex
+      GemBench::DEPENDENCY_REGEX.call(self.name)
     end
 
     def to_s
@@ -39,11 +42,16 @@ module GemBench
     end
 
     def how
-      case state
-        when 'starter' then "gem '#{self.name}', '~> #{self.version}'"
-        when 'bench' then   "gem '#{self.name}', :require => false, '~> #{self.version}'"
-        else "I'm not sure where I am."
+      case self.state
+        when GemBench::PLAYER_STATES[:starter] then "gem '#{self.name}', '~> #{self.version}'"
+        when GemBench::PLAYER_STATES[:bench] then   "gem '#{self.name}', require: false, '~> #{self.version}'"
+        else "#{self} is feeling very lost right now."
       end
     end
+
+    def suggest
+      "[GemBench][SUGGESTION] Try adding require: false to #{self} like this:\n\t#{self.how}"
+    end
+
   end
 end
