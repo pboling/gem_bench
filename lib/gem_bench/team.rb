@@ -1,7 +1,9 @@
 module GemBench
   class Team
 
-    EXCLUDE = ['bundler','gem_bench']
+    EXCLUDE = [ 'bundler','gem_bench','i18n-airbrake','devise-async','km','vestal_versions','omniauth-facebook',
+                'flag_shih_tzu','pry-remote','koala','simple_form','thumbs_up','memoist','cancan','friendly_id',
+                'faker']
     # A comment preceding the require: false anywhere on the line should not be considered an active require: false
 
 
@@ -26,7 +28,7 @@ module GemBench
       # Among these there may be some that did not need to be.
       totes = Gem.loaded_specs.values.map {|x| [x.name, x.version.to_s] }
       @excluded, @all = totes.partition {|x| EXCLUDE.include?(x[0]) }
-      exclusions = "\t(excluding the #{self.excluded.length} GemBench is configured to skip)\n" if @excluded.length > 0
+      exclusions = "\t(excluding the #{self.excluded.length} loaded gems which GemBench is configured to ignore)\n" if @excluded.length > 0
       @starters = []
       @benchers = []
       @current_gemfile_suggestions = []

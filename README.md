@@ -58,7 +58,7 @@ Here is an example `irb` session where I have installed only `gem_bench`, `rails
     [GemBench] Will search for gems in ["/Users/pboling/.rvm/gems/ruby-1.9.3-head@foss/gems", "/Users/pboling/.rvm/gems/ruby-1.9.3-head@global/gems", "/Users/pboling/.rvm/gems/ruby-1.9.3-head@foss/bundler/gems"]
     [GemBench] Will check Gemfile at /Users/pboling/Documents/src/my/gem_bench/Gemfile.
     [GemBench] Detected 0 loaded gems
-      (excluding the 2 GemBench is configured to skip)
+      (excluding the 2 loaded gems which GemBench is configured to ignore)
     [GemBench] No gems were evaluated by GemBench.
     [GemBench] Usage: Require another gem in this session to evaluate it.
       Example:
@@ -77,7 +77,7 @@ For the second run I `require 'rails'` as well, and now I can see which rails de
     [GemBench] Will search for gems in ["/Users/pboling/.rvm/gems/ruby-1.9.3-head@foss/gems", "/Users/pboling/.rvm/gems/ruby-1.9.3-head@global/gems", "/Users/pboling/.rvm/gems/ruby-1.9.3-head@foss/bundler/gems"]
     [GemBench] Will check Gemfile at /Users/pboling/Documents/src/my/gem_bench/Gemfile.
     [GemBench] Detected 14 loaded gems
-      (excluding the 2 GemBench is configured to skip)
+      (excluding the 2 loaded gems which GemBench is configured to ignore)
     [GemBench] You might want to verify that activesupport v3.2.13 really has a Rails::Railtie or Rails::Engine.  Check these files:
       ["/Users/pboling/.rvm/gems/ruby-1.9.3-head@foss/gems/activesupport-3.2.11/lib/active_support/i18n_railtie.rb", 146]
     [GemBench] You might want to verify that actionpack v3.2.13 really has a Rails::Railtie or Rails::Engine.  Check these files:
@@ -107,7 +107,7 @@ In a random directory, in an irb session, where there is no Gemfile in sight it 
     [GemBench] No Gemfile found.
     [GemBench] Will show bad ideas.  Be Careful.
     [GemBench] Detected 14 loaded gems
-      (excluding the 2 GemBench is configured to skip)
+      (excluding the 2 loaded gems which GemBench is configured to ignore)
 
     [GemBench] Usage: Require another gem in this session to evaluate it.
       Example:
@@ -433,6 +433,8 @@ So here's a [*fat* Gemfile][bundle-group-pattern] weighing in at 265 gem depende
 If found 45 gems which are listed as primary dependencies in my `Gemfile` which I can add `require: false` to.
 
 How much faster will my app boot loading 45 fewer gems?  A bit.
+
+**Note:** Some of the gems in the list above should have been excluded.  They are now excluded as of `gem_bench` version 0.0.4.
 
 ## Contributing
 
