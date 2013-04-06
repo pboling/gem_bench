@@ -1,5 +1,6 @@
 module GemBench
 
+  USAGE = "[GemBench] Usage: Require another gem in this session to evaluate it.\n\tExample:\n\t\trequire 'rails'\n\t\tGemBench.check({verbose: true})\n"
   RAILTIE_REGEX = /Rails::Engine|Rails::Railtie/
   TRASH_REGEX = /^(\s*)([#]+.*)?$/
   REQUIRE_FALSE_REGEX = /^[^#]+require(([:]\s*)|(\s*=>\s*))false.*/

@@ -49,8 +49,12 @@ module GemBench
       end
     end
 
-    def suggest
-      "[GemBench][SUGGESTION] Try adding require: false to #{self} like this:\n\t#{self.how}"
+    def suggest(num)
+      "\t[SUGGESTION] #{num}) #{self.how}"
+    end
+
+    def careful(num)
+      "\t[BE CAREFUL] #{num}) #{self.how}"
     end
 
   end
