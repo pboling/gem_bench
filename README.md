@@ -35,7 +35,7 @@ And then execute:
 
 ## Usage
 
-Fire up ab `irb` session or a `rails console` and then:
+Fire up an `irb` session or a `rails console` and then:
 
     >> require 'gem_bench'
     => true
