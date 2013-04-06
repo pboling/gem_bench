@@ -129,17 +129,17 @@ In a random directory, in an irb session, where there is no Gemfile in sight it 
     To safely evaluate a Gemfile:
       1. Make sure you are in the root of a project with a Gemfile
       2. Make sure the gem is actually a dependency in the Gemfile
-      [BE CAREFUL] 1) gem 'i18n', require: false, '~> 0.6.1'
-      [BE CAREFUL] 2) gem 'builder', require: false, '~> 3.0.4'
-      [BE CAREFUL] 3) gem 'activemodel', require: false, '~> 3.2.13'
-      [BE CAREFUL] 4) gem 'rack-cache', require: false, '~> 1.2'
-      [BE CAREFUL] 5) gem 'rack', require: false, '~> 1.4.5'
-      [BE CAREFUL] 6) gem 'rack-test', require: false, '~> 0.6.2'
-      [BE CAREFUL] 7) gem 'journey', require: false, '~> 1.0.4'
-      [BE CAREFUL] 8) gem 'hike', require: false, '~> 1.2.1'
-      [BE CAREFUL] 9) gem 'tilt', require: false, '~> 1.3.3'
-      [BE CAREFUL] 10) gem 'sprockets', require: false, '~> 2.2.2'
-      [BE CAREFUL] 11) gem 'erubis', require: false, '~> 2.7.0'
+      [BE CAREFUL] 1) gem 'i18n', '~> 0.6.1', require: false
+      [BE CAREFUL] 2) gem 'builder', '~> 3.0.4', require: false
+      [BE CAREFUL] 3) gem 'activemodel', '~> 3.2.13', require: false
+      [BE CAREFUL] 4) gem 'rack-cache', '~> 1.2', require: false
+      [BE CAREFUL] 5) gem 'rack', '~> 1.4.5', require: false
+      [BE CAREFUL] 6) gem 'rack-test', '~> 0.6.2', require: false
+      [BE CAREFUL] 7) gem 'journey', '~> 1.0.4', require: false
+      [BE CAREFUL] 8) gem 'hike', '~> 1.2.1', require: false
+      [BE CAREFUL] 9) gem 'tilt', '~> 1.3.3', require: false
+      [BE CAREFUL] 10) gem 'sprockets', '~> 2.2.2', require: false
+      [BE CAREFUL] 11) gem 'erubis', '~> 2.7.0', require: false
 
 ## Advanced Usage
 
@@ -308,127 +308,127 @@ So here's a [*fat* Gemfile][bundle-group-pattern] weighing in at 265 gem depende
       ["/Users/pboling/.rvm/gems/ruby-1.9.3-p392@simple/gems/zurb-foundation-3.2.5/lib/foundation/engine.rb", 35]
     [GemBench] If you want to check for false positives, the files to check for Railties and Engines are listed above.
     [GemBench] 74 out of 265 evaluated gems actually need to be loaded at boot time. They are:
-      [SUGGESTION] 1) gem 'activesupport', '~> 3.2.13'
-      [SUGGESTION] 2) gem 'sprockets', '~> 2.2.2'
-      [SUGGESTION] 3) gem 'actionpack', '~> 3.2.13'
-      [SUGGESTION] 4) gem 'actionmailer', '~> 3.2.13'
-      [SUGGESTION] 5) gem 'activerecord', '~> 3.2.13'
-      [SUGGESTION] 6) gem 'activerecord-postgres-array', '~> 0.0.9'
-      [SUGGESTION] 7) gem 'activerecord-postgres-hstore', '~> 0.7.6'
-      [SUGGESTION] 8) gem 'activeresource', '~> 3.2.13'
-      [SUGGESTION] 9) gem 'railties', '~> 3.2.13'
-      [SUGGESTION] 10) gem 'acts-as-messageable', '~> 0.4.8'
-      [SUGGESTION] 11) gem 'airbrake', '~> 3.1.10'
-      [SUGGESTION] 12) gem 'asset_sync', '~> 0.5.4'
-      [SUGGESTION] 13) gem 'slim', '~> 1.3.6'
-      [SUGGESTION] 14) gem 'sidekiq', '~> 2.10.0'
-      [SUGGESTION] 15) gem 'aws-sdk', '~> 1.8.5'
-      [SUGGESTION] 16) gem 'better_errors', '~> 0.8.0'
-      [SUGGESTION] 17) gem 'sass', '~> 3.2.7'
-      [SUGGESTION] 18) gem 'bootstrap-sass', '~> 2.3.1.0'
-      [SUGGESTION] 19) gem 'haml', '~> 4.0.1'
-      [SUGGESTION] 20) gem 'bullet', '~> 4.5.0'
-      [SUGGESTION] 21) gem 'parallel', '~> 0.6.4'
-      [SUGGESTION] 22) gem 'cells', '~> 3.8.8'
-      [SUGGESTION] 23) gem 'coffee-rails', '~> 3.2.2'
-      [SUGGESTION] 24) gem 'compass', '~> 0.12.2'
-      [SUGGESTION] 25) gem 'compass-rails', '~> 1.0.3'
-      [SUGGESTION] 26) gem 'csv_pirate', '~> 5.0.7'
-      [SUGGESTION] 27) gem 'devise', '~> 2.2.3'
-      [SUGGESTION] 28) gem 'devise_invitable', '~> 1.1.3'
-      [SUGGESTION] 29) gem 'rails', '~> 3.2.13'
-      [SUGGESTION] 30) gem 'dismissible_helpers', '~> 0.1.5'
-      [SUGGESTION] 31) gem 'dotenv', '~> 0.6.0'
-      [SUGGESTION] 32) gem 'dry_views', '~> 0.0.2'
-      [SUGGESTION] 33) gem 'sass-rails', '~> 3.2.6'
-      [SUGGESTION] 34) gem 'font-awesome-sass-rails', '~> 3.0.2.2'
-      [SUGGESTION] 35) gem 'foundation-icons-sass-rails', '~> 2.0.0'
-      [SUGGESTION] 36) gem 'g', '~> 1.7.2'
-      [SUGGESTION] 37) gem 'geocoder', '~> 1.1.6'
-      [SUGGESTION] 38) gem 'geokit', '~> 1.6.5'
-      [SUGGESTION] 39) gem 'geokit-rails3', '~> 0.1.5'
-      [SUGGESTION] 40) gem 'pry', '~> 0.9.12'
-      [SUGGESTION] 41) gem 'rspec', '~> 2.13.0'
-      [SUGGESTION] 42) gem 'spork', '~> 1.0.0rc3'
-      [SUGGESTION] 43) gem 'haml-rails', '~> 0.4'
-      [SUGGESTION] 44) gem 'handlebars_assets', '~> 0.12.0'
-      [SUGGESTION] 45) gem 'hirefire-resource', '~> 0.0.2'
-      [SUGGESTION] 46) gem 'jquery-rails', '~> 2.2.1'
-      [SUGGESTION] 47) gem 'html5-rails', '~> 0.0.7'
-      [SUGGESTION] 48) gem 'jquery-ui-rails', '~> 3.0.1'
-      [SUGGESTION] 49) gem 'kaminari', '~> 0.14.1'
-      [SUGGESTION] 50) gem 'neography', '~> 1.0.9'
-      [SUGGESTION] 51) gem 'neoid', '~> 0.1.2'
-      [SUGGESTION] 52) gem 'nested_form', '~> 0.3.2'
-      [SUGGESTION] 53) gem 'newrelic_rpm', '~> 3.6.0.78'
-      [SUGGESTION] 54) gem 'parallel_tests', '~> 0.10.4'
-      [SUGGESTION] 55) gem 'pg', '~> 0.15.0'
-      [SUGGESTION] 56) gem 'rspec-rails', '~> 2.13.0'
-      [SUGGESTION] 57) gem 'pg_power', '~> 1.3.1'
-      [SUGGESTION] 58) gem 'pry-rails', '~> 0.2.2'
-      [SUGGESTION] 59) gem 'quiet_assets', '~> 1.0.2'
-      [SUGGESTION] 60) gem 'remotipart', '~> 1.0.5'
-      [SUGGESTION] 61) gem 'rails_admin', '~> 0.4.6'
-      [SUGGESTION] 62) gem 'requirejs-rails', '~> 0.9.1.1'
-      [SUGGESTION] 63) gem 'rolify', '~> 3.2.0'
-      [SUGGESTION] 64) gem 'rspec-cells', '~> 0.1.6'
-      [SUGGESTION] 65) gem 'sanitize_email', '~> 1.0.6'
-      [SUGGESTION] 66) gem 'simplecov', '~> 0.7.1'
-      [SUGGESTION] 67) gem 'spork-rails', '~> 3.2.1'
-      [SUGGESTION] 68) gem 'sprockets-rails', '~> 0.0.1'
-      [SUGGESTION] 69) gem 'stackable_flash', '~> 0.0.7'
-      [SUGGESTION] 70) gem 'state_machine', '~> 1.2.0'
-      [SUGGESTION] 71) gem 'teabag', '~> 0.4.6'
-      [SUGGESTION] 72) gem 'turbo-sprockets-rails3', '~> 0.3.6'
-      [SUGGESTION] 73) gem 'turbolinks', '~> 1.1.1'
-      [SUGGESTION] 74) gem 'zurb-foundation', '~> 4.1.1'
+      [SUGGESTION] 1) gem 'activesupport', '~> 3.2.13', require: false
+      [SUGGESTION] 2) gem 'sprockets', '~> 2.2.2', require: false
+      [SUGGESTION] 3) gem 'actionpack', '~> 3.2.13', require: false
+      [SUGGESTION] 4) gem 'actionmailer', '~> 3.2.13', require: false
+      [SUGGESTION] 5) gem 'activerecord', '~> 3.2.13', require: false
+      [SUGGESTION] 6) gem 'activerecord-postgres-array', '~> 0.0.9', require: false
+      [SUGGESTION] 7) gem 'activerecord-postgres-hstore', '~> 0.7.6', require: false
+      [SUGGESTION] 8) gem 'activeresource', '~> 3.2.13', require: false
+      [SUGGESTION] 9) gem 'railties', '~> 3.2.13', require: false
+      [SUGGESTION] 10) gem 'acts-as-messageable', '~> 0.4.8', require: false
+      [SUGGESTION] 11) gem 'airbrake', '~> 3.1.10', require: false
+      [SUGGESTION] 12) gem 'asset_sync', '~> 0.5.4', require: false
+      [SUGGESTION] 13) gem 'slim', '~> 1.3.6', require: false
+      [SUGGESTION] 14) gem 'sidekiq', '~> 2.10.0', require: false
+      [SUGGESTION] 15) gem 'aws-sdk', '~> 1.8.5', require: false
+      [SUGGESTION] 16) gem 'better_errors', '~> 0.8.0', require: false
+      [SUGGESTION] 17) gem 'sass', '~> 3.2.7', require: false
+      [SUGGESTION] 18) gem 'bootstrap-sass', '~> 2.3.1.0', require: false
+      [SUGGESTION] 19) gem 'haml', '~> 4.0.1', require: false
+      [SUGGESTION] 20) gem 'bullet', '~> 4.5.0', require: false
+      [SUGGESTION] 21) gem 'parallel', '~> 0.6.4', require: false
+      [SUGGESTION] 22) gem 'cells', '~> 3.8.8', require: false
+      [SUGGESTION] 23) gem 'coffee-rails', '~> 3.2.2', require: false
+      [SUGGESTION] 24) gem 'compass', '~> 0.12.2', require: false
+      [SUGGESTION] 25) gem 'compass-rails', '~> 1.0.3', require: false
+      [SUGGESTION] 26) gem 'csv_pirate', '~> 5.0.7', require: false
+      [SUGGESTION] 27) gem 'devise', '~> 2.2.3', require: false
+      [SUGGESTION] 28) gem 'devise_invitable', '~> 1.1.3', require: false
+      [SUGGESTION] 29) gem 'rails', '~> 3.2.13', require: false
+      [SUGGESTION] 30) gem 'dismissible_helpers', '~> 0.1.5', require: false
+      [SUGGESTION] 31) gem 'dotenv', '~> 0.6.0', require: false
+      [SUGGESTION] 32) gem 'dry_views', '~> 0.0.2', require: false
+      [SUGGESTION] 33) gem 'sass-rails', '~> 3.2.6', require: false
+      [SUGGESTION] 34) gem 'font-awesome-sass-rails', '~> 3.0.2.2', require: false
+      [SUGGESTION] 35) gem 'foundation-icons-sass-rails', '~> 2.0.0', require: false
+      [SUGGESTION] 36) gem 'g', '~> 1.7.2', require: false
+      [SUGGESTION] 37) gem 'geocoder', '~> 1.1.6', require: false
+      [SUGGESTION] 38) gem 'geokit', '~> 1.6.5', require: false
+      [SUGGESTION] 39) gem 'geokit-rails3', '~> 0.1.5', require: false
+      [SUGGESTION] 40) gem 'pry', '~> 0.9.12', require: false
+      [SUGGESTION] 41) gem 'rspec', '~> 2.13.0', require: false
+      [SUGGESTION] 42) gem 'spork', '~> 1.0.0rc3', require: false
+      [SUGGESTION] 43) gem 'haml-rails', '~> 0.4', require: false
+      [SUGGESTION] 44) gem 'handlebars_assets', '~> 0.12.0', require: false
+      [SUGGESTION] 45) gem 'hirefire-resource', '~> 0.0.2', require: false
+      [SUGGESTION] 46) gem 'jquery-rails', '~> 2.2.1', require: false
+      [SUGGESTION] 47) gem 'html5-rails', '~> 0.0.7', require: false
+      [SUGGESTION] 48) gem 'jquery-ui-rails', '~> 3.0.1', require: false
+      [SUGGESTION] 49) gem 'kaminari', '~> 0.14.1', require: false
+      [SUGGESTION] 50) gem 'neography', '~> 1.0.9', require: false
+      [SUGGESTION] 51) gem 'neoid', '~> 0.1.2', require: false
+      [SUGGESTION] 52) gem 'nested_form', '~> 0.3.2', require: false
+      [SUGGESTION] 53) gem 'newrelic_rpm', '~> 3.6.0.78', require: false
+      [SUGGESTION] 54) gem 'parallel_tests', '~> 0.10.4', require: false
+      [SUGGESTION] 55) gem 'pg', '~> 0.15.0', require: false
+      [SUGGESTION] 56) gem 'rspec-rails', '~> 2.13.0', require: false
+      [SUGGESTION] 57) gem 'pg_power', '~> 1.3.1', require: false
+      [SUGGESTION] 58) gem 'pry-rails', '~> 0.2.2', require: false
+      [SUGGESTION] 59) gem 'quiet_assets', '~> 1.0.2', require: false
+      [SUGGESTION] 60) gem 'remotipart', '~> 1.0.5', require: false
+      [SUGGESTION] 61) gem 'rails_admin', '~> 0.4.6', require: false
+      [SUGGESTION] 62) gem 'requirejs-rails', '~> 0.9.1.1', require: false
+      [SUGGESTION] 63) gem 'rolify', '~> 3.2.0', require: false
+      [SUGGESTION] 64) gem 'rspec-cells', '~> 0.1.6', require: false
+      [SUGGESTION] 65) gem 'sanitize_email', '~> 1.0.6', require: false
+      [SUGGESTION] 66) gem 'simplecov', '~> 0.7.1', require: false
+      [SUGGESTION] 67) gem 'spork-rails', '~> 3.2.1', require: false
+      [SUGGESTION] 68) gem 'sprockets-rails', '~> 0.0.1', require: false
+      [SUGGESTION] 69) gem 'stackable_flash', '~> 0.0.7', require: false
+      [SUGGESTION] 70) gem 'state_machine', '~> 1.2.0', require: false
+      [SUGGESTION] 71) gem 'teabag', '~> 0.4.6', require: false
+      [SUGGESTION] 72) gem 'turbo-sprockets-rails3', '~> 0.3.6', require: false
+      [SUGGESTION] 73) gem 'turbolinks', '~> 1.1.1', require: false
+      [SUGGESTION] 74) gem 'zurb-foundation', '~> 4.1.1', require: false
     [GemBench] Evaluated 265 gems and Gemfile at /Users/pboling/Documents/RubyMineProjects/simple/Gemfile.
     [GemBench] Here are 45 suggestions for improvement:
-      [SUGGESTION] 1) gem 'tilt', require: false, '~> 1.3.6'
-      [SUGGESTION] 2) gem 'json', require: false, '~> 1.7.7'
-      [SUGGESTION] 3) gem 'annotate', require: false, '~> 2.5.0'
-      [SUGGESTION] 4) gem 'nokogiri', require: false, '~> 1.5.9'
-      [SUGGESTION] 5) gem 'redis', require: false, '~> 3.0.3'
-      [SUGGESTION] 6) gem 'sinatra', require: false, '~> 1.3.6'
-      [SUGGESTION] 7) gem 'autoscaler', require: false, '~> 0.2.1'
-      [SUGGESTION] 8) gem 'binding_of_caller', require: false, '~> 0.7.1'
-      [SUGGESTION] 9) gem 'bourne', require: false, '~> 1.4.0'
-      [SUGGESTION] 10) gem 'brakeman', require: false, '~> 1.9.5'
-      [SUGGESTION] 11) gem 'cancan', require: false, '~> 1.6.9'
-      [SUGGESTION] 12) gem 'capybara', require: false, '~> 2.0.3'
-      [SUGGESTION] 13) gem 'chronic', require: false, '~> 0.9.1'
-      [SUGGESTION] 14) gem 'compass-h5bp', require: false, '~> 0.1.1'
-      [SUGGESTION] 15) gem 'database_cleaner', require: false, '~> 0.9.1'
-      [SUGGESTION] 16) gem 'debugger', require: false, '~> 1.5.0'
-      [SUGGESTION] 17) gem 'devise-async', require: false, '~> 0.7.0'
-      [SUGGESTION] 18) gem 'dotenv-rails', require: false, '~> 0.6.0'
-      [SUGGESTION] 19) gem 'email_spec', require: false, '~> 1.4.0'
-      [SUGGESTION] 20) gem 'fabrication', require: false, '~> 2.6.4'
-      [SUGGESTION] 21) gem 'fakeweb', require: false, '~> 1.3.0'
-      [SUGGESTION] 22) gem 'flag_shih_tzu', require: false, '~> 0.3.2'
-      [SUGGESTION] 23) gem 'friendly_id', require: false, '~> 4.0.9'
-      [SUGGESTION] 24) gem 'guard', require: false, '~> 1.7.0'
-      [SUGGESTION] 25) gem 'guard-rspec', require: false, '~> 2.5.2'
-      [SUGGESTION] 26) gem 'i18n-airbrake', require: false, '~> 0.0.2'
-      [SUGGESTION] 27) gem 'km', require: false, '~> 1.1.3'
-      [SUGGESTION] 28) gem 'localtunnel', require: false, '~> 0.3'
-      [SUGGESTION] 29) gem 'mailcatcher', require: false, '~> 0.5.10'
-      [SUGGESTION] 30) gem 'numbers_and_words', require: false, '~> 0.6.0'
-      [SUGGESTION] 31) gem 'oj', require: false, '~> 2.0.10'
-      [SUGGESTION] 32) gem 'omniauth-facebook', require: false, '~> 1.4.1'
-      [SUGGESTION] 33) gem 'poltergeist', require: false, '~> 1.0.2'
-      [SUGGESTION] 34) gem 'pry-doc', require: false, '~> 0.4.5'
-      [SUGGESTION] 35) gem 'puma', require: false, '~> 2.0.0.b7'
-      [SUGGESTION] 36) gem 'queryable_array', require: false, '~> 0.0.1'
-      [SUGGESTION] 37) gem 'rails_best_practices', require: false, '~> 1.13.4'
-      [SUGGESTION] 38) gem 'redcarpet', require: false, '~> 2.2.2'
-      [SUGGESTION] 39) gem 'redis-rails', require: false, '~> 3.2.3'
-      [SUGGESTION] 40) gem 'shoulda-matchers', require: false, '~> 1.4.2'
-      [SUGGESTION] 41) gem 'sidekiq-status', require: false, '~> 0.3.0'
-      [SUGGESTION] 42) gem 'terminal-notifier', require: false, '~> 1.4.2'
-      [SUGGESTION] 43) gem 'test-unit', require: false, '~> 2.5.4'
-      [SUGGESTION] 44) gem 'uglifier', require: false, '~> 1.3.0'
-      [SUGGESTION] 45) gem 'vestal_versions', require: false, '~> 1.2.3'
+      [SUGGESTION] 1) gem 'tilt', '~> 1.3.6'
+      [SUGGESTION] 2) gem 'json', '~> 1.7.7'
+      [SUGGESTION] 3) gem 'annotate', '~> 2.5.0'
+      [SUGGESTION] 4) gem 'nokogiri', '~> 1.5.9'
+      [SUGGESTION] 5) gem 'redis', '~> 3.0.3'
+      [SUGGESTION] 6) gem 'sinatra', '~> 1.3.6'
+      [SUGGESTION] 7) gem 'autoscaler', '~> 0.2.1'
+      [SUGGESTION] 8) gem 'binding_of_caller', '~> 0.7.1'
+      [SUGGESTION] 9) gem 'bourne', '~> 1.4.0'
+      [SUGGESTION] 10) gem 'brakeman', '~> 1.9.5'
+      [SUGGESTION] 11) gem 'cancan', '~> 1.6.9'
+      [SUGGESTION] 12) gem 'capybara', '~> 2.0.3'
+      [SUGGESTION] 13) gem 'chronic', '~> 0.9.1'
+      [SUGGESTION] 14) gem 'compass-h5bp', '~> 0.1.1'
+      [SUGGESTION] 15) gem 'database_cleaner', '~> 0.9.1'
+      [SUGGESTION] 16) gem 'debugger', '~> 1.5.0'
+      [SUGGESTION] 17) gem 'devise-async', '~> 0.7.0'
+      [SUGGESTION] 18) gem 'dotenv-rails', '~> 0.6.0'
+      [SUGGESTION] 19) gem 'email_spec', '~> 1.4.0'
+      [SUGGESTION] 20) gem 'fabrication', '~> 2.6.4'
+      [SUGGESTION] 21) gem 'fakeweb', '~> 1.3.0'
+      [SUGGESTION] 22) gem 'flag_shih_tzu', '~> 0.3.2'
+      [SUGGESTION] 23) gem 'friendly_id', '~> 4.0.9'
+      [SUGGESTION] 24) gem 'guard', '~> 1.7.0'
+      [SUGGESTION] 25) gem 'guard-rspec', '~> 2.5.2'
+      [SUGGESTION] 26) gem 'i18n-airbrake', '~> 0.0.2'
+      [SUGGESTION] 27) gem 'km', '~> 1.1.3'
+      [SUGGESTION] 28) gem 'localtunnel', '~> 0.3'
+      [SUGGESTION] 29) gem 'mailcatcher', '~> 0.5.10'
+      [SUGGESTION] 30) gem 'numbers_and_words', '~> 0.6.0'
+      [SUGGESTION] 31) gem 'oj', '~> 2.0.10'
+      [SUGGESTION] 32) gem 'omniauth-facebook', '~> 1.4.1'
+      [SUGGESTION] 33) gem 'poltergeist', '~> 1.0.2'
+      [SUGGESTION] 34) gem 'pry-doc', '~> 0.4.5'
+      [SUGGESTION] 35) gem 'puma', '~> 2.0.0.b7'
+      [SUGGESTION] 36) gem 'queryable_array', '~> 0.0.1'
+      [SUGGESTION] 37) gem 'rails_best_practices', '~> 1.13.4'
+      [SUGGESTION] 38) gem 'redcarpet', '~> 2.2.2'
+      [SUGGESTION] 39) gem 'redis-rails', '~> 3.2.3'
+      [SUGGESTION] 40) gem 'shoulda-matchers', '~> 1.4.2'
+      [SUGGESTION] 41) gem 'sidekiq-status', '~> 0.3.0'
+      [SUGGESTION] 42) gem 'terminal-notifier', '~> 1.4.2'
+      [SUGGESTION] 43) gem 'test-unit', '~> 2.5.4'
+      [SUGGESTION] 44) gem 'uglifier', '~> 1.3.0'
+      [SUGGESTION] 45) gem 'vestal_versions', '~> 1.2.3'
 
 If found 45 gems which are listed as primary dependencies in my `Gemfile` which I can add `require: false` to.
 

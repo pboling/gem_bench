@@ -44,7 +44,7 @@ module GemBench
     def how
       case self.state
         when GemBench::PLAYER_STATES[:starter] then "gem '#{self.name}', '~> #{self.version}'"
-        when GemBench::PLAYER_STATES[:bench] then   "gem '#{self.name}', require: false, '~> #{self.version}'"
+        when GemBench::PLAYER_STATES[:bench] then   "gem '#{self.name}', '~> #{self.version}', require: false"
         else "#{self} is feeling very lost right now."
       end
     end
