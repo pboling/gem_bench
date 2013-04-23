@@ -430,11 +430,16 @@ So here's a [*fat* Gemfile][bundle-group-pattern] weighing in at 265 gem depende
       [SUGGESTION] 44) gem 'uglifier', '~> 1.3.0'
       [SUGGESTION] 45) gem 'vestal_versions', '~> 1.2.3'
 
-If found 45 gems which are listed as primary dependencies in my `Gemfile` which I can add `require: false` to.
+`gem_bench` found 45 gems which are listed as primary dependencies in my `Gemfile` which I can add `require: false` to.
 
 How much faster will my app boot loading 45 fewer gems?  A bit.
 
 **Note:** Some of the gems in the list above should have been excluded.  They are now excluded as of `gem_bench` version 0.0.4.
+
+## Future
+
+This gem determines which gems need to be loaded at Rails' boot time by looking for Railties and Engines.
+A future verison will also look for initializers, because gems which have code that runs (e.g. configuration) in an initializer also need to be loaded at boot time.
 
 ## Contributing
 
