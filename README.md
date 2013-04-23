@@ -469,7 +469,7 @@ For example:
 ## Legal
 
 * MIT License
-* Copyright (c) 2013 [Peter H. Boling](http://www.railsbling.com), and Acquaintable [http://acquaintable.com/]
+* Copyright (c) 2013 [Peter H. Boling](http://www.railsbling.com), and [Acquaintable](http://acquaintable.com/)
 
 [semver]: http://semver.org/
 [pvc]: http://docs.rubygems.org/read/chapter/16#page74
