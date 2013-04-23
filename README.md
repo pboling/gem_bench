@@ -9,7 +9,7 @@ It is a fact of RubyGems that many of them do not need to be loaded by your app 
 It is a fact of Bundler that you don't know which ones need to be 'required' while staring at the Gemfile.
 It is a fact of Heroku that you only have 60 precious seconds to get your app loaded before ❨╯°□°❩╯︵┻━┻
 
-This gem helps by telling you which gems are don't need to be loaded during boot time.
+This gem helps by telling you which gems don't need to be loaded during boot time.
 
 You can even use it to evaluate your project's actual Gemfile for easy peasy boot time savings. (see Advanced Usage)
 
