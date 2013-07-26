@@ -19,7 +19,7 @@ module GemBench
         if GemBench::DO_NOT_SCAN.include? self.name
           false
         else
-          File.read(file_path) =~ GemBench::RAILTIE_REGEX
+          File.read(file_path).encode('utf-8', :invalid => :replace, :undef => :replace, :replace => '_') =~ GemBench::RAILTIE_REGEX
         end
       end
       self.stats << [file_path,scan] if scan
