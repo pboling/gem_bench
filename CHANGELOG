@@ -1,0 +1,15 @@
+Version 0.0.5 - AUG.28.2013
+* Encode as UTF-8 prior to comparison by Peter Boling
+
+Version 0.0.4 - APR.06.2013
+* Expanded exclusion list by Peter Boling
+
+Version 0.0.3 - APR.06.2013
+* Late night coding needs more coffee. by Peter Boling
+
+Version 0.0.2 - APR.06.2013
+* Works against 265 dependency Gemfile by Peter Boling
+* Added ability to evaluate a Gemfile by Peter Boling
+
+Version 0.0.1 - APR.05.2013
+* Initial release by Peter Boling
