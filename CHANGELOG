@@ -1,3 +1,7 @@
+Version 0.0.6 - AUG.29.2013
+* Added license to gemspec by Peter Boling
+* No longer altering Ruby load path - Let the gem manager do that. by Peter Boling
+
 Version 0.0.5 - AUG.28.2013
 * Encode as UTF-8 prior to comparison by Peter Boling
 
