@@ -13,6 +13,9 @@ Gem::Specification.new do |gem|
 You: ❨╯°□°❩╯︵┻━┻}
   gem.homepage      = "http://github.com/acquaintable/gem_bench"
 
+  gem.licenses    = ['MIT']
+  gem.platform    = Gem::Platform::RUBY
+
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
