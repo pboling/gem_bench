@@ -58,7 +58,7 @@ module GemBench
           string << "[GemBench] If you want to check for false positives, the files to check for Railties and Engines are listed above.\n"
           string << "[GemBench] #{self.starters.length} out of #{self.all.length} evaluated gems actually need to be loaded at boot time. They are:\n"
           self.starters.each_with_index do |starter, index|
-            string << "#{starter.suggest(index + 1)}\n"
+            string << "#{starter.info(index + 1)}\n"
           end
         else
           string << "[GemBench] Congrats! No gems to load at boot.\n"
