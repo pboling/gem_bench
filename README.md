@@ -445,6 +445,9 @@ it does save time when running a rake task that does not invoke the environment 
 you don't think saving this time is worth the minor additinoal code complexity, you can exclude the `require: false`s
 in these cases.
 
+After adding your `require: false`s, run gem_bench again. The gem's logic isn't perfect so it sometimes
+will find new suggested exclusions.
+
 How much faster will my app boot loading 45 fewer gems?  A bit.
 
 **Note:** Some of the gems in the list above should have been excluded.  They are now excluded as of `gem_bench` version 0.0.4.
