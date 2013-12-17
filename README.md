@@ -431,6 +431,19 @@ So here's a [*fat* Gemfile][bundle-group-pattern] weighing in at 265 gem depende
       [SUGGESTION] 45) gem 'vestal_versions', '~> 1.2.3'
 
 `gem_bench` found 45 gems which are listed as primary dependencies in my `Gemfile` which I can add `require: false` to.
+After adding `require: false`, try all these locally:
+
+1. running your tests
+2. starting the console
+3. starting the server and using your app
+4. running rake tasks if you have any special ones
+
+When doing these, you will probably encounter errors saying that a library is not available. You should then
+add `require "foo"` where the error happens. Keep in mind that if this is in an initializer or environment file,
+you aren't saving any time when the rails server is booting. However,
+it does save time when running a rake task that does not invoke the environment (some do, some don't). So, if
+you don't think saving this time is worth the minor additinoal code complexity, you can exclude the `require: false`s
+in these cases.
 
 How much faster will my app boot loading 45 fewer gems?  A bit.
 
