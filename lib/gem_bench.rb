@@ -20,7 +20,7 @@ module GemBench
   class << self
     attr_accessor :roster
     def check(verbose = false)
-      @roster = GemBench::Team.new(verbose)
+      @roster = GemBench::Team.new({verbose: verbose})
     end
   end
 

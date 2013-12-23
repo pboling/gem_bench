@@ -23,7 +23,7 @@ module GemBench
             File.read(file_path).encode('utf-8', :invalid => :replace, :undef => :replace, :replace => '_') =~ GemBench::RAILTIE_REGEX
           rescue ArgumentError => e
             if e.message =~ /invalid byte sequence/
-              puts "[GemBench] checking #{file_path} failed due to unparseable file content" if self.verbose == 'extra'
+              puts "[GemBench] checking #{file_path} failed due to unparseable file content"
               false # Assume the likelihood of files with encoding issues that also contain railtie to be low, so: false.
             end
           end
