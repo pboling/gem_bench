@@ -1,4 +1,8 @@
-Version 0.0.7 - DEC.23.2013
+Version 0.0.8 - DEC.23.2013
+* Corrected issues with 0.0.7 release.
+* More Documentation
+
+Version 0.0.7 (Yanked) - DEC.23.2013
 * Attempt to fix failure on encoding problem, with a rescue fallback (Issue #1) by Peter Boling
 * Readme / Documentation improvements by John Bachir
 * Runtime output improvements by John Bachir
