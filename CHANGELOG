@@ -1,6 +1,11 @@
+Version 0.0.7 - DEC.23.2013
+* Attempt to fix failure on encoding problem, with a rescue fallback (Issue #1) by Peter Boling
+* Readme / Documentation improvements by John Bachir
+* Runtime output improvements by John Bachir
+
 Version 0.0.6 - AUG.29.2013
 * Added license to gemspec by Peter Boling
-* No longer altering Ruby load path - Let the gem manager do that. by Peter Boling
+* No longer altering Ruby load path - Let the gem manager do that by Peter Boling
 
 Version 0.0.5 - AUG.28.2013
 * Encode as UTF-8 prior to comparison by Peter Boling
@@ -9,7 +14,7 @@ Version 0.0.4 - APR.06.2013
 * Expanded exclusion list by Peter Boling
 
 Version 0.0.3 - APR.06.2013
-* Late night coding needs more coffee. by Peter Boling
+* Late night coding needs more coffee by Peter Boling
 
 Version 0.0.2 - APR.06.2013
 * Works against 265 dependency Gemfile by Peter Boling
