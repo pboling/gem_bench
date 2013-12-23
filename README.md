@@ -43,6 +43,8 @@ And then execute:
 
 ## Usage
 
+Works with Ruby >= 1.9.2 due to use of stabby lambdas and the new hash syntax, and probably other stuff.
+
 Fire up an `irb` session or a `rails console` and then:
 
     >> require 'gem_bench'
