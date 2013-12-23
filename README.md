@@ -461,6 +461,9 @@ A future verison will also look for initializers, because gems which have code t
 
 ## Contributing
 
+If you see: `is feeling very lost right now` then I'd like to know.
+Create an issue and tell me about it, or fix it yo'sef.
+
 1. Fork it
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Added some feature'`)
