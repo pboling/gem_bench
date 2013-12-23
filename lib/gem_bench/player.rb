@@ -60,6 +60,10 @@ module GemBench
       "\t[SUGGESTION] #{num}) #{self.how}"
     end
 
+    def info(num)
+      "\t[INFO] #{num}) #{self.how}"
+    end
+
     def careful(num)
       "\t[BE CAREFUL] #{num}) #{self.how}"
     end

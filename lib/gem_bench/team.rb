@@ -49,16 +49,17 @@ module GemBench
       else
         if self.starters.length > 0
           string << "\n#{GemBench::USAGE}" unless self.check_gemfile
+          string << "[GemBench] We found a Rails::Railtie or Rails::Engine in the following files. However, it is possible that there are false positives, so you may want to verify that this is the case.\n\n"
           self.starters.each do |starter|
-            string << "[GemBench] You might want to verify that #{starter} really has a Rails::Railtie or Rails::Engine.  Check these files:\n"
+            string << "\t#{starter}:\n"
             starter.stats.each do |stat|
-              string << "\t#{stat}\n"
+              string << "\t\t#{stat[0]}:#{stat[1]}\n"
             end
           end
           string << "[GemBench] If you want to check for false positives, the files to check for Railties and Engines are listed above.\n"
           string << "[GemBench] #{self.starters.length} out of #{self.all.length} evaluated gems actually need to be loaded at boot time. They are:\n"
           self.starters.each_with_index do |starter, index|
-            string << "#{starter.suggest(index + 1)}\n"
+            string << "#{starter.info(index + 1)}\n"
           end
         else
           string << "[GemBench] Congrats! No gems to load at boot.\n"
