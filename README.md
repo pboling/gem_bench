@@ -1,4 +1,4 @@
-# GemBench [![Inline docs](http://inch-pages.github.io/github/pboling/gem_bench.png)](http://inch-pages.github.io/github/pboling/gem_bench)
+# GemBench [![Inline docs](http://inch-ci.org/github/pboling/gem_bench.png)](http://inch-ci.org/github/pboling/gem_bench)
 
 Gem: "Put me in coach!"
 You: ❨╯°□°❩╯︵┻━┻
