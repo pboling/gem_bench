@@ -5,9 +5,35 @@ You: ❨╯°□°❩╯︵┻━┻
 
 `gem_bench` is the super easy way to trim down app load times by keeping your worst players on the bench.
 
+| Project                 |  GemBench    |
+|------------------------ | ----------------- |
+| gem name                |  gem_bench   |
+| license                 |  MIT              |
+| expert support          |  [![Get help on Codementor](https://cdn.codementor.io/badges/get_help_github.svg)](https://www.codementor.io/peterboling?utm_source=github&utm_medium=button&utm_term=peterboling&utm_campaign=github) |
+| download rank               |  [![Total Downloads](https://img.shields.io/gem/rt/gem_bench.svg)](https://rubygems.org/gems/gem_bench) |
+| version                 |  [![Gem Version](https://badge.fury.io/rb/gem_bench.png)](http://badge.fury.io/rb/gem_bench) |
+| dependencies            |  [![Dependency Status](https://gemnasium.com/pboling/gem_bench.png)](https://gemnasium.com/pboling/gem_bench) |
+| code quality            |  [![Code Climate](https://codeclimate.com/github/pboling/gem_bench.png)](https://codeclimate.com/github/pboling/gem_bench) |
+| inline documenation     |  [![Inline docs](http://inch-ci.org/github/pboling/gem_bench.png)](http://inch-ci.org/github/pboling/gem_bench) |
+| continuous integration  |  [![Build Status](https://secure.travis-ci.org/pboling/gem_bench.png?branch=master)](https://travis-ci.org/pboling/gem_bench) |
+| test coverage           |  [![Coverage Status](https://coveralls.io/repos/pboling/gem_bench/badge.png)](https://coveralls.io/r/pboling/gem_bench) |
+| homepage                |  [on Github.com][homepage] |
+| documentation           |  [on Rdoc.info][documentation] |
+| live chat               |  [![Join the chat at https://gitter.im/pboling/gem_bench](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/pboling/gem_bench?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) |
+| Spread ~♡ⓛⓞⓥⓔ♡~      |  [on Coderbits][coderbits], [on Coderwall][coderwall] |
+
+[semver]: http://semver.org/
+[pvc]: http://docs.rubygems.org/read/chapter/16#page74
+[railsbling]: http://www.railsbling.com
+[peterboling]: http://www.peterboling.com
+[coderbits]: https://coderbits.com/pboling
+[coderwall]: http://coderwall.com/pboling
+[documentation]: http://rdoc.info/github/pboling/gem_bench/frames
+[homepage]: https://github.com/pboling/gem_bench
+
 It is a fact of RubyGems that many of them do not need to be loaded by your app at boot time.
 It is a fact of Bundler that you don't know which ones need to be 'required' while staring at the Gemfile.
-It is a fact of Heroku that you only have 60 precious seconds to get your app loaded before ❨╯°□°❩╯︵┻━┻
+It is a fact of Heroku that you only have 60, 75, or 120 ([by special request](https://devcenter.heroku.com/articles/error-codes#h20-app-boot-timeout)) precious seconds to get your app loaded before ❨╯°□°❩╯︵┻━┻
 
 This gem helps by telling you which gems don't need to be loaded during boot time.
 
