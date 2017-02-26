@@ -1,27 +1,35 @@
-# -*- encoding: utf-8 -*-
-require File.expand_path('../lib/gem_bench/version', __FILE__)
+# coding: utf-8
+lib = File.expand_path('../lib', __FILE__)
+$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+require 'gem_bench/version'
 
-Gem::Specification.new do |gem|
-  gem.name          = "gem_bench"
-  gem.version       = GemBench::VERSION
-  gem.authors       = ["Peter Boling"]
-  gem.email         = ["peter.boling@gmail.com"]
-  gem.description   = %q{trim down app load times by keeping your worst players on the bench}
-  gem.summary       = %q{Gem: "Put me in coach"
+Gem::Specification.new do |spec|
+  spec.name          = "gem_bench"
+  spec.version       = GemBench::VERSION
+  spec.authors       = ["Peter Boling"]
+  spec.email         = ["peter.boling@gmail.com"]
+
+  spec.summary       = %q{Gem: "Put me in coach"
 You: ❨╯°□°❩╯︵┻━┻}
-  gem.homepage      = "http://github.com/acquaintable/gem_bench"
+  spec.description   = %q{trim down app load times by keeping your worst players on the bench}
+  spec.homepage      = "http://github.com/acquaintable/gem_bench"
 
-  gem.licenses    = ['MIT']
-  gem.platform    = Gem::Platform::RUBY
+  spec.licenses      = ['MIT']
+  spec.platform      = Gem::Platform::RUBY
+  spec.required_ruby_version = ">= 2.0.0" # because has named parameters with default values
 
-  gem.files         = Dir.glob("{bin,lib,vendor}/**/*") + %w(LICENSE.txt README.md CHANGELOG Rakefile)
-  gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
-  gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
-
-  gem.require_paths = ["lib"]
+  spec.files         = `git ls-files -z`.split("\x0").reject do |f|
+    f.match(%r{^(test|spec|features)/})
+  end
+  spec.bindir        = "exe"
+  spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
+  spec.require_paths = ["lib"]
+  spec.test_files    = Dir.glob("{test|spec|features}/**/*")
 
   # Yes, it *is* actually a run-time dependency. This gem is sort of a bundler add-on.
-  gem.add_runtime_dependency(%q<bundler>, ["> 1.2"])
-  gem.add_development_dependency( 'gem-release' )
-
+  spec.add_runtime_dependency "bundler", "~> 1.14"
+  spec.add_development_dependency "rake", "~> 10.5"
+  spec.add_development_dependency "rspec", "~> 3.5"
+  spec.add_development_dependency "byebug", "~> 9.0"
+  spec.add_development_dependency "gem-release", "~> 0.5"
 end

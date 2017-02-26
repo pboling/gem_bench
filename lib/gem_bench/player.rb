@@ -1,26 +1,37 @@
 module GemBench
   class Player
-
+    # MAJOR.MINOR split on point length == 2
+    # MAJOR.MINOR.PATCH split on point length == 3
+    # Semver 2.0 Standard is to accept minor and patch updates
+    SEMVER_SPLIT_ON_POINT_LENGTH = 2
     attr_accessor :name, :version, :state, :stats
+    attr_reader :file_path_glob, :gemfile_regex, :checked, :exclude_file_pattern
 
     def initialize(options = {})
       @name = options[:name]
       @version = options[:version]
+      @exclude_file_pattern = options[:exclude_file_pattern]
       @state = nil
       @stats = []
+      @file_path_glob = GemBench::PATH_GLOB.call(@name)
+      # Used to find the line of the Gemfile which creates the primary dependency on this gem
+      @gemfile_regex = GemBench::DEPENDENCY_REGEX_PROC.call(@name)
+      @checked = false
     end
 
-    def path_glob
-      GemBench::PATH_GLOB.call(self.name)
-    end
-
-    def set_starter(file_path)
+    def set_starter(file_path, line_match: nil)
+      return false if file_path =~ exclude_file_pattern
+      # Some gems may have zero files to check, as they may be using gem as a
+      #   delivery system for shell scripts!  As such we need to check which
+      #   gems got checked, and which had nothing to check
+      @checked = true
+      line_match ||= GemBench::RAILTIE_REGEX
       scan = begin
-        if GemBench::DO_NOT_SCAN.include? self.name
+        if GemBench::DO_NOT_SCAN.include?(name)
           false
         else
           begin
-            File.read(file_path).encode('utf-8', :invalid => :replace, :undef => :replace, :replace => '_') =~ GemBench::RAILTIE_REGEX
+            File.read(file_path).encode('utf-8', :invalid => :replace, :undef => :replace, :replace => '_') =~ line_match
           rescue ArgumentError => e
             if e.message =~ /invalid byte sequence/
               puts "[GemBench] checking #{file_path} failed due to unparseable file content"
@@ -39,34 +50,60 @@ module GemBench
       self.state == GemBench::PLAYER_STATES[:starter]
     end
 
-    # Used to find the line of the Gemfile which creates the primary dependency on this gem
-    def gemfile_regex
-      GemBench::DEPENDENCY_REGEX.call(self.name)
+    def to_s(format = :name)
+      case format
+        when :name then
+          name
+        when :v then
+          "#{name} v#{version}"
+        when :semver
+          "gem '#{name}', '~> #{semver}'"
+        when :locked
+          "gem '#{name}', '#{version}'"
+        when :legacy # when depending on legacy gems, you specifically want to not upgrade, except patches.
+          "gem '#{name}', '~> #{version}'"
+        when :upgrade # when upgrading, and testing gem compatibility you want to try anything newer
+          "gem '#{name}', '>= #{version}'"
+      end
     end
 
-    def to_s
-      "#{self.name} v#{self.version}"
+    def inspect
+      to_s(:name)
+    end
+
+    def semver
+      ver = version
+      until ver.split(".").length <= SEMVER_SPLIT_ON_POINT_LENGTH do
+        ver = ver[0..(ver.rindex(".")-1)]
+      end
+      ver
     end
 
     def how
       case self.state
-        when GemBench::PLAYER_STATES[:starter] then "gem '#{self.name}', '~> #{self.version}'"
-        when GemBench::PLAYER_STATES[:bench] then   "gem '#{self.name}', '~> #{self.version}', require: false"
-        else "#{self} is feeling very lost right now."
+      when GemBench::PLAYER_STATES[:starter] then
+        to_s(:semver)
+      when GemBench::PLAYER_STATES[:bench] then
+        "#{to_s(:semver)}, require: false"
+      else
+        if checked
+          "#{self} is feeling very lost right now."
+        else
+          "#{self} had no files to evaluate."
+        end
       end
     end
 
     def suggest(num)
-      "\t[SUGGESTION] #{num}) #{self.how}"
+      "\t[SUGGESTION] #{num}) #{how}"
     end
 
     def info(num)
-      "\t[INFO] #{num}) #{self.how}"
+      "\t[INFO] #{num}) #{how}"
     end
 
     def careful(num)
-      "\t[BE CAREFUL] #{num}) #{self.how}"
+      "\t[BE CAREFUL] #{num}) #{how}"
     end
-
   end
 end

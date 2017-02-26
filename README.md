@@ -1,16 +1,29 @@
 # GemBench [![Inline docs](http://inch-ci.org/github/pboling/gem_bench.png)](http://inch-ci.org/github/pboling/gem_bench)
 
+`gem_bench` is the super easy way to trim down app load times by keeping your worst players on the bench.
+
 Gem: "Put me in coach!"
 You: ❨╯°□°❩╯︵┻━┻
 
-`gem_bench` is the super easy way to trim down app load times by keeping your worst players on the bench.
+The new feature for 1.0.0 release allows you to search the Ruby code of all your gems for a specified regex, to find out which gems have wat DRAGONS.
+
+Gem: "I have no wat DRAGONS!"
+You: ❨╯°□°❩╯︵┻━┻
+
+```
+>> puts GemBench.find(look_for_regex: /wat/).starters.map {|gem| "#{gem.name} has wat DRAGONS at #{gem.stats}" }.join("\n")
+[GemBench] Will search for gems in ["/Users/pboling/.rvm/gems/ruby-2.4.0@foss/gems", "/Users/pboling/.rvm/gems/ruby-2.4.0@global/gems", "/Users/pboling/.rvm/gems/ruby-2.4.0@foss/bundler/gems"]
+[GemBench] Detected 11 loaded gems + 2 loaded gems which GemBench is configured to ignore.
+byebug has wat DRAGONS at [["/Users/pboling/.rvm/gems/ruby-2.4.0@foss/gems/byebug-9.0.6/lib/byebug/commands/frame.rb", 954]]
+=> nil
+```
 
 | Project                 |  GemBench    |
 |------------------------ | ----------------- |
 | gem name                |  gem_bench   |
 | license                 |  MIT              |
 | expert support          |  [![Get help on Codementor](https://cdn.codementor.io/badges/get_help_github.svg)](https://www.codementor.io/peterboling?utm_source=github&utm_medium=button&utm_term=peterboling&utm_campaign=github) |
-| download rank               |  [![Total Downloads](https://img.shields.io/gem/rt/gem_bench.svg)](https://rubygems.org/gems/gem_bench) |
+| download rank               |  [![Download Rank](https://img.shields.io/gem/rt/gem_bench.svg)](https://rubygems.org/gems/gem_bench) |
 | version                 |  [![Gem Version](https://badge.fury.io/rb/gem_bench.png)](http://badge.fury.io/rb/gem_bench) |
 | dependencies            |  [![Dependency Status](https://gemnasium.com/pboling/gem_bench.png)](https://gemnasium.com/pboling/gem_bench) |
 | code quality            |  [![Code Climate](https://codeclimate.com/github/pboling/gem_bench.png)](https://codeclimate.com/github/pboling/gem_bench) |
@@ -69,7 +82,34 @@ And then execute:
 
 ## Usage
 
-Works with Ruby >= 1.9.2 due to use of stabby lambdas and the new hash syntax, and probably other stuff.
+Works with Ruby >= 2.0 due to use of named parameters.
+
+### Example!
+
+Getting tired of seeing this `irb` warning, perhaps?
+
+```
+$ bundle exec rails console
+Loading staging environment (Rails M.m.p)
+irb: warn: can't alias context from irb_context.
+```
+
+Find out what gems may be causing it by defining `context`!
+```
+>> require 'gem_bench'
+=> true
+>> bad_context_maybe = GemBench.find(look_for_regex: /def context/).starters
+[GemBench] Will search for gems in ["/Users/pboling/.rvm/gems/ruby-2.4.0@foss/gems", "/Users/pboling/.rvm/gems/ruby-2.4.0@global/gems", "/Users/pboling/.rvm/gems/ruby-2.4.0@foss/bundler/gems"]
+[GemBench] Detected 11 loaded gems + 2 loaded gems which GemBench is configured to ignore.
+=> [byebug, diff-lcs]
+```
+Then find the file and line number for the first occurrence of the regex in each:
+```
+>> bad_context_maybe.stats
+=> [[["/Users/pboling/.rvm/gems/ruby-2.4.0@foss/gems/byebug-9.0.6/lib/byebug/command.rb", 777]], [["/Users/pboling/.rvm/gems/ruby-2.4.0@foss/gems/diff-lcs-1.3/lib/diff/lcs/hunk.rb", 5655]]]
+```
+
+### More Different Example!
 
 Fire up an `irb` session or a `rails console` and then:
 
@@ -123,53 +163,9 @@ See that?  Only 3 of the 14 gems rails loads need to be required when your app b
 However, in order to prevent loading them we would have to make them primary dependencies, listed in the Gemfile, which isn't really the best idea.  Moving on...
 If you run the check against a real app's Gemfile it will find numerous primary dependencies that don't need to be required at app boot. See Advanced Usage :)
 
-In a random directory, in an irb session, where there is no Gemfile in sight it will give a lot more information:
+In a random directory, in an irb session, where there is no Gemfile in sight it will give a lot more information.
 
-    ∴ irb
-    >> require 'gem_bench'
-    => true
-    >> require 'rails'
-    => true
-    >> team = GemBench.check({verbose: true})
-    [GemBench] Will search for gems in ["/Users/pboling/.rvm/gems/ruby-1.9.3-head@foss/gems", "/Users/pboling/.rvm/gems/ruby-1.9.3-head@global/gems"]
-    [GemBench] No Gemfile found.
-    [GemBench] Will show bad ideas.  Be Careful.
-    [GemBench] Detected 14 loaded gems
-      (excluding the 2 loaded gems which GemBench is configured to ignore)
-
-    [GemBench] Usage: Require another gem in this session to evaluate it.
-      Example:
-        require 'rails'
-        GemBench.check({verbose: true})
-    [GemBench] You might want to verify that activesupport v3.2.13 really has a Rails::Railtie or Rails::Engine.  Check these files:
-      ["/Users/pboling/.rvm/gems/ruby-1.9.3-head@foss/gems/activesupport-3.2.11/lib/active_support/i18n_railtie.rb", 146]
-    [GemBench] You might want to verify that actionpack v3.2.13 really has a Rails::Railtie or Rails::Engine.  Check these files:
-      ["/Users/pboling/.rvm/gems/ruby-1.9.3-head@foss/gems/actionpack-3.2.11/lib/action_controller/railtie.rb", 248]
-    [GemBench] You might want to verify that railties v3.2.13 really has a Rails::Railtie or Rails::Engine.  Check these files:
-      ["/Users/pboling/.rvm/gems/ruby-1.9.3-head@foss/gems/railties-3.2.11/lib/rails/application/configuration.rb", 245]
-    [GemBench] If you want to check for false positives, the files to check for Railties and Engines are listed above.
-    [GemBench] 3 out of 14 evaluated gems actually need to be loaded at boot time. They are:
-      [SUGGESTION] 1) gem 'activesupport', '~> 3.2.13'
-      [SUGGESTION] 2) gem 'actionpack', '~> 3.2.13'
-      [SUGGESTION] 3) gem 'railties', '~> 3.2.13'
-    [GemBench] Evaluated 14 loaded gems and found 11 which may be able to skip boot loading (require: false).
-    *** => WARNING <= ***: Be careful adding non-primary dependencies to your Gemfile as it is generally a bad idea.
-    To safely evaluate a Gemfile:
-      1. Make sure you are in the root of a project with a Gemfile
-      2. Make sure the gem is actually a dependency in the Gemfile
-      [BE CAREFUL] 1) gem 'i18n', '~> 0.6.1', require: false
-      [BE CAREFUL] 2) gem 'builder', '~> 3.0.4', require: false
-      [BE CAREFUL] 3) gem 'activemodel', '~> 3.2.13', require: false
-      [BE CAREFUL] 4) gem 'rack-cache', '~> 1.2', require: false
-      [BE CAREFUL] 5) gem 'rack', '~> 1.4.5', require: false
-      [BE CAREFUL] 6) gem 'rack-test', '~> 0.6.2', require: false
-      [BE CAREFUL] 7) gem 'journey', '~> 1.0.4', require: false
-      [BE CAREFUL] 8) gem 'hike', '~> 1.2.1', require: false
-      [BE CAREFUL] 9) gem 'tilt', '~> 1.3.3', require: false
-      [BE CAREFUL] 10) gem 'sprockets', '~> 2.2.2', require: false
-      [BE CAREFUL] 11) gem 'erubis', '~> 2.7.0', require: false
-
-## Advanced Usage
+### Advanced Usage
 
 In order to *also* see list gems may *not* be required at boot time you need to:
 
@@ -182,158 +178,7 @@ So here's a [*fat* Gemfile][bundle-group-pattern] weighing in at 265 gem depende
     Welcome to RAILS. You are using ruby 1.9.3p392 (2013-02-22 revision 39386) [x86_64-darwin12.2.1]. Have fun ;)
     Loading development environment (Rails 3.2.13)
     [1] pry(main)> a = GemBench.check({verbose: true})
-    [GemBench] Will search for gems in ["/Users/pboling/.rvm/gems/ruby-1.9.3-p392@simple/gems", "/Users/pboling/.rvm/gems/ruby-1.9.3-p392@global/gems", "/Users/pboling/.rvm/gems/ruby-1.9.3-p392@simple/bundler/gems"]
-    [GemBench] Will check Gemfile at /Users/pboling/Documents/RubyMineProjects/simple/Gemfile.
-    [GemBench] Detected 265 loaded gems
-      (excluding the 2 GemBench is configured to skip)
-    [GemBench] You might want to verify that activesupport v3.2.13 really has a Rails::Railtie or Rails::Engine.  Check these files:
-      ["/Users/pboling/.rvm/gems/ruby-1.9.3-p392@simple/gems/activesupport-3.2.12/lib/active_support/i18n_railtie.rb", 146]
-    [GemBench] You might want to verify that sprockets v2.2.2 really has a Rails::Railtie or Rails::Engine.  Check these files:
-      ["/Users/pboling/.rvm/gems/ruby-1.9.3-p392@simple/gems/sprockets-rails-1.0.0/lib/sprockets/rails/railtie.rb", 495]
-    [GemBench] You might want to verify that actionpack v3.2.13 really has a Rails::Railtie or Rails::Engine.  Check these files:
-      ["/Users/pboling/.rvm/gems/ruby-1.9.3-p392@simple/gems/actionpack-3.2.12/lib/action_controller/railtie.rb", 248]
-    [GemBench] You might want to verify that actionmailer v3.2.13 really has a Rails::Railtie or Rails::Engine.  Check these files:
-      ["/Users/pboling/.rvm/gems/ruby-1.9.3-p392@simple/gems/actionmailer-3.2.12/lib/action_mailer/railtie.rb", 133]
-    [GemBench] You might want to verify that activerecord v3.2.13 really has a Rails::Railtie or Rails::Engine.  Check these files:
-      ["/Users/pboling/.rvm/gems/ruby-1.9.3-p392@simple/gems/activerecord-3.2.12/lib/active_record/railtie.rb", 409]
-    [GemBench] You might want to verify that activerecord-postgres-array v0.0.9 really has a Rails::Railtie or Rails::Engine.  Check these files:
-      ["/Users/pboling/.rvm/gems/ruby-1.9.3-p392@simple/bundler/gems/activerecord-postgres-array-07c5291804a2/lib/activerecord-postgres-array.rb", 55]
-    [GemBench] You might want to verify that activerecord-postgres-hstore v0.7.6 really has a Rails::Railtie or Rails::Engine.  Check these files:
-      ["/Users/pboling/.rvm/gems/ruby-1.9.3-p392@simple/gems/activerecord-postgres-hstore-0.7.5/lib/activerecord-postgres-hstore/railties.rb", 226]
-    [GemBench] You might want to verify that activeresource v3.2.13 really has a Rails::Railtie or Rails::Engine.  Check these files:
-      ["/Users/pboling/.rvm/gems/ruby-1.9.3-p392@simple/gems/activeresource-3.2.12/lib/active_resource/railtie.rb", 83]
-    [GemBench] You might want to verify that railties v3.2.13 really has a Rails::Railtie or Rails::Engine.  Check these files:
-      ["/Users/pboling/.rvm/gems/ruby-1.9.3-p392@simple/gems/railties-3.2.12/lib/rails/application/configuration.rb", 245]
-    [GemBench] You might want to verify that acts-as-messageable v0.4.8 really has a Rails::Railtie or Rails::Engine.  Check these files:
-      ["/Users/pboling/.rvm/gems/ruby-1.9.3-p392@simple/gems/acts-as-messageable-0.4.8/lib/acts-as-messageable/railtie.rb", 110]
-    [GemBench] You might want to verify that airbrake v3.1.10 really has a Rails::Railtie or Rails::Engine.  Check these files:
-      ["/Users/pboling/.rvm/gems/ruby-1.9.3-p392@simple/gems/airbrake-3.1.10/lib/airbrake/railtie.rb", 109]
-    [GemBench] You might want to verify that asset_sync v0.5.4 really has a Rails::Railtie or Rails::Engine.  Check these files:
-      ["/Users/pboling/.rvm/gems/ruby-1.9.3-p392@simple/gems/asset_sync-0.5.4/lib/asset_sync/engine.rb", 34]
-    [GemBench] You might want to verify that slim v1.3.6 really has a Rails::Railtie or Rails::Engine.  Check these files:
-      ["/Users/pboling/.rvm/gems/ruby-1.9.3-p392@simple/gems/slim-rails-1.1.0/lib/slim-rails.rb", 81]
-    [GemBench] You might want to verify that sidekiq v2.10.0 really has a Rails::Railtie or Rails::Engine.  Check these files:
-      ["/Users/pboling/.rvm/gems/ruby-1.9.3-p392@simple/gems/sidekiq-2.7.4/lib/sidekiq/rails.rb", 290]
-    [GemBench] You might want to verify that aws-sdk v1.8.5 really has a Rails::Railtie or Rails::Engine.  Check these files:
-      ["/Users/pboling/.rvm/gems/ruby-1.9.3-p392@simple/gems/aws-sdk-1.8.3.1/lib/aws/rails.rb", 705]
-    [GemBench] You might want to verify that better_errors v0.8.0 really has a Rails::Railtie or Rails::Engine.  Check these files:
-      ["/Users/pboling/.rvm/gems/ruby-1.9.3-p392@simple/gems/better_errors-0.6.0/lib/better_errors/rails.rb", 51]
-    [GemBench] You might want to verify that sass v3.2.7 really has a Rails::Railtie or Rails::Engine.  Check these files:
-      ["/Users/pboling/.rvm/gems/ruby-1.9.3-p392@simple/gems/sass-rails-3.2.6/lib/sass/rails/railtie.rb", 68]
-    [GemBench] You might want to verify that bootstrap-sass v2.3.1.0 really has a Rails::Railtie or Rails::Engine.  Check these files:
-      ["/Users/pboling/.rvm/gems/ruby-1.9.3-p392@simple/gems/bootstrap-sass-2.3.0.1/lib/bootstrap-sass/engine.rb", 53]
-    [GemBench] You might want to verify that haml v4.0.1 really has a Rails::Railtie or Rails::Engine.  Check these files:
-      ["/Users/pboling/.rvm/gems/ruby-1.9.3-p392@simple/gems/haml-4.0.0/lib/haml/railtie.rb", 232]
-    [GemBench] You might want to verify that bullet v4.5.0 really has a Rails::Railtie or Rails::Engine.  Check these files:
-      ["/Users/pboling/.rvm/gems/ruby-1.9.3-p392@simple/gems/bullet-4.3.0/lib/bullet.rb", 683]
-    [GemBench] You might want to verify that parallel v0.6.4 really has a Rails::Railtie or Rails::Engine.  Check these files:
-      ["/Users/pboling/.rvm/gems/ruby-1.9.3-p392@simple/gems/parallel_tests-0.10.0/lib/parallel_tests/railtie.rb", 67]
-    [GemBench] You might want to verify that cells v3.8.8 really has a Rails::Railtie or Rails::Engine.  Check these files:
-      ["/Users/pboling/.rvm/gems/ruby-1.9.3-p392@simple/gems/cells-3.8.8/lib/cell/rails4_0_strategy.rb", 773]
-    [GemBench] You might want to verify that coffee-rails v3.2.2 really has a Rails::Railtie or Rails::Engine.  Check these files:
-      ["/Users/pboling/.rvm/gems/ruby-1.9.3-p392@simple/gems/coffee-rails-3.2.2/lib/coffee/rails/engine.rb", 74]
-    [GemBench] You might want to verify that compass v0.12.2 really has a Rails::Railtie or Rails::Engine.  Check these files:
-      ["/Users/pboling/.rvm/gems/ruby-1.9.3-p392@simple/gems/compass-rails-1.0.3/lib/compass-rails/railties/3_0.rb", 49]
-    [GemBench] You might want to verify that compass-rails v1.0.3 really has a Rails::Railtie or Rails::Engine.  Check these files:
-      ["/Users/pboling/.rvm/gems/ruby-1.9.3-p392@simple/gems/compass-rails-1.0.3/lib/compass-rails/railties/3_0.rb", 49]
-    [GemBench] You might want to verify that csv_pirate v5.0.7 really has a Rails::Railtie or Rails::Engine.  Check these files:
-      ["/Users/pboling/.rvm/gems/ruby-1.9.3-p392@simple/gems/csv_pirate-5.0.7/lib/csv_pirate/railtie.rb", 35]
-    [GemBench] You might want to verify that devise v2.2.3 really has a Rails::Railtie or Rails::Engine.  Check these files:
-      ["/Users/pboling/.rvm/gems/ruby-1.9.3-p392@simple/gems/devise-2.2.3/lib/devise/rails.rb", 101]
-    [GemBench] You might want to verify that devise_invitable v1.1.3 really has a Rails::Railtie or Rails::Engine.  Check these files:
-      ["/Users/pboling/.rvm/gems/ruby-1.9.3-p392@simple/bundler/gems/devise_invitable-5af50a925e0a/lib/devise_invitable/rails.rb", 42]
-    [GemBench] You might want to verify that rails v3.2.13 really has a Rails::Railtie or Rails::Engine.  Check these files:
-      ["/Users/pboling/.rvm/gems/ruby-1.9.3-p392@simple/bundler/gems/rails_admin-05a029da6fab/lib/rails_admin/engine.rb", 373]
-    [GemBench] You might want to verify that dismissible_helpers v0.1.5 really has a Rails::Railtie or Rails::Engine.  Check these files:
-      ["/Users/pboling/.rvm/gems/ruby-1.9.3-p392@simple/gems/dismissible_helpers-0.1.5/lib/dismissible_helpers/engine.rb", 44]
-    [GemBench] You might want to verify that dotenv v0.6.0 really has a Rails::Railtie or Rails::Engine.  Check these files:
-      ["/Users/pboling/.rvm/gems/ruby-1.9.3-p392@simple/gems/dotenv-0.5.0/lib/dotenv/railtie.rb", 32]
-    [GemBench] You might want to verify that dry_views v0.0.2 really has a Rails::Railtie or Rails::Engine.  Check these files:
-      ["/Users/pboling/.rvm/gems/ruby-1.9.3-p392@simple/gems/dry_views-0.0.2/lib/dry_views/railtie.rb", 138]
-    [GemBench] You might want to verify that sass-rails v3.2.6 really has a Rails::Railtie or Rails::Engine.  Check these files:
-      ["/Users/pboling/.rvm/gems/ruby-1.9.3-p392@simple/gems/sass-rails-3.2.6/lib/sass/rails/railtie.rb", 68]
-    [GemBench] You might want to verify that font-awesome-sass-rails v3.0.2.2 really has a Rails::Railtie or Rails::Engine.  Check these files:
-      ["/Users/pboling/.rvm/gems/ruby-1.9.3-p392@simple/gems/font-awesome-sass-rails-3.0.2.2/lib/font-awesome-sass-rails/engine.rb", 89]
-    [GemBench] You might want to verify that foundation-icons-sass-rails v2.0.0 really has a Rails::Railtie or Rails::Engine.  Check these files:
-      ["/Users/pboling/.rvm/gems/ruby-1.9.3-p392@simple/gems/foundation-icons-sass-rails-2.0.0/lib/foundation-icons-sass-rails/engine.rb", 95]
-    [GemBench] You might want to verify that g v1.7.2 really has a Rails::Railtie or Rails::Engine.  Check these files:
-      ["/Users/pboling/.rvm/gems/ruby-1.9.3-p392@simple/gems/gem_bench-0.0.2/lib/gem_bench/team.rb", 2462]
-    [GemBench] You might want to verify that geocoder v1.1.6 really has a Rails::Railtie or Rails::Engine.  Check these files:
-      ["/Users/pboling/.rvm/gems/ruby-1.9.3-p392@simple/gems/geocoder-1.1.6/lib/geocoder/railtie.rb", 90]
-    [GemBench] You might want to verify that geokit v1.6.5 really has a Rails::Railtie or Rails::Engine.  Check these files:
-      ["/Users/pboling/.rvm/gems/ruby-1.9.3-p392@simple/bundler/gems/geokit-rails3-9988045e1c4b/lib/geokit-rails3/railtie.rb", 76]
-    [GemBench] You might want to verify that geokit-rails3 v0.1.5 really has a Rails::Railtie or Rails::Engine.  Check these files:
-      ["/Users/pboling/.rvm/gems/ruby-1.9.3-p392@simple/bundler/gems/geokit-rails3-9988045e1c4b/lib/geokit-rails3/railtie.rb", 76]
-    [GemBench] You might want to verify that pry v0.9.12 really has a Rails::Railtie or Rails::Engine.  Check these files:
-      ["/Users/pboling/.rvm/gems/ruby-1.9.3-p392@simple/gems/pry-rails-0.2.2/lib/pry-rails/railtie.rb", 53]
-    [GemBench] You might want to verify that rspec v2.13.0 really has a Rails::Railtie or Rails::Engine.  Check these files:
-      ["/Users/pboling/.rvm/gems/ruby-1.9.3-p392@simple/gems/rspec-rails-2.12.2/lib/rspec-rails.rb", 50]
-    [GemBench] You might want to verify that spork v1.0.0rc3 really has a Rails::Railtie or Rails::Engine.  Check these files:
-      ["/Users/pboling/.rvm/gems/ruby-1.9.3-p392@simple/gems/spork-rails-3.2.1/lib/spork/app_framework/rails.rb", 1267]
-    [GemBench] You might want to verify that haml-rails v0.4 really has a Rails::Railtie or Rails::Engine.  Check these files:
-      ["/Users/pboling/.rvm/gems/ruby-1.9.3-p392@simple/gems/haml-rails-0.4/lib/haml-rails.rb", 81]
-    [GemBench] You might want to verify that handlebars_assets v0.12.0 really has a Rails::Railtie or Rails::Engine.  Check these files:
-      ["/Users/pboling/.rvm/gems/ruby-1.9.3-p392@simple/gems/handlebars_assets-0.12.0/lib/handlebars_assets/engine.rb", 43]
-    [GemBench] You might want to verify that hirefire-resource v0.0.2 really has a Rails::Railtie or Rails::Engine.  Check these files:
-      ["/Users/pboling/.rvm/gems/ruby-1.9.3-p392@simple/gems/hirefire-resource-0.0.2/lib/hirefire/railtie.rb", 55]
-    [GemBench] You might want to verify that jquery-rails v2.2.1 really has a Rails::Railtie or Rails::Engine.  Check these files:
-      ["/Users/pboling/.rvm/gems/ruby-1.9.3-p392@simple/gems/jquery-rails-2.1.4/lib/jquery/rails/engine.rb", 50]
-    [GemBench] You might want to verify that html5-rails v0.0.7 really has a Rails::Railtie or Rails::Engine.  Check these files:
-      ["/Users/pboling/.rvm/gems/ruby-1.9.3-p392@simple/gems/html5-rails-0.0.6/lib/html5/rails/engine.rb", 49]
-    [GemBench] You might want to verify that jquery-ui-rails v3.0.1 really has a Rails::Railtie or Rails::Engine.  Check these files:
-      ["/Users/pboling/.rvm/gems/ruby-1.9.3-p392@simple/gems/jquery-ui-rails-3.0.1/lib/jquery/ui/rails/engine.rb", 66]
-    [GemBench] You might want to verify that kaminari v0.14.1 really has a Rails::Railtie or Rails::Engine.  Check these files:
-      ["/Users/pboling/.rvm/gems/ruby-1.9.3-p392@simple/gems/kaminari-0.14.1/lib/kaminari/engine.rb", 44]
-    [GemBench] You might want to verify that neography v1.0.9 really has a Rails::Railtie or Rails::Engine.  Check these files:
-      ["/Users/pboling/.rvm/gems/ruby-1.9.3-p392@simple/gems/neography-1.0.6/lib/neography/railtie.rb", 52]
-    [GemBench] You might want to verify that neoid v0.1.2 really has a Rails::Railtie or Rails::Engine.  Check these files:
-      ["/Users/pboling/.rvm/gems/ruby-1.9.3-p392@simple/gems/neoid-0.1.2/lib/neoid/railtie.rb", 59]
-    [GemBench] You might want to verify that nested_form v0.3.2 really has a Rails::Railtie or Rails::Engine.  Check these files:
-      ["/Users/pboling/.rvm/gems/ruby-1.9.3-p392@simple/gems/nested_form-0.3.1/lib/nested_form/engine.rb", 54]
-    [GemBench] You might want to verify that newrelic_rpm v3.6.0.78 really has a Rails::Railtie or Rails::Engine.  Check these files:
-      ["/Users/pboling/.rvm/gems/ruby-1.9.3-p392@simple/gems/newrelic_rpm-3.5.5.540.dev/lib/newrelic_rpm.rb", 863]
-    [GemBench] You might want to verify that parallel_tests v0.10.4 really has a Rails::Railtie or Rails::Engine.  Check these files:
-      ["/Users/pboling/.rvm/gems/ruby-1.9.3-p392@simple/gems/parallel_tests-0.10.0/lib/parallel_tests/railtie.rb", 67]
-    [GemBench] You might want to verify that pg v0.15.0 really has a Rails::Railtie or Rails::Engine.  Check these files:
-      ["/Users/pboling/.rvm/gems/ruby-1.9.3-p392@simple/gems/pg_power-1.3.0/lib/pg_power/engine.rb", 43]
-    [GemBench] You might want to verify that rspec-rails v2.13.0 really has a Rails::Railtie or Rails::Engine.  Check these files:
-      ["/Users/pboling/.rvm/gems/ruby-1.9.3-p392@simple/gems/rspec-rails-2.12.2/lib/rspec-rails.rb", 50]
-    [GemBench] You might want to verify that pg_power v1.3.1 really has a Rails::Railtie or Rails::Engine.  Check these files:
-      ["/Users/pboling/.rvm/gems/ruby-1.9.3-p392@simple/gems/pg_power-1.3.0/lib/pg_power/engine.rb", 43]
-    [GemBench] You might want to verify that pry-rails v0.2.2 really has a Rails::Railtie or Rails::Engine.  Check these files:
-      ["/Users/pboling/.rvm/gems/ruby-1.9.3-p392@simple/gems/pry-rails-0.2.2/lib/pry-rails/railtie.rb", 53]
-    [GemBench] You might want to verify that quiet_assets v1.0.2 really has a Rails::Railtie or Rails::Engine.  Check these files:
-      ["/Users/pboling/.rvm/gems/ruby-1.9.3-p392@simple/gems/quiet_assets-1.0.2/lib/quiet_assets.rb", 38]
-    [GemBench] You might want to verify that remotipart v1.0.5 really has a Rails::Railtie or Rails::Engine.  Check these files:
-      ["/Users/pboling/.rvm/gems/ruby-1.9.3-p392@simple/gems/remotipart-1.0.5/lib/remotipart/rails/engine.rb", 77]
-    [GemBench] You might want to verify that rails_admin v0.4.6 really has a Rails::Railtie or Rails::Engine.  Check these files:
-      ["/Users/pboling/.rvm/gems/ruby-1.9.3-p392@simple/bundler/gems/rails_admin-05a029da6fab/lib/rails_admin/engine.rb", 373]
-    [GemBench] You might want to verify that requirejs-rails v0.9.1.1 really has a Rails::Railtie or Rails::Engine.  Check these files:
-      ["/Users/pboling/.rvm/gems/ruby-1.9.3-p392@simple/gems/requirejs-rails-0.9.0/lib/requirejs/rails/engine.rb", 107]
-    [GemBench] You might want to verify that rolify v3.2.0 really has a Rails::Railtie or Rails::Engine.  Check these files:
-      ["/Users/pboling/.rvm/gems/ruby-1.9.3-p392@simple/gems/rolify-3.2.0/lib/rolify/railtie.rb", 66]
-    [GemBench] You might want to verify that rspec-cells v0.1.6 really has a Rails::Railtie or Rails::Engine.  Check these files:
-      ["/Users/pboling/.rvm/gems/ruby-1.9.3-p392@simple/bundler/gems/rspec-cells-47232afed355/lib/rspec-cells.rb", 50]
-    [GemBench] You might want to verify that sanitize_email v1.0.6 really has a Rails::Railtie or Rails::Engine.  Check these files:
-      ["/Users/pboling/.rvm/gems/ruby-1.9.3-p392@simple/gems/sanitize_email-1.0.6/lib/sanitize_email/engine.rb", 144]
-    [GemBench] You might want to verify that simplecov v0.7.1 really has a Rails::Railtie or Rails::Engine.  Check these files:
-      ["/Users/pboling/.rvm/gems/ruby-1.9.3-p392@simple/gems/simplecov-0.7.1/lib/simplecov/railtie.rb", 37]
-    [GemBench] You might want to verify that spork-rails v3.2.1 really has a Rails::Railtie or Rails::Engine.  Check these files:
-      ["/Users/pboling/.rvm/gems/ruby-1.9.3-p392@simple/gems/spork-rails-3.2.1/lib/spork/app_framework/rails.rb", 1267]
-    [GemBench] You might want to verify that sprockets-rails v0.0.1 really has a Rails::Railtie or Rails::Engine.  Check these files:
-      ["/Users/pboling/.rvm/gems/ruby-1.9.3-p392@simple/gems/sprockets-rails-1.0.0/lib/sprockets/rails/railtie.rb", 495]
-    [GemBench] You might want to verify that stackable_flash v0.0.7 really has a Rails::Railtie or Rails::Engine.  Check these files:
-      ["/Users/pboling/.rvm/gems/ruby-1.9.3-p392@simple/gems/stackable_flash-0.0.7/lib/stackable_flash/railtie.rb", 40]
-    [GemBench] You might want to verify that state_machine v1.2.0 really has a Rails::Railtie or Rails::Engine.  Check these files:
-      ["/Users/pboling/.rvm/gems/ruby-1.9.3-p392@simple/gems/state_machine-1.1.2/lib/state_machine/initializers/rails.rb", 262]
-    [GemBench] You might want to verify that teabag v0.4.6 really has a Rails::Railtie or Rails::Engine.  Check these files:
-      ["/Users/pboling/.rvm/gems/ruby-1.9.3-p392@simple/bundler/gems/teabag-0d3fde2505b9/lib/teabag/engine.rb", 33]
-    [GemBench] You might want to verify that turbo-sprockets-rails3 v0.3.6 really has a Rails::Railtie or Rails::Engine.  Check these files:
-      ["/Users/pboling/.rvm/gems/ruby-1.9.3-p392@simple/gems/turbo-sprockets-rails3-0.3.6/lib/turbo-sprockets/railtie.rb", 179]
-    [GemBench] You might want to verify that turbolinks v1.1.1 really has a Rails::Railtie or Rails::Engine.  Check these files:
-      ["/Users/pboling/.rvm/gems/ruby-1.9.3-p392@simple/gems/turbolinks-0.6.1/lib/turbolinks.rb", 650]
-    [GemBench] You might want to verify that zurb-foundation v4.1.1 really has a Rails::Railtie or Rails::Engine.  Check these files:
-      ["/Users/pboling/.rvm/gems/ruby-1.9.3-p392@simple/gems/zurb-foundation-3.2.5/lib/foundation/engine.rb", 35]
+    ... # snip # ...
     [GemBench] If you want to check for false positives, the files to check for Railties and Engines are listed above.
     [GemBench] 74 out of 265 evaluated gems actually need to be loaded at boot time. They are:
       [SUGGESTION] 1) gem 'activesupport', '~> 3.2.13', require: false
@@ -470,7 +315,7 @@ When doing these, you will probably encounter errors saying that a library is no
 add `require "foo"` where the error happens. Keep in mind that if this is in an initializer or environment file,
 you aren't saving any time when the rails server is booting. However,
 it does save time when running a rake task that does not invoke the environment (some do, some don't). So, if
-you don't think saving this time is worth the minor additinoal code complexity, you can exclude the `require: false`s
+you don't think saving this time is worth the minor additional code complexity, you can exclude the `require: false`s
 in these cases.
 
 After adding your `require: false`s, run gem_bench again. The gem's logic isn't perfect so it sometimes
@@ -483,9 +328,17 @@ How much faster will my app boot loading 45 fewer gems?  A bit.
 ## Future
 
 This gem determines which gems need to be loaded at Rails' boot time by looking for Railties and Engines.
-A future verison will also look for initializers, because gems which have code that runs (e.g. configuration) in an initializer also need to be loaded at boot time.
+A future version will also look for initializers, because gems which have code that runs (e.g. configuration) in an initializer also need to be loaded at boot time.
+
+## Development
+
+After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+
+To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
 
 ## Contributing
+
+Bug reports and pull requests are welcome on GitHub at https://github.com/pboling/gem_bench.
 
 If you see: `is feeling very lost right now` then I'd like to know.
 Create an issue and tell me about it, or fix it yo'sef.
@@ -516,7 +369,7 @@ For example:
 ## Legal
 
 * MIT License
-* Copyright (c) 2013 [Peter H. Boling](http://www.railsbling.com), and [Acquaintable](http://acquaintable.com/)
+* Copyright (c) 2013 [Peter H. Boling](http://www.railsbling.com)
 
 [semver]: http://semver.org/
 [pvc]: http://docs.rubygems.org/read/chapter/16#page74

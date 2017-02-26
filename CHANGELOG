@@ -1,3 +1,10 @@
+Version 1.0.0 - FEB.26.2017
+* New feature: scan all code (except for test/spec/feature code) in all loaded gems for a given regex:
+  - puts GemBench.find(look_for_regex: /HERE BE DRAGONS/).starters.map {|gem| "#{gem.name} has DRAGONS at #{gem.stats}" }.join("\n")
+* Added basic specs
+* More Documentation
+* added back git dependency to gemspec (pulled in latest Gem scaffolding from Bundler :/)
+
 Version 0.0.8 - JAN.16.2014
 * Corrected issues with 0.0.7 release.
 * More Documentation
