@@ -17,6 +17,8 @@ You: ❨╯°□°❩╯︵┻━┻
 byebug has wat DRAGONS at [["/Users/pboling/.rvm/gems/ruby-2.4.0@foss/gems/byebug-9.0.6/lib/byebug/commands/frame.rb", 954]]
 => nil
 ```
+NOTE: The number (954, above) is not a line number. The file which contains the text `wat` was the 954th file evaluated, i.e. the number doesn't matter.
+NOTE: This is a contrived example.  The occurrence of `wat` in byebug is meaningless: `byebug/commands/frame.rb:34` has `        if there is a front end also watching over things.`.  This is just an example!  You can find anything you want, perhaps even something important!
 
 | Project                 |  GemBench    |
 |------------------------ | ----------------- |
