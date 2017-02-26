@@ -23,7 +23,7 @@ byebug has wat DRAGONS at [["/Users/pboling/.rvm/gems/ruby-2.4.0@foss/gems/byebu
 | gem name                |  gem_bench   |
 | license                 |  MIT              |
 | expert support          |  [![Get help on Codementor](https://cdn.codementor.io/badges/get_help_github.svg)](https://www.codementor.io/peterboling?utm_source=github&utm_medium=button&utm_term=peterboling&utm_campaign=github) |
-| download rank               |  [![Download Rank](https://img.shields.io/gem/rt/gem_bench.svg)](https://rubygems.org/gems/gem_bench) |
+| download rank           |  [![Download Rank](https://img.shields.io/gem/rt/gem_bench.svg)](https://rubygems.org/gems/gem_bench) |
 | version                 |  [![Gem Version](https://badge.fury.io/rb/gem_bench.png)](http://badge.fury.io/rb/gem_bench) |
 | dependencies            |  [![Dependency Status](https://gemnasium.com/pboling/gem_bench.png)](https://gemnasium.com/pboling/gem_bench) |
 | code quality            |  [![Code Climate](https://codeclimate.com/github/pboling/gem_bench.png)](https://codeclimate.com/github/pboling/gem_bench) |
@@ -33,13 +33,12 @@ byebug has wat DRAGONS at [["/Users/pboling/.rvm/gems/ruby-2.4.0@foss/gems/byebu
 | homepage                |  [on Github.com][homepage] |
 | documentation           |  [on Rdoc.info][documentation] |
 | live chat               |  [![Join the chat at https://gitter.im/pboling/gem_bench](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/pboling/gem_bench?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) |
-| Spread ~♡ⓛⓞⓥⓔ♡~      |  [on Coderbits][coderbits], [on Coderwall][coderwall] |
+| Spread ~♡ⓛⓞⓥⓔ♡~      |  [on Coderwall][coderwall] |
 
 [semver]: http://semver.org/
 [pvc]: http://docs.rubygems.org/read/chapter/16#page74
 [railsbling]: http://www.railsbling.com
 [peterboling]: http://www.peterboling.com
-[coderbits]: https://coderbits.com/pboling
 [coderwall]: http://coderwall.com/pboling
 [documentation]: http://rdoc.info/github/pboling/gem_bench/frames
 [homepage]: https://github.com/pboling/gem_bench
