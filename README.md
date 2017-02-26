@@ -102,10 +102,10 @@ Find out what gems may be causing it by defining `context`!
 [GemBench] Detected 11 loaded gems + 2 loaded gems which GemBench is configured to ignore.
 => [byebug, diff-lcs]
 ```
-Then find the file and line number for the first occurrence of the regex in each:
+Then find the file with the first occurrence of the regex in each:
 ```
->> bad_context_maybe.stats
-=> [[["/Users/pboling/.rvm/gems/ruby-2.4.0@foss/gems/byebug-9.0.6/lib/byebug/command.rb", 777]], [["/Users/pboling/.rvm/gems/ruby-2.4.0@foss/gems/diff-lcs-1.3/lib/diff/lcs/hunk.rb", 5655]]]
+>> bad_context_maybe.stats.map(&:first)
+=> [["/Users/pboling/.rvm/gems/ruby-2.4.0@foss/gems/byebug-9.0.6/lib/byebug/command.rb"], ["/Users/pboling/.rvm/gems/ruby-2.4.0@foss/gems/diff-lcs-1.3/lib/diff/lcs/hunk.rb"]]
 ```
 
 ### More Different Example!
