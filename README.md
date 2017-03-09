@@ -375,7 +375,3 @@ For example:
 [semver]: http://semver.org/
 [pvc]: http://docs.rubygems.org/read/chapter/16#page74
 [bundle-group-pattern]: https://gist.github.com/pboling/4564780
-
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/pboling/gem_bench/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-
