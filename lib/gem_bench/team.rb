@@ -134,7 +134,7 @@ module GemBench
           found = (line =~ player.gemfile_regex)
           if found
             # remove the found line from the array, because no sane person has more than one gem dependency per line... right?
-            line = self.gemfile_lines.delete_at(self.gemfile_lines.index(line))
+            line = scout.gemfile_lines.delete_at(scout.gemfile_lines.index(line))
             # does the line already have require: false?
             self.current_gemfile_suggestions << self.benchers.delete_at(self.benchers.index(player)) unless line =~ GemBench::REQUIRE_FALSE_REGEX
             break # outside of the inner loop
