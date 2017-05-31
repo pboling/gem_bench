@@ -20,10 +20,10 @@ byebug has wat DRAGONS at [["/Users/pboling/.rvm/gems/ruby-2.4.0@foss/gems/byebu
 NOTE: The number (954, above) is not a line number. The file which contains the text `wat` was the 954th file evaluated, i.e. the number doesn't matter.
 NOTE: This is a contrived example.  The occurrence of `wat` in byebug is meaningless: `byebug/commands/frame.rb:34` has `        if there is a front end also watching over things.`.  This is just an example!  You can find anything you want, perhaps even something important!
 
-| Project                 |  GemBench    |
+| Project                 |  GemBench         |
 |------------------------ | ----------------- |
-| gem name                |  gem_bench   |
-| license                 |  MIT              |
+| gem name                |  gem_bench        |
+| license                 |  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) |
 | expert support          |  [![Get help on Codementor](https://cdn.codementor.io/badges/get_help_github.svg)](https://www.codementor.io/peterboling?utm_source=github&utm_medium=button&utm_term=peterboling&utm_campaign=github) |
 | download rank           |  [![Download Rank](https://img.shields.io/gem/rt/gem_bench.svg)](https://rubygems.org/gems/gem_bench) |
 | version                 |  [![Gem Version](https://badge.fury.io/rb/gem_bench.png)](http://badge.fury.io/rb/gem_bench) |
