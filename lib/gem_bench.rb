@@ -11,7 +11,7 @@ module GemBench
   REQUIRE_FALSE_REGEX = /^[^#]+require(([:]\s*)|(\s*=>\s*))false.*/
   DEPENDENCY_REGEX_PROC = ->(name) { /^\s*[^#]*\s*gem\s+['"]{1}#{name}['"]{1}/ }
   PATH_GLOB = ->(name) { "#{name}*/lib/**/*.rb" }
-  EXCLUDE_FILE_PATTERN_REGEX_PROC = ->(name) { /#{name}\/test|features|spec/ }
+  EXCLUDE_FILE_PATTERN_REGEX_PROC = ->(name) { /#{name}\/test|features|spec|bin|exe/ }
   DO_NOT_SCAN = []
   PLAYER_STATES = {
     starter:  :starter,
