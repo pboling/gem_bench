@@ -4,11 +4,12 @@ module GemBench
     attr_reader :version
     attr_reader :version_type
     attr_reader :valid
-    attr_reader :lines
+    attr_reader :relevant_lines
+    attr_reader :index
     attr_reader :tokenized_line
 
     class << self
-      def from_line(all_lines, line, index)
+      def from_line(all_lines, line, index, opts = {})
         tokenized_line = GemfileLineTokenizer.new(all_lines, line, index)
         return nil unless tokenized_line.is_gem
         new(
@@ -16,18 +17,20 @@ module GemBench
             tokenized_line.version,
             tokenized_line.version_type,
             tokenized_line.valid,
-            tokenized_line.lines,
-            tokenized_line
+            tokenized_line.relevant_lines,
+            tokenized_line.index,
+            opts[:debug] == true ? tokenized_line : nil
         )
       end
     end
 
-    def initialize(name, version, version_type, valid, lines, tokenized_line)
+    def initialize(name, version, version_type, valid, relevant_lines, index, tokenized_line = nil)
       @name = name
       @version = version
       @version_type = version_type ? version_type.to_sym : :unknown
       @valid = valid
-      @lines = lines
+      @relevant_lines = relevant_lines
+      @index = index
       @tokenized_line = tokenized_line # for debugging
     end
 
@@ -42,10 +45,10 @@ module GemBench
     def to_s
       <<-EOS
 Gem: #{name}
-Detected Version Constraint:
-#{version}
+Line Number: #{index}
+Version: #{version.inspect}
 Relevant Gemfile Lines:
-#{lines.join("\n")}
+#{relevant_lines.join("\n")}
       EOS
     end
   end

@@ -16,6 +16,7 @@ module GemBench
     )
     # branch is only valid if the branch is not master
     attr_reader :line
+    attr_reader :relevant_lines
     attr_reader :is_gem
     attr_reader :all_lines
     attr_reader :index
@@ -29,7 +30,7 @@ module GemBench
     attr_reader :parse_success
     attr_reader :valid
     def initialize(all_lines, line, index)
-      @line = line
+      @line = line.strip
       @is_gem = self.line.match(GEM_REGEX)
       if self.is_gem
         @all_lines = all_lines
@@ -37,6 +38,7 @@ module GemBench
         @tokens = self.line.split(',')
         determine_name
         if self.name
+          determine_relevant_lines
           determine_version
           @parse_success = true
           @valid = VALID_VERSION_TYPES.include?(self.version_type)
@@ -46,10 +48,6 @@ module GemBench
       else
         noop
       end
-    end
-
-    def lines
-      [line, *following_non_gem_lines].compact
     end
 
     private
@@ -66,16 +64,22 @@ module GemBench
       @name = match_data[:name]
     end
 
+    def determine_relevant_lines
+      @relevant_lines = [line, *following_non_gem_lines].compact
+    end
+
     def determine_version
-      check_for_version_of_type_constraint ||
-        version_path ||
+      version_path ||
         (
           version_git && (
             check_for_version_of_type_git_ref ||
             check_for_version_of_type_git_tag ||
             check_for_version_of_type_git_branch
-        )
-      )
+          )
+        ) ||
+        # Needs to be the last check because it can only check for a quoted string,
+        #   and quoted strings are part of the other types, so they have to be checked first with higher specificity
+        check_for_version_of_type_constraint
     end
 
     def check_for_version_of_type_constraint
@@ -94,7 +98,7 @@ module GemBench
 
     def version_path
       @version = {}
-      line = following_non_gem_lines.detect { |next_line| (next_line.match(VERSION_PATH)) }
+      line = relevant_lines.detect { |next_line| (next_line.match(VERSION_PATH)) }
       return false unless line
       enhance_version(
           line.match(VERSION_PATH),
@@ -105,17 +109,17 @@ module GemBench
 
     def version_git
       @version = {}
-      line = following_non_gem_lines.detect { |next_line| (next_line.match(VERSION_GIT_REF)) }
+      line = relevant_lines.detect { |next_line| (next_line.match(VERSION_GIT)) }
       return false unless line
       enhance_version(
-          line.match(VERSION_GIT_REF),
+          line.match(VERSION_GIT),
           :git,
           :git
       )
     end
 
     def check_for_version_of_type_git_ref
-      line = following_non_gem_lines.detect { |next_line| (next_line.match(VERSION_GIT_REF)) }
+      line = relevant_lines.detect { |next_line| (next_line.match(VERSION_GIT_REF)) }
       return false unless line
       enhance_version(
           line.match(VERSION_GIT_REF),
@@ -125,7 +129,7 @@ module GemBench
     end
 
     def check_for_version_of_type_git_tag
-      line = following_non_gem_lines.detect { |next_line| (next_line.match(VERSION_GIT_TAG)) }
+      line = relevant_lines.detect { |next_line| (next_line.match(VERSION_GIT_TAG)) }
       return false unless line
       enhance_version(
           line.match(VERSION_GIT_TAG),
@@ -135,7 +139,7 @@ module GemBench
     end
 
     def check_for_version_of_type_git_branch
-      line = following_non_gem_lines.detect { |next_line| (next_line.match(VERSION_GIT_BRANCH)) }
+      line = relevant_lines.detect { |next_line| (next_line.match(VERSION_GIT_BRANCH)) }
       return false unless line
       enhance_version(
           line.match(VERSION_GIT_BRANCH),
@@ -146,16 +150,23 @@ module GemBench
 
     # returns an array with each line following the current line, which is not a gem line
     def following_non_gem_lines
-      @following_non_gem_lines ||= all_lines[(index+1)..(-1)].inject([]) do |following_lines, next_line|
-        break following_lines if next_line.match(GEM_REGEX) || next_line.match(GemBench::TRASH_REGEX)
-        following_lines << next_line
+      all_lines[(index+1)..(-1)].
+          reject {|x| x.strip.empty? || x.match(GemBench::TRASH_REGEX) }.
+          map(&:strip).
+          inject([]) do |following_lines, next_line|
+            break following_lines if next_line.match(GEM_REGEX)
+            following_lines << next_line
       end
     end
 
     # returns a hash like:
     #   {"key" => ":git => ", "value" => "https://github.com/cte/aftership-sdk-ruby.git"}
     def normalize_match_data_captures(match_data)
-      match_data.names.inject({}){|mem, capture| mem[capture.gsub(/\d/,'')] = match_data[capture]; mem}
+      match_data.names.inject({}) do |mem, capture|
+        mem[capture.gsub(/\d/,'')] = match_data[capture]
+        break mem if mem.keys.length >= 2
+        mem
+      end
     end
 
     def enhance_version(match_data, version_key, type)
