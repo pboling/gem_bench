@@ -32,4 +32,5 @@ You: ❨╯°□°❩╯︵┻━┻}
   spec.add_development_dependency "rspec", "~> 3.5"
   spec.add_development_dependency "byebug", "~> 9.0"
   spec.add_development_dependency "gem-release", "~> 0.5"
+  spec.add_development_dependency "awesome_print"
 end

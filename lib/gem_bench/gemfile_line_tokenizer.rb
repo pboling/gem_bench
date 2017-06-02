@@ -4,6 +4,7 @@ module GemBench
     GEM_NAME_REGEX = /\A\s*gem\s+['"]{1}(?<name>[^'"]*)['"].*\Z/.freeze # run against gem lines like: "gem 'aftership', # Ruby SDK of AfterShip API."
     VERSION_CONSTRAINT = /['"]{1}([^'"]*)['"]/.freeze
     GEMFILE_HASH_CONFIG_KEY_REGEX_PROC = ->(key) { /\A\s*[^#]*(?<key1>#{key}: *)['"]{1}(?<value1>[^'"]*)['"]|(?<key2>['"]#{key}['"] *=> *)['"]{1}(?<value2>[^'"]*)['"]|(?<key3>:#{key} *=> *)['"]{1}(?<value3>[^'"]*)['"]/ }
+    VERSION_PATH = GEMFILE_HASH_CONFIG_KEY_REGEX_PROC.call('path').freeze
     VERSION_GIT = GEMFILE_HASH_CONFIG_KEY_REGEX_PROC.call('git').freeze
     VERSION_GIT_REF = GEMFILE_HASH_CONFIG_KEY_REGEX_PROC.call('ref').freeze
     VERSION_GIT_TAG = GEMFILE_HASH_CONFIG_KEY_REGEX_PROC.call('tag').freeze
@@ -37,14 +38,13 @@ module GemBench
         determine_name
         if self.name
           determine_version
-          @parse_success = self.version_type
+          @parse_success = true
           @valid = VALID_VERSION_TYPES.include?(self.version_type)
         else
-          @parse_success = true
-          @valid = false
+          noop
         end
       else
-        # not a gem line.  noop.
+        noop
       end
     end
 
@@ -54,6 +54,12 @@ module GemBench
 
     private
 
+    # not a gem line.  noop.
+    def noop
+      @parse_success = false
+      @valid = false
+    end
+
     def determine_name
       # uses @tokens[0] because the gem name must be before the first comma
       match_data = @tokens[0].match(GEM_NAME_REGEX)
@@ -62,10 +68,13 @@ module GemBench
 
     def determine_version
       check_for_version_of_type_constraint ||
-      version_git && (
-          check_for_version_of_type_git_ref ||
-          check_for_version_of_type_git_tag ||
-          check_for_version_of_type_git_branch
+        version_path ||
+        (
+          version_git && (
+            check_for_version_of_type_git_ref ||
+            check_for_version_of_type_git_tag ||
+            check_for_version_of_type_git_branch
+        )
       )
     end
 
@@ -76,38 +85,60 @@ module GemBench
       match_data = possible_constraint.strip.match(VERSION_CONSTRAINT)
       # the version constraint is in a regex capture group
       if match_data && (@version = match_data[1].strip)
-        return :constraint
+        @version_type = :constraint
+        true
+      else
+        false
       end
+    end
+
+    def version_path
+      @version = {}
+      line = following_non_gem_lines.detect { |next_line| (next_line.match(VERSION_PATH)) }
+      return false unless line
+      enhance_version(
+          line.match(VERSION_PATH),
+          :path,
+          :path
+      )
     end
 
     def version_git
       @version = {}
+      line = following_non_gem_lines.detect { |next_line| (next_line.match(VERSION_GIT_REF)) }
+      return false unless line
       enhance_version(
-          following_non_gem_lines.detect { |next_line| (next_line.match(VERSION_GIT_REF)) },
+          line.match(VERSION_GIT_REF),
           :git,
           :git
       )
     end
 
     def check_for_version_of_type_git_ref
+      line = following_non_gem_lines.detect { |next_line| (next_line.match(VERSION_GIT_REF)) }
+      return false unless line
       enhance_version(
-          following_non_gem_lines.detect { |next_line| (next_line.match(VERSION_GIT_REF)) },
+          line.match(VERSION_GIT_REF),
           :ref,
           :git_ref
       )
     end
 
     def check_for_version_of_type_git_tag
+      line = following_non_gem_lines.detect { |next_line| (next_line.match(VERSION_GIT_TAG)) }
+      return false unless line
       enhance_version(
-          following_non_gem_lines.detect { |next_line| (next_line.match(VERSION_GIT_TAG)) },
+          line.match(VERSION_GIT_TAG),
           :tag,
           :git_tag
       )
     end
 
     def check_for_version_of_type_git_branch
+      line = following_non_gem_lines.detect { |next_line| (next_line.match(VERSION_GIT_BRANCH)) }
+      return false unless line
       enhance_version(
-          following_non_gem_lines.detect { |next_line| (next_line.match(VERSION_GIT_BRANCH)) },
+          line.match(VERSION_GIT_BRANCH),
           :branch,
           :git_branch
       )

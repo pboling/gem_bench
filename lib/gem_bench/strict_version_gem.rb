@@ -5,6 +5,7 @@ module GemBench
     attr_reader :version_type
     attr_reader :valid
     attr_reader :lines
+    attr_reader :tokenized_line
 
     class << self
       def from_line(all_lines, line, index)
@@ -15,17 +16,19 @@ module GemBench
             tokenized_line.version,
             tokenized_line.version_type,
             tokenized_line.valid,
-            tokenized_line.lines
+            tokenized_line.lines,
+            tokenized_line
         )
       end
     end
 
-    def initialize(name, version, version_type, valid, lines)
+    def initialize(name, version, version_type, valid, lines, tokenized_line)
       @name = name
       @version = version
       @version_type = version_type ? version_type.to_sym : :unknown
       @valid = valid
       @lines = lines
+      @tokenized_line = tokenized_line # for debugging
     end
 
     def valid?
@@ -43,7 +46,6 @@ Detected Version Constraint:
 #{version}
 Relevant Gemfile Lines:
 #{lines.join("\n")}
-
       EOS
     end
   end

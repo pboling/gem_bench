@@ -18,7 +18,7 @@ module GemBench
         @gems << gem if gem
       end
 
-      @starters, @benchers = @gems.partition {|x| x.valid }
+      @starters, @benchers = @gems.partition {|x| x.valid? }
       # Remove all the commented || blank lines
       @verbose = options[:verbose]
       self.print if self.verbose
@@ -30,19 +30,22 @@ module GemBench
 
     def print
       puts <<-EOS
+The gems that need to be improved are:
+  #{benchers.map(&:to_s).join("\n")}
+
 There are #{starters.length} gems that have valid strict version constraints.
 Of those:
   #{starters.count {|x| x.is_type?(:contraint) }} use normal constraints like '~> 1.2.3'.
   #{starters.count {|x| x.is_type?(:git_ref) }} use git ref constraints.
   #{starters.count {|x| x.is_type?(:git_tag) }} use git tag constraints.
+
 There are #{benchers.length} gems that do not have strict version constraints.
 Of those:
   #{benchers.count {|x| x.is_type?(:git_branch) }} use git branch constraints.
   #{benchers.count {|x| x.is_type?(:git) }} use some other for of git constraint considered not strict enough.
   #{benchers.count {|x| x.is_type?(:unknown) }} gems seem to not have any constraint at all.
 
-The gems that need to be improved are:
-  #{benchers.map(&:to_s).join("\n")}
+WARNING: #{benchers.count {|x| x.is_type?(:path) }} gems are using a local path.
 EOS
     end
   end
