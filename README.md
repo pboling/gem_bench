@@ -1,6 +1,8 @@
 # GemBench [![Inline docs](http://inch-ci.org/github/pboling/gem_bench.png)](http://inch-ci.org/github/pboling/gem_bench)
 
-`gem_bench` is the super easy way to trim down app load times by keeping your worst players on the bench.
+`gem_bench` is for static Gemfile and installed gem library source code analysis.
+
+`gem_bench` can also be used to trim down app load times by keeping your worst players on the bench.
 
 Gem: "Put me in coach!"
 You: ❨╯°□°❩╯︵┻━┻
@@ -74,14 +76,13 @@ Just install it, and require it in your`irb`/`console` session when you want to 
 
     $ gem install gem_bench
 
-
 ### Option 2
 
 If you decide to include it in your project: add this line to your `Gemfile` in the `:development` group.
 
     gem 'gem_bench', :require => false, :group => :development
 
-### Option BEST
+### Option BEST 1
 
 Or better yet [follow the bundle group pattern in your Gemfile][bundle-group-pattern] and setup a console group so it will only load in the console, and not the web app.  With it loading only in the console session the `require: false` is completely optional. The gem is tiny, so won't impact console load time much. Requiring it will allow checking your `Gemfile` without needing to first `require 'gem_bench'`.
 
@@ -91,6 +92,11 @@ And then execute:
 
     $ bundle
 
+### Option BEST 2
+
+If you are going to use the gem in your specs, you will need to add it to the test group.
+
+    gem 'gem_bench', :group => :test
 
 ## Usage
 

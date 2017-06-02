@@ -9,9 +9,10 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Peter Boling"]
   spec.email         = ["peter.boling@gmail.com"]
 
-  spec.summary       = %q{Gem: "Put me in coach"
-You: ❨╯°□°❩╯︵┻━┻}
-  spec.description   = %q{trim down app load times by keeping your worst players on the bench}
+  spec.summary       = %q{Static Gemfile and installed gem library source code analysis}
+  spec.description   = %q{Enforce Gemfile version constraints
+Regex search across all installed gem's source code to find issues quickly
+Trim down app load times by keeping your worst players on the bench (useful for beating Heroku slug load time cutoff)}
   spec.homepage      = "http://github.com/acquaintable/gem_bench"
 
   spec.licenses      = ['MIT']
