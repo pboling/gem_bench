@@ -1,3 +1,6 @@
+Version 1.0.3 - JUN.02.2017
+* better documentation
+
 Version 1.0.2 - JUN.02.2017
 * version constraint checking, useful to add a spec enforcing Gemfile version constraints, by Peter Boling
   - Console use:
