@@ -10,7 +10,7 @@ Version 1.0.2 - JUN.02.2017
 ```ruby
 Rspec.describe "Gemfile" do
   it("has version constraint on every gem") do
-    requirements = GemBench::StrictVersionRequirement.new({verbose: true}
+    requirements = GemBench::StrictVersionRequirement.new({verbose: true})
     expect(requirements.list_missing_version_constraints).to eq([])
   end
 end
