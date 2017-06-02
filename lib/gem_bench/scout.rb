@@ -8,6 +8,8 @@ module GemBench
       @gemfile_path = "#{Dir.pwd}/Gemfile"
       gem_lookup_paths_from_bundler
       gem_lines_from_gemfile
+      # Gem.loaded_specs are the gems that have been loaded / required.
+      @loaded_gems = Gem.loaded_specs.values.map {|x| [x.name, x.version.to_s] }
     end
 
     def check_gemfile?
