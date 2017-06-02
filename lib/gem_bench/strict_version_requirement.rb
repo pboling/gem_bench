@@ -24,8 +24,12 @@ module GemBench
       self.print if self.verbose
     end
 
-    def valid?
+    def versions_present?
       gems.detect {|x| !x.valid? }.nil?
+    end
+
+    def list_missing_version_constraints
+      benchers.map { |x| x.name }
     end
 
     def find(name)

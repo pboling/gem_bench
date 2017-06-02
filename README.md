@@ -5,6 +5,17 @@
 Gem: "Put me in coach!"
 You: ❨╯°□°❩╯︵┻━┻
 
+Version constraints are important.  Give the Gemfile some love in your CI build - New for 1.0.2
+
+```ruby
+Rspec.describe "Gemfile" do
+  it("has version constraint on every gem") do
+    requirements = GemBench::StrictVersionRequirement.new({verbose: true}
+    expect(requirements.list_missing_version_constraints).to eq([])
+  end
+end
+```
+
 The new feature for 1.0.0 release allows you to search the Ruby code of all your gems for a specified regex, to find out which gems have wat DRAGONS.
 
 Gem: "I have no wat DRAGONS!"

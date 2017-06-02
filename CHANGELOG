@@ -1,3 +1,17 @@
+Version 1.0.2 - JUN.02.2017
+* version constraint checking, useful to add a spec enforcing Gemfile version constraints, by Peter Boling
+  - Console use:
+    - GemBench::StrictVersionRequirement.new({verbose: true})
+  - Spec use:
+```ruby
+Rspec.describe "Gemfile" do
+  it("has version constraint on every gem") do
+    requirements = GemBench::StrictVersionRequirement.new({verbose: true}
+    expect(requirements.list_missing_version_constraints).to eq([])
+  end
+end
+```
+
 Version 1.0.1 - MAR.25.2017
 * fixed a typo that prevented Gemfile comparison by mobilutz
 

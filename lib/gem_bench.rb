@@ -29,12 +29,12 @@ module GemBench
 
     def versions_present?(verbose: false)
       @roster = GemBench::StrictVersionRequirement.new({verbose: verbose})
-      @roster.valid?
+      @roster.versions_present?
     end
 
     def list_missing_version_constraints(verbose: false)
       @roster = GemBench::StrictVersionRequirement.new({verbose: verbose})
-      @roster.benchers.map { |x| x.name }
+      @roster.list_missing_version_constraints
     end
 
     def find(look_for_regex: GemBench::RAILTIE_REGEX, exclude_file_pattern_regex_proc: GemBench::EXCLUDE_FILE_PATTERN_REGEX_PROC, verbose: false)
