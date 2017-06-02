@@ -1,4 +1,5 @@
 Version 1.0.3 - JUN.02.2017
+* fixed accidental removal of loaded_gems in 1.0.2
 * better documentation
 
 Version 1.0.2 - JUN.02.2017
