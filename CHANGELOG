@@ -1,3 +1,6 @@
+Version 1.0.5 - JUN.05.2017
+* Allow github macro as an alternative to git within Gemfile for strict version constraint analysis
+
 Version 1.0.3 - JUN.02.2017
 * fixed accidental removal of loaded_gems in 1.0.2
 * better documentation

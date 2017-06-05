@@ -6,6 +6,7 @@ module GemBench
     GEMFILE_HASH_CONFIG_KEY_REGEX_PROC = ->(key) { /\A\s*[^#]*(?<key1>#{key}: *)['"]{1}(?<value1>[^'"]*)['"]|(?<key2>['"]#{key}['"] *=> *)['"]{1}(?<value2>[^'"]*)['"]|(?<key3>:#{key} *=> *)['"]{1}(?<value3>[^'"]*)['"]/ }
     VERSION_PATH = GEMFILE_HASH_CONFIG_KEY_REGEX_PROC.call('path').freeze
     VERSION_GIT = GEMFILE_HASH_CONFIG_KEY_REGEX_PROC.call('git').freeze
+    VERSION_GITHUB = GEMFILE_HASH_CONFIG_KEY_REGEX_PROC.call('github').freeze
     VERSION_GIT_REF = GEMFILE_HASH_CONFIG_KEY_REGEX_PROC.call('ref').freeze
     VERSION_GIT_TAG = GEMFILE_HASH_CONFIG_KEY_REGEX_PROC.call('tag').freeze
     VERSION_GIT_BRANCH = GEMFILE_HASH_CONFIG_KEY_REGEX_PROC.call('branch').freeze
@@ -71,7 +72,7 @@ module GemBench
     def determine_version
       version_path ||
         (
-          version_git && (
+          (version_git || version_github) && (
             check_for_version_of_type_git_ref ||
             check_for_version_of_type_git_tag ||
             check_for_version_of_type_git_branch
@@ -115,6 +116,17 @@ module GemBench
           line.match(VERSION_GIT),
           :git,
           :git
+      )
+    end
+
+    def version_github
+      @version = {}
+      line = relevant_lines.detect { |next_line| (next_line.match(VERSION_GITHUB)) }
+      return false unless line
+      enhance_version(
+          line.match(VERSION_GITHUB),
+          :github,
+          :github
       )
     end
 
