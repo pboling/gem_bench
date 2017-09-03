@@ -116,14 +116,14 @@ Find out what gems may be causing it by defining `context`!
 ```
 >> require 'gem_bench'
 => true
->> bad_context_maybe = GemBench.find(look_for_regex: /def context/).starters
+>> bad_context_maybes = GemBench.find(look_for_regex: /def context/).starters
 [GemBench] Will search for gems in ["/Users/pboling/.rvm/gems/ruby-2.4.0@foss/gems", "/Users/pboling/.rvm/gems/ruby-2.4.0@global/gems", "/Users/pboling/.rvm/gems/ruby-2.4.0@foss/bundler/gems"]
 [GemBench] Detected 11 loaded gems + 2 loaded gems which GemBench is configured to ignore.
 => [byebug, diff-lcs]
 ```
 Then find the file with the first occurrence of the regex in each:
 ```
->> bad_context_maybe.stats.map(&:first)
+>> bad_context_maybes.map { |bcm| bcm.stats.map(&:first) }
 => [["/Users/pboling/.rvm/gems/ruby-2.4.0@foss/gems/byebug-9.0.6/lib/byebug/command.rb"], ["/Users/pboling/.rvm/gems/ruby-2.4.0@foss/gems/diff-lcs-1.3/lib/diff/lcs/hunk.rb"]]
 ```
 
