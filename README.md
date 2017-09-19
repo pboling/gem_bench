@@ -7,8 +7,11 @@
 Gem: "Put me in coach!"
 You: ❨╯°□°❩╯︵┻━┻
 
-Version constraints are important.  Give the Gemfile some love in your CI build - New for 1.0.2
+### New for 1.0.2 - Gemfile specs
 
+Version constraints are important.  Give the Gemfile some love in your CI build
+
+Create a `spec/gemfile_spec.rb` like:
 ```ruby
 Rspec.describe "Gemfile" do
   it("has version constraint on every gem") do
@@ -18,7 +21,27 @@ Rspec.describe "Gemfile" do
 end
 ```
 
-The new feature for 1.0.0 release allows you to search the Ruby code of all your gems for a specified regex, to find out which gems have wat DRAGONS.
+Then your build will fail as soon as a gem is added without a proper constraint:
+
+```
+Failures:
+
+1) Gemfile has version constraint on every gem
+Failure/Error: expect(requirements.list_missing_version_constraints).to eq([])
+
+  expected: []
+       got: ["puma"]
+
+  (compared using ==)
+# ./spec/gemfile_spec.rb:7:in `block (2 levels) in <top (required)>'
+```
+
+For `:git`/`:github` sources, `:ref` and `:tag` are considered as "constrants", while `:branch` is not, because branches can be such a moving target, and this gem aims to make Gemfiles production-ready.
+For version constraints any constraint is allowed, as it assumes the constraint placed is well considered.
+
+### New for 1.0.0 - Find WAT Dragons in 3rd party source code
+
+Search the Ruby source code of all the gems loaded by your Gemfile for a specified regex, to find out which gems have wat DRAGONS.
 
 Gem: "I have no wat DRAGONS!"
 You: ❨╯°□°❩╯︵┻━┻
@@ -30,6 +53,7 @@ You: ❨╯°□°❩╯︵┻━┻
 byebug has wat DRAGONS at [["/Users/pboling/.rvm/gems/ruby-2.4.0@foss/gems/byebug-9.0.6/lib/byebug/commands/frame.rb", 954]]
 => nil
 ```
+
 NOTE: The number (954, above) is not a line number. The file which contains the text `wat` was the 954th file evaluated, i.e. the number doesn't matter.
 NOTE: This is a contrived example.  The occurrence of `wat` in byebug is meaningless: `byebug/commands/frame.rb:34` has `        if there is a front end also watching over things.`.  This is just an example!  You can find anything you want, perhaps even something important!
 
