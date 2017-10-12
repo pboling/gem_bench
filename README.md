@@ -36,8 +36,8 @@ Failure/Error: expect(requirements.list_missing_version_constraints).to eq([])
 # ./spec/gemfile_spec.rb:7:in `block (2 levels) in <top (required)>'
 ```
 
-For `:git`/`:github` sources, `:ref` and `:tag` are considered as "constrants", while `:branch` is not, because branches can be such a moving target, and this gem aims to make Gemfiles production-ready.
-For version constraints any constraint is allowed, as it assumes the constraint placed is well considered.
+For `:git`/`:github` sources, `:ref` and `:tag` are considered as "constraints", while `:branch` is not, because branches may be a moving target, and this gem aims to make Gemfiles production-ready.
+For string version constraints anything is allowed (e.g. `'~> 1.0'`), as it assumes the constraint placed is well considered.
 
 ### New for 1.0.0 - Find WAT Dragons in 3rd party source code
 
