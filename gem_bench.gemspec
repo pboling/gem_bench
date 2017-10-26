@@ -29,7 +29,7 @@ Trim down app load times by keeping your worst players on the bench (useful for 
 
   # Yes, it *is* actually a run-time dependency. This gem is sort of a bundler add-on.
   spec.add_runtime_dependency "bundler", "~> 1.14"
-  spec.add_development_dependency "rake", "~> 10.5"
+  spec.add_development_dependency "rake", "~> 12.2"
   spec.add_development_dependency "rspec", "~> 3.5"
   spec.add_development_dependency "byebug", "~> 9.0"
   spec.add_development_dependency "gem-release", "~> 0.5"
