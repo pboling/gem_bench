@@ -73,6 +73,7 @@ NOTE: This is a contrived example.  The occurrence of `wat` in byebug is meaning
 | documentation           |  [on Rdoc.info][documentation] |
 | live chat               |  [![Join the chat at https://gitter.im/pboling/gem_bench](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/pboling/gem_bench?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) |
 | Spread ~♡ⓛⓞⓥⓔ♡~      |  [on Coderwall][coderwall] |
+| CodeTriage              | [![Open Source Helpers](https://www.codetriage.com/pboling/gem_bench/badges/users.svg)](https://www.codetriage.com/pboling/gem_bench) |
 
 [semver]: http://semver.org/
 [pvc]: http://docs.rubygems.org/read/chapter/16#page74
