@@ -64,16 +64,16 @@ NOTE: This is a contrived example.  The occurrence of `wat` in byebug is meaning
 | expert support          |  [![Get help on Codementor](https://cdn.codementor.io/badges/get_help_github.svg)](https://www.codementor.io/peterboling?utm_source=github&utm_medium=button&utm_term=peterboling&utm_campaign=github) |
 | download rank           |  [![Download Rank](https://img.shields.io/gem/rt/gem_bench.svg)](https://rubygems.org/gems/gem_bench) |
 | version                 |  [![Gem Version](https://badge.fury.io/rb/gem_bench.png)](http://badge.fury.io/rb/gem_bench) |
-| dependencies            |  [![Dependency Status](https://gemnasium.com/pboling/gem_bench.png)](https://gemnasium.com/pboling/gem_bench) |
-| code quality            |  [![Code Climate](https://codeclimate.com/github/pboling/gem_bench.png)](https://codeclimate.com/github/pboling/gem_bench) |
+| dependencies            |  [![Dependency Status](https://gemnasium.com/pboling/gem_bench.svg)](https://gemnasium.com/pboling/gem_bench) |
+| code quality            |  [![Code Climate](https://codeclimate.com/github/pboling/gem_bench.svg)](https://codeclimate.com/github/pboling/gem_bench) |
+| code triage              | [![Open Source Helpers](https://www.codetriage.com/pboling/gem_bench/badges/users.svg)](https://www.codetriage.com/pboling/gem_bench) |
 | inline documenation     |  [![Inline docs](http://inch-ci.org/github/pboling/gem_bench.png)](http://inch-ci.org/github/pboling/gem_bench) |
 | continuous integration  |  [![Build Status](https://secure.travis-ci.org/pboling/gem_bench.png?branch=master)](https://travis-ci.org/pboling/gem_bench) |
-| test coverage           |  [![Coverage Status](https://coveralls.io/repos/pboling/gem_bench/badge.png)](https://coveralls.io/r/pboling/gem_bench) |
+| test coverage           |  [![Coverage Status](https://coveralls.io/repos/pboling/gem_bench/badge.svg)](https://coveralls.io/r/pboling/gem_bench) |
 | homepage                |  [on Github.com][homepage] |
 | documentation           |  [on Rdoc.info][documentation] |
 | live chat               |  [![Join the chat at https://gitter.im/pboling/gem_bench](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/pboling/gem_bench?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) |
 | Spread ~♡ⓛⓞⓥⓔ♡~      |  [on Coderwall][coderwall] |
-| CodeTriage              | [![Open Source Helpers](https://www.codetriage.com/pboling/gem_bench/badges/users.svg)](https://www.codetriage.com/pboling/gem_bench) |
 
 [semver]: http://semver.org/
 [pvc]: http://docs.rubygems.org/read/chapter/16#page74
