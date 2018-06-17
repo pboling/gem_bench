@@ -32,6 +32,6 @@ Trim down app load times by keeping your worst players on the bench (useful for 
   spec.add_development_dependency "rake", "~> 12.2"
   spec.add_development_dependency "rspec", "~> 3.5"
   spec.add_development_dependency "byebug", "~> 10.0"
-  spec.add_development_dependency "gem-release", "~> 0.5"
+  spec.add_development_dependency "gem-release", "~> 2.0"
   spec.add_development_dependency "awesome_print"
 end
