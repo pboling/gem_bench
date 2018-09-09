@@ -1,4 +1,4 @@
-# GemBench [![Inline docs](http://inch-ci.org/github/pboling/gem_bench.png)](http://inch-ci.org/github/pboling/gem_bench)
+# GemBench
 
 `gem_bench` is for static Gemfile and installed gem library source code analysis.
 
@@ -6,6 +6,24 @@
 
 Gem: "Put me in coach!"
 You: ❨╯°□°❩╯︵┻━┻
+
+| Project                 |  GemBench               |
+|------------------------ | ----------------------- |
+| gem name                |  [gem_bench](https://rubygems.org/gems/gem_bench) |
+| license                 |  [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT) |
+| download rank           |  [![Downloads Today](https://img.shields.io/gem/rd/gem_bench.svg)](https://github.com/pboling/gem_bench) |
+| version                 |  [![Version](https://img.shields.io/gem/v/gem_bench.svg)](https://rubygems.org/gems/gem_bench) |
+| dependencies            |  [![Depfu](https://badges.depfu.com/badges/a34c123a78a86496bbc2163b801089dd/count.svg)](https://depfu.com/github/pboling/activerecord-tablefree?project_id=5613) |
+| continuous integration  |  [![Build Status](https://travis-ci.org/pboling/gem_bench.svg?branch=master)](https://travis-ci.org/pboling/gem_bench) |
+| test coverage           |  [![Test Coverage](https://api.codeclimate.com/v1/badges/fe504d4ab2fb77cecf7d/test_coverage)](https://codeclimate.com/github/pboling/gem_bench/test_coverage) |
+| maintainability         |  [![Maintainability](https://api.codeclimate.com/v1/badges/fe504d4ab2fb77cecf7d/maintainability)](https://codeclimate.com/github/pboling/gem_bench/maintainability) |
+| code triage             |  [![Open Source Helpers](https://www.codetriage.com/pboling/gem_bench/badges/users.svg)](https://www.codetriage.com/pboling/gem_bench) |
+| homepage                |  [on Github.com][homepage] |
+| documentation           |  [on Rdoc.info][documentation] |
+| inline documenation     |  [![Inline docs](http://inch-ci.org/github/pboling/gem_bench.png)](http://inch-ci.org/github/pboling/gem_bench) |
+| live chat               |  [![Join the chat at https://gitter.im/pboling/gem_bench](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/pboling/gem_bench?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) |
+| expert support          |  [![Get help on Codementor](https://cdn.codementor.io/badges/get_help_github.svg)](https://www.codementor.io/peterboling?utm_source=github&utm_medium=button&utm_term=peterboling&utm_campaign=github) |
+| Spread ~♡ⓛⓞⓥⓔ♡~      |  [🌍 🌎 🌏](https://about.me/peter.boling), [🍚](https://www.crowdrise.com/helprefugeeswithhopefortomorrowliberia/fundraiser/peterboling), [➕](https://plus.google.com/+PeterBoling/posts), [👼](https://angel.co/peter-boling), [🐛](https://www.topcoder.com/members/pboling/), [:shipit:][coderwall], [![Tweet Peter](https://img.shields.io/twitter/follow/galtzo.svg?style=social&label=Follow)](http://twitter.com/galtzo) |
 
 ### New for 1.0.2 - Gemfile specs
 
@@ -56,32 +74,6 @@ byebug has wat DRAGONS at [["/Users/pboling/.rvm/gems/ruby-2.4.0@foss/gems/byebu
 
 NOTE: The number (954, above) is not a line number. The file which contains the text `wat` was the 954th file evaluated, i.e. the number doesn't matter.
 NOTE: This is a contrived example.  The occurrence of `wat` in byebug is meaningless: `byebug/commands/frame.rb:34` has `        if there is a front end also watching over things.`.  This is just an example!  You can find anything you want, perhaps even something important!
-
-| Project                 |  GemBench         |
-|------------------------ | ----------------- |
-| gem name                |  gem_bench        |
-| license                 |  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) |
-| expert support          |  [![Get help on Codementor](https://cdn.codementor.io/badges/get_help_github.svg)](https://www.codementor.io/peterboling?utm_source=github&utm_medium=button&utm_term=peterboling&utm_campaign=github) |
-| download rank           |  [![Download Rank](https://img.shields.io/gem/rt/gem_bench.svg)](https://rubygems.org/gems/gem_bench) |
-| version                 |  [![Gem Version](https://badge.fury.io/rb/gem_bench.png)](http://badge.fury.io/rb/gem_bench) |
-| dependencies            |  [![Dependency Status](https://gemnasium.com/pboling/gem_bench.svg)](https://gemnasium.com/pboling/gem_bench) |
-| code quality            |  [![Code Climate](https://codeclimate.com/github/pboling/gem_bench.svg)](https://codeclimate.com/github/pboling/gem_bench) |
-| code triage              | [![Open Source Helpers](https://www.codetriage.com/pboling/gem_bench/badges/users.svg)](https://www.codetriage.com/pboling/gem_bench) |
-| inline documenation     |  [![Inline docs](http://inch-ci.org/github/pboling/gem_bench.png)](http://inch-ci.org/github/pboling/gem_bench) |
-| continuous integration  |  [![Build Status](https://secure.travis-ci.org/pboling/gem_bench.png?branch=master)](https://travis-ci.org/pboling/gem_bench) |
-| test coverage           |  [![Coverage Status](https://coveralls.io/repos/pboling/gem_bench/badge.svg)](https://coveralls.io/r/pboling/gem_bench) |
-| homepage                |  [on Github.com][homepage] |
-| documentation           |  [on Rdoc.info][documentation] |
-| live chat               |  [![Join the chat at https://gitter.im/pboling/gem_bench](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/pboling/gem_bench?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) |
-| Spread ~♡ⓛⓞⓥⓔ♡~      |  [on Coderwall][coderwall] |
-
-[semver]: http://semver.org/
-[pvc]: http://docs.rubygems.org/read/chapter/16#page74
-[railsbling]: http://www.railsbling.com
-[peterboling]: http://www.peterboling.com
-[coderwall]: http://coderwall.com/pboling
-[documentation]: http://rdoc.info/github/pboling/gem_bench/frames
-[homepage]: https://github.com/pboling/gem_bench
 
 It is a fact of RubyGems that many of them do not need to be loaded by your app at boot time.
 It is a fact of Bundler that you don't know which ones need to be 'required' while staring at the Gemfile.
@@ -411,9 +403,14 @@ For example:
 
 ## Legal
 
-* MIT License
-* Copyright (c) 2013 [Peter H. Boling](http://www.railsbling.com)
+* [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
+* Copyright (c) 2013 - 2018 [Peter H. Boling][peterboling] of [Rails Bling][railsbling]
 
 [semver]: http://semver.org/
 [pvc]: http://docs.rubygems.org/read/chapter/16#page74
 [bundle-group-pattern]: https://gist.github.com/pboling/4564780
+[railsbling]: http://www.railsbling.com
+[peterboling]: http://www.peterboling.com
+[coderwall]: http://coderwall.com/pboling
+[documentation]: http://rdoc.info/github/pboling/gem_bench/frames
+[homepage]: https://github.com/pboling/gem_bench

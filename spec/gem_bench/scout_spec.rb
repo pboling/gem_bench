@@ -100,7 +100,7 @@ RSpec.describe GemBench::Scout do
       end
       it "gemfile_lines is not empty" do
         expect(instance.gemfile_lines).to_not be_empty
-        expect(instance.gemfile_lines).to eq(["source 'https://rubygems.org'\n", "gem \"bundler\" # For specs!\n", "gemspec\n"])
+        expect(instance.gemfile_lines[0..1]).to eq(["source 'https://rubygems.org'\n", "gem \"bundler\" # For specs!\n"])
       end
     end
     context "check_gemfile: false" do
@@ -125,7 +125,7 @@ RSpec.describe GemBench::Scout do
       end
       it "gemfile_lines is not empty" do
         expect(instance.gemfile_lines).to_not be_empty
-        expect(instance.gemfile_lines).to eq(["source 'https://rubygems.org'\n", "gem \"bundler\" # For specs!\n", "gemspec\n"])
+        expect(instance.gemfile_lines[0..1]).to eq(["source 'https://rubygems.org'\n", "gem \"bundler\" # For specs!\n"])
       end
     end
   end

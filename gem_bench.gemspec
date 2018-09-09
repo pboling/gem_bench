@@ -17,7 +17,7 @@ Trim down app load times by keeping your worst players on the bench (useful for 
 
   spec.licenses      = ['MIT']
   spec.platform      = Gem::Platform::RUBY
-  spec.required_ruby_version = ">= 2.0.0" # because has named parameters with default values
+  spec.required_ruby_version = ">= 2.0.0" # for named parameters with default values
 
   spec.files         = `git ls-files -z`.split("\x0").reject do |f|
     f.match(%r{^(test|spec|features)/})
@@ -31,7 +31,6 @@ Trim down app load times by keeping your worst players on the bench (useful for 
   spec.add_runtime_dependency "bundler", "~> 1.14"
   spec.add_development_dependency "rake", "~> 12.2"
   spec.add_development_dependency "rspec", "~> 3.5"
-  spec.add_development_dependency "byebug", "~> 10.0"
   spec.add_development_dependency "gem-release", "~> 2.0"
   spec.add_development_dependency "awesome_print"
 end
