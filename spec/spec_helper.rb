@@ -1,6 +1,10 @@
 require "bundler/setup"
 require "gem_bench"
-require "byebug"
+begin
+  require "byebug"
+rescue LoadError
+  # Only load byebug in recent Ruby
+end
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
