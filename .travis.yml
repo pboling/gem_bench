@@ -1,9 +1,55 @@
 sudo: false
 language: ruby
+cache:
+  bundler: true
+env:
+  global:
+    CC_TEST_REPORTER_ID=13dd1372fb4b8a0c9f5ed2fccae0be25e47f3c8785bd0adc8f50a463c0d40761
+before_install:
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+install:
+  - bundle install --path=${BUNDLE_PATH:-vendor/bundle}  # Install ruby gems
+script:
+  # - bundle exec rubocop -DESP           # linting
+  - bundle exec rake                    # specs
+
+# Pipe the coverage data to Code Climate
+after_script:
+  - ./cc-test-reporter format-coverage -t simplecov -o coverage/codeclimate.backend.json coverage/backend/.resultset.json # Format backend coverage
+  - if [[ "$TRAVIS_TEST_RESULT" == 0 ]]; then ./cc-test-reporter upload-coverage; fi  # Upload coverage/codeclimate.json
+
 rvm:
   - ruby-2.0.0-p648
   - ruby-2.1.10
   - ruby-2.2.10
-  - ruby-2.3.7
-  - ruby-2.4.4
-  - ruby-2.5.1
+  - ruby-2.3.8
+  - ruby-2.4.9
+  - ruby-2.5.7
+  - ruby-2.6.5
+
+gemfile:
+  - gemfiles/ruby_2.6.gemfile
+  - gemfiles/ruby_2.5.gemfile
+  - gemfiles/ruby_2.4.gemfile
+  - gemfiles/ruby_2.3.gemfile
+  - gemfiles/ruby_2.2.gemfile
+  - gemfiles/ruby_2.1.gemfile
+  - gemfiles/ruby_2.0.gemfile
+
+matrix:
+  include:
+    - rvm: ruby-2.0.0-p648
+      gemfile: gemfiles/ruby_2.0.gemfile
+    - rvm: ruby-2.1.10
+      gemfile: gemfiles/ruby_2.1.gemfile
+    - rvm: ruby-2.2.10
+      gemfile: gemfiles/ruby_2.2.gemfile
+    - rvm: ruby-2.3.8
+      gemfile: gemfiles/ruby_2.3.gemfile
+    - rvm: ruby-2.4.9
+      gemfile: gemfiles/ruby_2.4.gemfile
+    - rvm: ruby-2.5.7
+      gemfile: gemfiles/ruby_2.5.gemfile
+    - rvm: ruby-2.6.5
+      gemfile: gemfiles/ruby_2.6.gemfile

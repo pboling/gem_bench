@@ -29,8 +29,16 @@ Trim down app load times by keeping your worst players on the bench (useful for 
 
   # Yes, it *is* actually a run-time dependency. This gem is sort of a bundler add-on.
   spec.add_runtime_dependency "bundler", "~> 1.14"
+
+  spec.add_development_dependency "appraisal"
+  spec.add_development_dependency "awesome_print"
+  spec.add_development_dependency "byebug"
+  spec.add_development_dependency "gem-release", "~> 2.0"
+  spec.add_development_dependency "pry-byebug"
   spec.add_development_dependency "rake", "~> 12.2"
   spec.add_development_dependency "rspec", "~> 3.5"
-  spec.add_development_dependency "gem-release", "~> 2.0"
-  spec.add_development_dependency "awesome_print"
+  spec.add_development_dependency "rubocop"
+  spec.add_development_dependency "rubocop-rspec"
+  spec.add_development_dependency "simplecov"
+  spec.add_development_dependency "wwtd"
 end

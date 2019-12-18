@@ -1,10 +1,10 @@
 require "bundler/setup"
+require "byebug"
+
+require 'simplecov'
+SimpleCov.start
+
 require "gem_bench"
-begin
-  require "byebug"
-rescue LoadError
-  # Only load byebug in recent Ruby
-end
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
