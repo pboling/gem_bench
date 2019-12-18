@@ -37,7 +37,7 @@ gemfile:
   - gemfiles/ruby_2.1.gemfile
   - gemfiles/ruby_2.0.gemfile
 
-matrix:
+jobs:
   include:
     - rvm: ruby-2.0.0-p648
       gemfile: gemfiles/ruby_2.0.gemfile
