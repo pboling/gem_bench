@@ -13,7 +13,7 @@ You: ❨╯°□°❩╯︵┻━┻
 | license                 |  [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT) |
 | download rank           |  [![Downloads Today](https://img.shields.io/gem/rd/gem_bench.svg)](https://github.com/pboling/gem_bench) |
 | version                 |  [![Version](https://img.shields.io/gem/v/gem_bench.svg)](https://rubygems.org/gems/gem_bench) |
-| dependencies            |  [![Depfu](https://badges.depfu.com/badges/a34c123a78a86496bbc2163b801089dd/count.svg)](https://depfu.com/github/pboling/activerecord-tablefree?project_id=5613) |
+| dependencies            |  [![Depfu](https://badges.depfu.com/badges/865e7bb1d0d3eb3ba807fca7344e22d1/overview.svg)](https://depfu.com/github/pboling/gem_bench?project_id=5613) |
 | continuous integration  |  [![Build Status](https://travis-ci.org/pboling/gem_bench.svg?branch=master)](https://travis-ci.org/pboling/gem_bench) |
 | test coverage           |  [![Test Coverage](https://api.codeclimate.com/v1/badges/fe504d4ab2fb77cecf7d/test_coverage)](https://codeclimate.com/github/pboling/gem_bench/test_coverage) |
 | maintainability         |  [![Maintainability](https://api.codeclimate.com/v1/badges/fe504d4ab2fb77cecf7d/maintainability)](https://codeclimate.com/github/pboling/gem_bench/maintainability) |
