@@ -19,24 +19,6 @@ after_script:
   - ./cc-test-reporter format-coverage -t simplecov -o coverage/codeclimate.backend.json coverage/backend/.resultset.json # Format backend coverage
   - if [[ "$TRAVIS_TEST_RESULT" == 0 ]]; then ./cc-test-reporter upload-coverage; fi  # Upload coverage/codeclimate.json
 
-rvm:
-  - ruby-2.0.0-p648
-  - ruby-2.1.10
-  - ruby-2.2.10
-  - ruby-2.3.8
-  - ruby-2.4.9
-  - ruby-2.5.7
-  - ruby-2.6.5
-
-gemfile:
-  - gemfiles/ruby_2.6.gemfile
-  - gemfiles/ruby_2.5.gemfile
-  - gemfiles/ruby_2.4.gemfile
-  - gemfiles/ruby_2.3.gemfile
-  - gemfiles/ruby_2.2.gemfile
-  - gemfiles/ruby_2.1.gemfile
-  - gemfiles/ruby_2.0.gemfile
-
 jobs:
   include:
     - rvm: ruby-2.0.0-p648
