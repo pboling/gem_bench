@@ -5,7 +5,7 @@ source "https://rubygems.org"
 gem "bundler", "~> 1.17.3"
 gem "byebug", "9.0.6"
 gem "pry-byebug", "3.4.3"
-gem "rubocop", "0.57.2"
+gem "rubocop", "0.80.1"
 gem "rubocop-rspec", "1.27.0"
 
 gemspec path: "../"
