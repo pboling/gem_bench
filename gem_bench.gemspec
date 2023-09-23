@@ -28,6 +28,11 @@ Trim down app load times by keeping your worst players on the bench (useful for 
   # Yes, it *is* actually a run-time dependency. This gem is sort of a bundler add-on.
   spec.add_runtime_dependency("bundler", ">= 1.14")
 
+  # Documentation
+  spec.add_development_dependency("redcarpet")
+  spec.add_development_dependency("yard")
+  spec.add_development_dependency("yard-junk")
+
   spec.add_development_dependency("appraisal")
   spec.add_development_dependency("awesome_print")
   spec.add_development_dependency("byebug")

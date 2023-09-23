@@ -1,3 +1,6 @@
+Version 1.0.7 - SEP.23.2023
+* Compatible with Bundler 2+
+
 Version 1.0.6 - SEP.09.2018
 * Documentation improvements
 * Add Ruby 2.5 to build matrix

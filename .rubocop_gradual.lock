@@ -1,16 +1,23 @@
 {
-  "gem_bench.gemspec:3024983896": [
+  "CHANGELOG.md:3776090924": [
+    [21, 1, 24, "Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.", 617937560],
+    [24, 5, 63, "Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.", 4073911882]
+  ],
+  "gem_bench.gemspec:2494253569": [
     [21, 16, 19, "Packaging/GemspecGit: Avoid using git to produce lists of files. Downstreams often need to build your package in an environment that does not have git (on purpose). Use some pure Ruby alternative, like `Dir` or `Dir.glob`.", 3879951891],
-    [31, 3, 44, "Gemspec/DependencyVersion: Dependency version specification is required.", 2775602551],
-    [32, 3, 48, "Gemspec/DependencyVersion: Dependency version specification is required.", 2848714075],
-    [33, 3, 41, "Gemspec/DependencyVersion: Dependency version specification is required.", 3650654652],
-    [35, 3, 45, "Gemspec/DependencyVersion: Dependency version specification is required.", 3711630474],
-    [36, 3, 39, "Gemspec/DependencyVersion: Dependency version specification is required.", 1345440847],
-    [37, 3, 40, "Gemspec/DependencyVersion: Dependency version specification is required.", 1844711205],
-    [38, 3, 58, "Gemspec/DependencyVersion: Dependency version specification is required.", 2795510341],
-    [41, 3, 48, "Gemspec/DependencyVersion: Dependency version specification is required.", 3819206526],
-    [42, 3, 44, "Gemspec/DependencyVersion: Dependency version specification is required.", 997926854],
-    [43, 3, 39, "Gemspec/DependencyVersion: Dependency version specification is required.", 1249263682]
+    [32, 3, 44, "Gemspec/DependencyVersion: Dependency version specification is required.", 1445362512],
+    [33, 3, 39, "Gemspec/DependencyVersion: Dependency version specification is required.", 837793628],
+    [34, 3, 44, "Gemspec/DependencyVersion: Dependency version specification is required.", 4064900235],
+    [36, 3, 44, "Gemspec/DependencyVersion: Dependency version specification is required.", 2775602551],
+    [37, 3, 48, "Gemspec/DependencyVersion: Dependency version specification is required.", 2848714075],
+    [38, 3, 41, "Gemspec/DependencyVersion: Dependency version specification is required.", 3650654652],
+    [40, 3, 45, "Gemspec/DependencyVersion: Dependency version specification is required.", 3711630474],
+    [41, 3, 39, "Gemspec/DependencyVersion: Dependency version specification is required.", 1345440847],
+    [42, 3, 40, "Gemspec/DependencyVersion: Dependency version specification is required.", 1844711205],
+    [43, 3, 58, "Gemspec/DependencyVersion: Dependency version specification is required.", 2795510341],
+    [46, 3, 48, "Gemspec/DependencyVersion: Dependency version specification is required.", 3819206526],
+    [47, 3, 44, "Gemspec/DependencyVersion: Dependency version specification is required.", 997926854],
+    [48, 3, 39, "Gemspec/DependencyVersion: Dependency version specification is required.", 1249263682]
   ],
   "lib/gem_bench.rb:400171272": [
     [25, 5, 21, "ThreadSafety/ClassAndModuleAttributes: Avoid mutating class and module attributes.", 1291041767],
@@ -45,7 +52,7 @@
   "spec/gem_bench/player_spec.rb:4210126272": [
     [4, 20, 16, "RSpec/DescribedClass: Use `described_class` instead of `GemBench::Player`.", 2899854907]
   ],
-  "spec/gem_bench/scout_spec.rb:1251129633": [
+  "spec/gem_bench/scout_spec.rb:2201159713": [
     [4, 20, 15, "RSpec/DescribedClass: Use `described_class` instead of `GemBench::Scout`.", 1646578838],
     [11, 13, 15, "RSpec/ContextWording: Context description should match /^when\\b/, /^with\\b/, or /^without\\b/.", 2290690197],
     [12, 7, 17, "RSpec/NestedGroups: Maximum example group nesting exceeded [4/3].", 1968335926],
