@@ -31,10 +31,10 @@ Version constraints are important.  Give the Gemfile some love in your CI build
 
 Create a `spec/gemfile_spec.rb` like:
 ```ruby
-Rspec.describe "Gemfile" do
+Rspec.describe("Gemfile") do
   it("has version constraint on every gem") do
     requirements = GemBench::StrictVersionRequirement.new({verbose: false})
-    expect(requirements.list_missing_version_constraints).to eq([])
+    expect(requirements.list_missing_version_constraints).to(eq([]))
   end
 end
 ```

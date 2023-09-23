@@ -1,7 +1,5 @@
-require 'bundler/gem_tasks'
-require 'rspec/core/rake_task'
-require 'wwtd/tasks'
+require "bundler/gem_tasks"
+require "wwtd/tasks"
 
-RSpec::Core::RakeTask.new(:spec)
-
-task default: :spec
+require "rubocop/lts"
+Rubocop::Lts.install_tasks

@@ -43,6 +43,7 @@ GEM
       rspec-core (~> 3.12.0)
       rspec-expectations (~> 3.12.0)
       rspec-mocks (~> 3.12.0)
+    rspec-block_is_expected (1.0.5)
     rspec-core (3.12.2)
       rspec-support (~> 3.12.0)
     rspec-expectations (3.12.3)
@@ -82,6 +83,8 @@ GEM
       version_gem (>= 1.1.2, < 3)
     rubocop-md (1.2.0)
       rubocop (>= 1.0)
+    rubocop-packaging (0.5.2)
+      rubocop (>= 1.33, < 2.0)
     rubocop-performance (1.19.1)
       rubocop (>= 1.7.0, < 2.0)
       rubocop-ast (>= 0.4.0)
@@ -145,7 +148,9 @@ DEPENDENCIES
   pry-byebug
   rake
   rspec
+  rspec-block_is_expected
   rubocop-lts (~> 4.1)
+  rubocop-packaging (~> 0.5, >= 0.5.2)
   rubocop-rspec
   simplecov
   wwtd

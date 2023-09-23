@@ -6,12 +6,12 @@ module GemBench
     GEMFILE_HASH_CONFIG_KEY_REGEX_PROC = lambda { |key|
       /\A\s*[^#]*(?<key1>#{key}: *)['"]{1}(?<value1>[^'"]*)['"]|(?<key2>['"]#{key}['"] *=> *)['"]{1}(?<value2>[^'"]*)['"]|(?<key3>:#{key} *=> *)['"]{1}(?<value3>[^'"]*)['"]/
     }
-    VERSION_PATH = GEMFILE_HASH_CONFIG_KEY_REGEX_PROC.call('path').freeze
-    VERSION_GIT = GEMFILE_HASH_CONFIG_KEY_REGEX_PROC.call('git').freeze
-    VERSION_GITHUB = GEMFILE_HASH_CONFIG_KEY_REGEX_PROC.call('github').freeze
-    VERSION_GIT_REF = GEMFILE_HASH_CONFIG_KEY_REGEX_PROC.call('ref').freeze
-    VERSION_GIT_TAG = GEMFILE_HASH_CONFIG_KEY_REGEX_PROC.call('tag').freeze
-    VERSION_GIT_BRANCH = GEMFILE_HASH_CONFIG_KEY_REGEX_PROC.call('branch').freeze
+    VERSION_PATH = GEMFILE_HASH_CONFIG_KEY_REGEX_PROC.call("path").freeze
+    VERSION_GIT = GEMFILE_HASH_CONFIG_KEY_REGEX_PROC.call("git").freeze
+    VERSION_GITHUB = GEMFILE_HASH_CONFIG_KEY_REGEX_PROC.call("github").freeze
+    VERSION_GIT_REF = GEMFILE_HASH_CONFIG_KEY_REGEX_PROC.call("ref").freeze
+    VERSION_GIT_TAG = GEMFILE_HASH_CONFIG_KEY_REGEX_PROC.call("tag").freeze
+    VERSION_GIT_BRANCH = GEMFILE_HASH_CONFIG_KEY_REGEX_PROC.call("branch").freeze
     VALID_VERSION_TYPES = %i[
       constraint
       git_ref
@@ -31,7 +31,7 @@ module GemBench
       if is_gem
         @all_lines = all_lines
         @index = index
-        @tokens = self.line.split(',')
+        @tokens = self.line.split(",")
         determine_name
         if name
           determine_relevant_lines
@@ -101,7 +101,7 @@ module GemBench
       enhance_version(
         line.match(VERSION_PATH),
         :path,
-        :path
+        :path,
       )
     end
 
@@ -113,7 +113,7 @@ module GemBench
       enhance_version(
         line.match(VERSION_GIT),
         :git,
-        :git
+        :git,
       )
     end
 
@@ -125,7 +125,7 @@ module GemBench
       enhance_version(
         line.match(VERSION_GITHUB),
         :github,
-        :github
+        :github,
       )
     end
 
@@ -136,7 +136,7 @@ module GemBench
       enhance_version(
         line.match(VERSION_GIT_REF),
         :ref,
-        :git_ref
+        :git_ref,
       )
     end
 
@@ -147,7 +147,7 @@ module GemBench
       enhance_version(
         line.match(VERSION_GIT_TAG),
         :tag,
-        :git_tag
+        :git_tag,
       )
     end
 
@@ -158,7 +158,7 @@ module GemBench
       enhance_version(
         line.match(VERSION_GIT_BRANCH),
         :branch,
-        :git_branch
+        :git_branch,
       )
     end
 
@@ -178,7 +178,7 @@ module GemBench
     #   {"key" => ":git => ", "value" => "https://github.com/cte/aftership-sdk-ruby.git"}
     def normalize_match_data_captures(match_data)
       match_data.names.each_with_object({}) do |capture, mem|
-        mem[capture.gsub(/\d/, '')] = match_data[capture]
+        mem[capture.gsub(/\d/, "")] = match_data[capture]
         break mem if mem.keys.length >= 2
       end
     end
@@ -189,7 +189,7 @@ module GemBench
       normalized_capture = normalize_match_data_captures(match_data) if match_data
       return false unless normalized_capture
 
-      @version.merge!({ version_key => normalized_capture['value'] })
+      @version.merge!({version_key => normalized_capture["value"]})
       @version_type = type
       true
     end

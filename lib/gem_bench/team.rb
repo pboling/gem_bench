@@ -1,16 +1,38 @@
-require 'forwardable'
+require "forwardable"
 
 module GemBench
   class Team
-    EXCLUDE = %w[bundler gem_bench i18n-airbrake devise-async km vestal_versions omniauth-facebook
-                 flag_shih_tzu pry-remote koala simple_form thumbs_up memoist cancan friendly_id
-                 faker]
+    EXCLUDE = %w[
+      bundler
+      gem_bench
+      i18n-airbrake
+      devise-async
+      km
+      vestal_versions
+      omniauth-facebook
+      flag_shih_tzu
+      pry-remote
+      koala
+      simple_form
+      thumbs_up
+      memoist
+      cancan
+      friendly_id
+      faker
+    ]
     # A comment preceding the require: false anywhere on the line should not be considered an active require: false
     extend Forwardable
     def_delegators :@scout, :gem_paths, :gemfile_path, :check_gemfile?, :loaded_gems
     attr_reader :scout, :look_for_regex
-    attr_accessor :all, :excluded, :starters, :benchers, :verbose, :gemfile_lines, :trash_lines,
-                  :current_gemfile_suggestions, :bad_ideas
+    attr_accessor :all,
+      :excluded,
+      :starters,
+      :benchers,
+      :verbose,
+      :gemfile_lines,
+      :trash_lines,
+      :current_gemfile_suggestions,
+      :bad_ideas
 
     def initialize(options = {})
       @look_for_regex = options[:look_for_regex]
@@ -29,19 +51,19 @@ module GemBench
       @verbose = options[:verbose]
       check_all
       @bad_ideas = if benching?
-                     if options[:bad_ideas]
-                       true
-                     else
-                       check_gemfile? ? false : !(options[:bad_ideas] == false)
-                     end
-                   else
-                     false
-                   end
+        if options[:bad_ideas]
+          true
+        else
+          check_gemfile? ? false : !(options[:bad_ideas] == false)
+        end
+      else
+        false
+      end
       puts "[GemBench] Will search for gems in #{gem_paths.inspect}\n#{if benching?
                                                                          @scout.check_gemfile? ? "[GemBench] Will check Gemfile at #{gemfile_path}.\n" : "[GemBench] No Gemfile found.\n"
                                                                        else
-                                                                         ''
-                                                                       end}#{bad_ideas ? "[GemBench] Will show bad ideas.  Be Careful.\n" : ''}[GemBench] Detected #{all.length} loaded gems#{exclusions}"
+                                                                         ""
+                                                                       end}#{bad_ideas ? "[GemBench] Will show bad ideas.  Be Careful.\n" : ""}[GemBench] Detected #{all.length} loaded gems#{exclusions}"
       compare_gemfile if benching? && @scout.check_gemfile?
       self.print if verbose
     end
@@ -51,22 +73,22 @@ module GemBench
     end
 
     def print
-      string = ''
+      string = ""
       if all.empty?
         string << nothing
       elsif starters.empty?
         string << if benching?
-                    "[GemBench] Found no gems that need to load at boot time.\n"
-                  else
-                    "[GemBench] Found no gems containing #{look_for_regex} in Ruby code.\n"
-                  end
+          "[GemBench] Found no gems that need to load at boot time.\n"
+        else
+          "[GemBench] Found no gems containing #{look_for_regex} in Ruby code.\n"
+        end
       elsif starters.length > 0
         string << "\n#{GemBench::USAGE}" unless check_gemfile?
         string << if benching?
-                    "[GemBench] We found a Rails::Railtie or Rails::Engine in the following files. However, it is possible that there are false positives, so you may want to verify that this is the case.\n\n"
-                  else
-                    "[GemBench] We found #{look_for_regex} in the following files.\n\n"
-                  end
+          "[GemBench] We found a Rails::Railtie or Rails::Engine in the following files. However, it is possible that there are false positives, so you may want to verify that this is the case.\n\n"
+        else
+          "[GemBench] We found #{look_for_regex} in the following files.\n\n"
+        end
         starters.each do |starter|
           string << "\t#{starter}:\n"
           starter.stats.each do |stat|
@@ -77,10 +99,10 @@ module GemBench
           string << "[GemBench] If you want to check for false positives, the files to check for Railties and Engines are listed above.\n"
         end
         string << if benching?
-                    "[GemBench] #{starters.length} out of #{all.length} evaluated gems actually need to be loaded at boot time. They are:\n"
-                  else
-                    "[GemBench] #{starters.length} out of #{all.length} evaluated gems contain #{look_for_regex}. They are:\n"
-                  end
+          "[GemBench] #{starters.length} out of #{all.length} evaluated gems actually need to be loaded at boot time. They are:\n"
+        else
+          "[GemBench] #{starters.length} out of #{all.length} evaluated gems contain #{look_for_regex}. They are:\n"
+        end
         starters.each_with_index do |starter, index|
           string << "#{starter.info(index + 1)}\n"
         end
@@ -126,9 +148,9 @@ module GemBench
     end
 
     def prepare_bad_ideas
-      string = ''
+      string = ""
       if benchers.length > 0
-        gemfile_instruction = check_gemfile? ? '' : "To safely evaluate a Gemfile:\n\t1. Make sure you are in the root of a project with a Gemfile\n\t2. Make sure the gem is actually a dependency in the Gemfile\n"
+        gemfile_instruction = check_gemfile? ? "" : "To safely evaluate a Gemfile:\n\t1. Make sure you are in the root of a project with a Gemfile\n\t2. Make sure the gem is actually a dependency in the Gemfile\n"
         string << "[GemBench] Evaluated #{all.length} loaded gems and found #{benchers.length} which may be able to skip boot loading (require: false).\n*** => WARNING <= ***: Be careful adding non-primary dependencies to your Gemfile as it is generally a bad idea.\n#{gemfile_instruction}"
         benchers.each_with_index do |player, index|
           string << "#{player.careful(index + 1)}\n"
@@ -159,8 +181,11 @@ module GemBench
     def check_all
       all.each do |player_data|
         exclude_file_pattern = @exclude_file_pattern_regex_proc.call(player_data[0])
-        player = GemBench::Player.new({ name: player_data[0], version: player_data[1],
-                                        exclude_file_pattern: exclude_file_pattern })
+        player = GemBench::Player.new({
+          name: player_data[0],
+          version: player_data[1],
+          exclude_file_pattern: exclude_file_pattern,
+        })
         check(player)
         add_to_roster(player)
       end
@@ -189,7 +214,7 @@ module GemBench
     private
 
     def extra_verbose?
-      verbose == 'extra'
+      verbose == "extra"
     end
 
     def benching?

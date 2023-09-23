@@ -28,25 +28,29 @@ module GemBench
       @checked = true
       line_match ||= GemBench::RAILTIE_REGEX
       scan = if GemBench::DO_NOT_SCAN.include?(name)
-               false
-             else
-               begin
-                 File.read(file_path).encode('utf-8', invalid: :replace, undef: :replace,
-                                                      replace: '_') =~ line_match
-               rescue ArgumentError => e
-                 if e.message =~ /invalid byte sequence/
-                   puts "[GemBench] checking #{file_path} failed due to unparseable file content"
-                   false # Assume the likelihood of files with encoding issues that also contain railtie to be low, so: false.
-                 end
-               end
-             end
+        false
+      else
+        begin
+          File.read(file_path).encode(
+            "utf-8",
+            invalid: :replace,
+            undef: :replace,
+            replace: "_",
+          ) =~ line_match
+        rescue ArgumentError => e
+          if e.message =~ /invalid byte sequence/
+            puts "[GemBench] checking #{file_path} failed due to unparseable file content"
+            false # Assume the likelihood of files with encoding issues that also contain railtie to be low, so: false.
+          end
+        end
+      end
 
       stats << [file_path, scan] if scan
       self.state = if !!scan
-                     GemBench::PLAYER_STATES[:starter]
-                   else
-                     GemBench::PLAYER_STATES[:bench]
-                   end
+        GemBench::PLAYER_STATES[:starter]
+      else
+        GemBench::PLAYER_STATES[:bench]
+      end
     end
 
     def starter?
@@ -76,7 +80,7 @@ module GemBench
 
     def semver
       ver = version
-      ver = ver[0..(ver.rindex('.') - 1)] until ver.split('.').length <= SEMVER_SPLIT_ON_POINT_LENGTH
+      ver = ver[0..(ver.rindex(".") - 1)] until ver.split(".").length <= SEMVER_SPLIT_ON_POINT_LENGTH
       ver
     end
 

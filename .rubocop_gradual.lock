@@ -1,0 +1,82 @@
+{
+  "gem_bench.gemspec:3024983896": [
+    [21, 16, 19, "Packaging/GemspecGit: Avoid using git to produce lists of files. Downstreams often need to build your package in an environment that does not have git (on purpose). Use some pure Ruby alternative, like `Dir` or `Dir.glob`.", 3879951891],
+    [31, 3, 44, "Gemspec/DependencyVersion: Dependency version specification is required.", 2775602551],
+    [32, 3, 48, "Gemspec/DependencyVersion: Dependency version specification is required.", 2848714075],
+    [33, 3, 41, "Gemspec/DependencyVersion: Dependency version specification is required.", 3650654652],
+    [35, 3, 45, "Gemspec/DependencyVersion: Dependency version specification is required.", 3711630474],
+    [36, 3, 39, "Gemspec/DependencyVersion: Dependency version specification is required.", 1345440847],
+    [37, 3, 40, "Gemspec/DependencyVersion: Dependency version specification is required.", 1844711205],
+    [38, 3, 58, "Gemspec/DependencyVersion: Dependency version specification is required.", 2795510341],
+    [41, 3, 48, "Gemspec/DependencyVersion: Dependency version specification is required.", 3819206526],
+    [42, 3, 44, "Gemspec/DependencyVersion: Dependency version specification is required.", 997926854],
+    [43, 3, 39, "Gemspec/DependencyVersion: Dependency version specification is required.", 1249263682]
+  ],
+  "lib/gem_bench.rb:400171272": [
+    [25, 5, 21, "ThreadSafety/ClassAndModuleAttributes: Avoid mutating class and module attributes.", 1291041767],
+    [28, 7, 7, "ThreadSafety/InstanceVariableInClassMethod: Avoid instance variables in class methods.", 1242905064],
+    [32, 7, 7, "ThreadSafety/InstanceVariableInClassMethod: Avoid instance variables in class methods.", 1242905064],
+    [33, 7, 7, "ThreadSafety/InstanceVariableInClassMethod: Avoid instance variables in class methods.", 1242905064],
+    [37, 7, 7, "ThreadSafety/InstanceVariableInClassMethod: Avoid instance variables in class methods.", 1242905064],
+    [38, 7, 7, "ThreadSafety/InstanceVariableInClassMethod: Avoid instance variables in class methods.", 1242905064],
+    [43, 7, 7, "ThreadSafety/InstanceVariableInClassMethod: Avoid instance variables in class methods.", 1242905064]
+  ],
+  "lib/gem_bench/gemfile_line_tokenizer.rb:4129754391": [
+    [20, 49, 6, "Naming/InclusiveLanguage: Consider replacing 'master' with 'main', 'primary', or 'leader'.", 1464373753],
+    [192, 7, 61, "Performance/RedundantMerge: Use `@version[version_key] = normalized_capture[\"value\"]` instead of `@version.merge!({version_key => normalized_capture[\"value\"]})`.", 2616593545]
+  ],
+  "lib/gem_bench/scout.rb:1338935837": [
+    [30, 21, 25, "Style/RedundantInterpolation: Prefer `to_s` over string interpolation.", 3162135355],
+    [33, 40, 1, "Lint/UselessAssignment: Useless assignment to variable - `e`.", 177600]
+  ],
+  "lib/gem_bench/strict_version_gem.rb:1667144057": [
+    [41, 7, 2, "Lint/Syntax: unexpected token tLSHFT\n(Using Ruby 2.0 parser; configure using `TargetRubyVersion` parameter, under `AllCops`)", 5859461],
+    [42, 12, 1, "Lint/Syntax: unexpected token tCOLON\n(Using Ruby 2.0 parser; configure using `TargetRubyVersion` parameter, under `AllCops`)", 177567],
+    [44, 16, 1, "Lint/Syntax: unexpected token tCOLON\n(Using Ruby 2.0 parser; configure using `TargetRubyVersion` parameter, under `AllCops`)", 177567]
+  ],
+  "lib/gem_bench/strict_version_requirement.rb:2625713935": [
+    [47, 15, 3, "Lint/Syntax: unexpected token tIDENTIFIER\n(Using Ruby 2.0 parser; configure using `TargetRubyVersion` parameter, under `AllCops`)", 193410195],
+    [53, 15, 3, "Lint/Syntax: unexpected token tIDENTIFIER\n(Using Ruby 2.0 parser; configure using `TargetRubyVersion` parameter, under `AllCops`)", 193410195]
+  ],
+  "lib/gem_bench/team.rb:3559664020": [
+    [197, 31, 14, "Style/RedundantInterpolation: Prefer `to_s` over string interpolation.", 1897999348],
+    [201, 11, 6, "Lint/NonLocalExitFromIterator: Non-local exit from iterator, without return value. `next`, `break`, `Array#find`, `Array#any?`, etc. is preferred.", 2123913871]
+  ],
+  "spec/gem_bench/player_spec.rb:4210126272": [
+    [4, 20, 16, "RSpec/DescribedClass: Use `described_class` instead of `GemBench::Player`.", 2899854907]
+  ],
+  "spec/gem_bench/scout_spec.rb:1251129633": [
+    [4, 20, 15, "RSpec/DescribedClass: Use `described_class` instead of `GemBench::Scout`.", 1646578838],
+    [11, 13, 15, "RSpec/ContextWording: Context description should match /^when\\b/, /^with\\b/, or /^without\\b/.", 2290690197],
+    [12, 7, 17, "RSpec/NestedGroups: Maximum example group nesting exceeded [4/3].", 1968335926],
+    [12, 15, 9, "RSpec/ContextWording: Context description should match /^when\\b/, /^with\\b/, or /^without\\b/.", 1548243657],
+    [13, 26, 15, "RSpec/DescribedClass: Use `described_class` instead of `GemBench::Scout`.", 1646578838],
+    [20, 7, 18, "RSpec/NestedGroups: Maximum example group nesting exceeded [4/3].", 2670365],
+    [20, 15, 10, "RSpec/ContextWording: Context description should match /^when\\b/, /^with\\b/, or /^without\\b/.", 80617602],
+    [21, 26, 15, "RSpec/DescribedClass: Use `described_class` instead of `GemBench::Scout`.", 1646578838],
+    [28, 7, 16, "RSpec/NestedGroups: Maximum example group nesting exceeded [4/3].", 2011698347],
+    [28, 15, 8, "RSpec/ContextWording: Context description should match /^when\\b/, /^with\\b/, or /^without\\b/.", 3821487988],
+    [29, 26, 15, "RSpec/DescribedClass: Use `described_class` instead of `GemBench::Scout`.", 1646578838],
+    [67, 13, 21, "RSpec/ContextWording: Context description should match /^when\\b/, /^with\\b/, or /^without\\b/.", 1121198777],
+    [68, 24, 15, "RSpec/DescribedClass: Use `described_class` instead of `GemBench::Scout`.", 1646578838],
+    [78, 7, 31, "RSpec/MultipleExpectations: Example has too many expectations [2/1].", 2746935144],
+    [84, 13, 22, "RSpec/ContextWording: Context description should match /^when\\b/, /^with\\b/, or /^without\\b/.", 2265298994],
+    [85, 24, 15, "RSpec/DescribedClass: Use `described_class` instead of `GemBench::Scout`.", 1646578838],
+    [100, 13, 20, "RSpec/ContextWording: Context description should match /^when\\b/, /^with\\b/, or /^without\\b/.", 3677567620],
+    [101, 24, 15, "RSpec/DescribedClass: Use `described_class` instead of `GemBench::Scout`.", 1646578838],
+    [111, 7, 31, "RSpec/MultipleExpectations: Example has too many expectations [2/1].", 2746935144],
+    [119, 13, 21, "RSpec/ContextWording: Context description should match /^when\\b/, /^with\\b/, or /^without\\b/.", 1121198777],
+    [120, 24, 15, "RSpec/DescribedClass: Use `described_class` instead of `GemBench::Scout`.", 1646578838],
+    [130, 7, 31, "RSpec/MultipleExpectations: Example has too many expectations [2/1].", 3149234057],
+    [139, 13, 22, "RSpec/ContextWording: Context description should match /^when\\b/, /^with\\b/, or /^without\\b/.", 2265298994],
+    [140, 24, 15, "RSpec/DescribedClass: Use `described_class` instead of `GemBench::Scout`.", 1646578838],
+    [155, 13, 20, "RSpec/ContextWording: Context description should match /^when\\b/, /^with\\b/, or /^without\\b/.", 3677567620],
+    [156, 24, 15, "RSpec/DescribedClass: Use `described_class` instead of `GemBench::Scout`.", 1646578838],
+    [166, 7, 31, "RSpec/MultipleExpectations: Example has too many expectations [2/1].", 3149234057],
+    [177, 22, 15, "RSpec/DescribedClass: Use `described_class` instead of `GemBench::Scout`.", 1646578838],
+    [191, 5, 26, "RSpec/MultipleExpectations: Example has too many expectations [3/1].", 1356703934]
+  ],
+  "spec/gem_bench/team_spec.rb:4124190485": [
+    [4, 20, 14, "RSpec/DescribedClass: Use `described_class` instead of `GemBench::Team`.", 3564205461]
+  ]
+}

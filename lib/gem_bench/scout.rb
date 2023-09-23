@@ -21,12 +21,12 @@ module GemBench
 
     def gem_lookup_paths_from_bundler
       @gem_paths = [Bundler.rubygems.gem_dir, Bundler.rubygems.gem_path]
-                   .flatten
-                   .compact
-                   .uniq
-                   .map { |x| x.to_s }
-                   .reject { |p| p.empty? }
-                   .map { |x| "#{x}/gems" }
+        .flatten
+        .compact
+        .uniq
+        .map { |x| x.to_s }
+        .reject { |p| p.empty? }
+        .map { |x| "#{x}/gems" }
       @gem_paths << "#{Bundler.install_path}"
       @gem_paths << "#{Bundler.bundle_path}/gems"
       @gem_paths.uniq!
