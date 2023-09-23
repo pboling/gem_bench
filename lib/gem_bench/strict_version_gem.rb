@@ -1,25 +1,20 @@
 module GemBench
   class StrictVersionGem
-    attr_reader :name
-    attr_reader :version
-    attr_reader :version_type
-    attr_reader :valid
-    attr_reader :relevant_lines
-    attr_reader :index
-    attr_reader :tokenized_line
+    attr_reader :name, :version, :version_type, :valid, :relevant_lines, :index, :tokenized_line
 
     class << self
       def from_line(all_lines, line, index, opts = {})
         tokenized_line = GemfileLineTokenizer.new(all_lines, line, index)
         return nil unless tokenized_line.is_gem
+
         new(
-            tokenized_line.name,
-            tokenized_line.version,
-            tokenized_line.version_type,
-            tokenized_line.valid,
-            tokenized_line.relevant_lines,
-            tokenized_line.index,
-            opts[:debug] == true ? tokenized_line : nil
+          tokenized_line.name,
+          tokenized_line.version,
+          tokenized_line.version_type,
+          tokenized_line.valid,
+          tokenized_line.relevant_lines,
+          tokenized_line.index,
+          opts[:debug] == true ? tokenized_line : nil
         )
       end
     end
@@ -43,12 +38,12 @@ module GemBench
     end
 
     def to_s
-      <<-EOS
-Gem: #{name}
-Line Number: #{index}
-Version: #{version.inspect}
-Relevant Gemfile Lines:
-#{relevant_lines.join("\n")}
+      <<~EOS
+        Gem: #{name}
+        Line Number: #{index}
+        Version: #{version.inspect}
+        Relevant Gemfile Lines:
+        #{relevant_lines.join("\n")}
       EOS
     end
   end
