@@ -35,7 +35,6 @@ GEM
     racc (1.7.1)
     rainbow (3.1.1)
     rake (13.0.6)
-    redcarpet (3.6.0)
     regexp_parser (2.8.1)
     rexml (3.2.6)
     rspec (3.12.0)
@@ -148,7 +147,6 @@ DEPENDENCIES
   gem_bench!
   pry-byebug
   rake
-  redcarpet
   rspec
   rspec-block_is_expected
   rubocop-lts (~> 10.1)

@@ -54,7 +54,6 @@ Trim down app load times by keeping your worst players on the bench (useful for 
   spec.add_runtime_dependency("version_gem", "~> 1.1", ">= 1.1.3")
 
   # Documentation
-  spec.add_development_dependency("redcarpet")
   spec.add_development_dependency("yard")
   spec.add_development_dependency("yard-junk")
 
