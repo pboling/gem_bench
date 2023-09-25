@@ -18,19 +18,18 @@ Gem::Specification.new do |spec|
   spec.description = "Enforce Gemfile version constraints
 Regex search across all installed gem's source code to find issues quickly
 Trim down app load times by keeping your worst players on the bench (useful for beating Heroku slug load time cutoff)"
-  spec.homepage = "http://github.com/acquaintable/gem_bench"
+  spec.homepage = "http://github.com/pboling/gem_bench"
 
   spec.licenses = ["MIT"]
   spec.platform = Gem::Platform::RUBY
   spec.required_ruby_version = ">= 2.3"
 
-  spec.metadata["homepage_uri"] = "https://rubocop-lts.gitlab.io/"
-  spec.metadata["homepage_uri"] = spec.homepage
-  spec.metadata["source_code_uri"] = "#{spec.homepage}/-/tree/v#{spec.version}"
-  spec.metadata["changelog_uri"] = "#{spec.homepage}/-/blob/v#{spec.version}/CHANGELOG.md"
-  spec.metadata["bug_tracker_uri"] = "#{spec.homepage}/-/issues"
+  spec.metadata["homepage_uri"] = "https://railsbling.com/tags/gem_bench/"
+  spec.metadata["source_code_uri"] = "#{spec.homepage}/tree/v#{spec.version}"
+  spec.metadata["changelog_uri"] = "#{spec.homepage}/blob/v#{spec.version}/CHANGELOG.md"
+  spec.metadata["bug_tracker_uri"] = "#{spec.homepage}/issues"
   spec.metadata["documentation_uri"] = "https://www.rubydoc.info/gems/#{spec.name}/#{spec.version}"
-  spec.metadata["wiki_uri"] = "#{spec.homepage}/-/wikis/home"
+  spec.metadata["wiki_uri"] = "#{spec.homepage}/wiki"
   spec.metadata["funding_uri"] = "https://liberapay.com/pboling"
   spec.metadata["rubygems_mfa_required"] = "true"
 
