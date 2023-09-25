@@ -1,9 +1,7 @@
 require "byebug"
 
-require "simplecov"
-SimpleCov.start
-
-require "gem_bench"
+# External RSpec Matchers
+require "version_gem/rspec"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
@@ -13,3 +11,8 @@ RSpec.configure do |config|
     c.syntax = :expect
   end
 end
+
+require "simplecov"
+SimpleCov.start
+
+require "gem_bench"

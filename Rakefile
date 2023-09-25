@@ -1,5 +1,4 @@
 require "bundler/gem_tasks"
-require "wwtd/tasks"
 
 require "yard-junk/rake"
 

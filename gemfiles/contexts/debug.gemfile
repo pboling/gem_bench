@@ -1,0 +1,7 @@
+platform :mri do
+  eval_gemfile "./mri/debug.gemfile"
+end
+
+platform :jruby do
+  eval_gemfile "./jruby/debug.gemfile"
+end

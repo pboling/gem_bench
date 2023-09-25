@@ -1,32 +1,28 @@
 {
-  "CHANGELOG.md:3776090924": [
-    [21, 1, 24, "Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.", 617937560],
-    [24, 5, 63, "Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.", 4073911882]
+  "gem_bench.gemspec:1678395612": [
+    [23, 16, 19, "Packaging/GemspecGit: Avoid using git to produce lists of files. Downstreams often need to build your package in an environment that does not have git (on purpose). Use some pure Ruby alternative, like `Dir` or `Dir.glob`.", 3879951891],
+    [35, 3, 44, "Gemspec/DependencyVersion: Dependency version specification is required.", 1445362512],
+    [36, 3, 39, "Gemspec/DependencyVersion: Dependency version specification is required.", 837793628],
+    [37, 3, 44, "Gemspec/DependencyVersion: Dependency version specification is required.", 4064900235],
+    [39, 3, 44, "Gemspec/DependencyVersion: Dependency version specification is required.", 2775602551],
+    [40, 3, 48, "Gemspec/DependencyVersion: Dependency version specification is required.", 2848714075],
+    [41, 3, 41, "Gemspec/DependencyVersion: Dependency version specification is required.", 3650654652],
+    [43, 3, 45, "Gemspec/DependencyVersion: Dependency version specification is required.", 3711630474],
+    [44, 3, 39, "Gemspec/DependencyVersion: Dependency version specification is required.", 1345440847],
+    [45, 3, 40, "Gemspec/DependencyVersion: Dependency version specification is required.", 1844711205],
+    [46, 3, 58, "Gemspec/DependencyVersion: Dependency version specification is required.", 2795510341],
+    [49, 3, 48, "Gemspec/DependencyVersion: Dependency version specification is required.", 3819206526],
+    [50, 3, 44, "Gemspec/DependencyVersion: Dependency version specification is required.", 997926854],
+    [51, 3, 39, "Gemspec/DependencyVersion: Dependency version specification is required.", 1249263682]
   ],
-  "gem_bench.gemspec:2494253569": [
-    [21, 16, 19, "Packaging/GemspecGit: Avoid using git to produce lists of files. Downstreams often need to build your package in an environment that does not have git (on purpose). Use some pure Ruby alternative, like `Dir` or `Dir.glob`.", 3879951891],
-    [32, 3, 44, "Gemspec/DependencyVersion: Dependency version specification is required.", 1445362512],
-    [33, 3, 39, "Gemspec/DependencyVersion: Dependency version specification is required.", 837793628],
-    [34, 3, 44, "Gemspec/DependencyVersion: Dependency version specification is required.", 4064900235],
-    [36, 3, 44, "Gemspec/DependencyVersion: Dependency version specification is required.", 2775602551],
-    [37, 3, 48, "Gemspec/DependencyVersion: Dependency version specification is required.", 2848714075],
-    [38, 3, 41, "Gemspec/DependencyVersion: Dependency version specification is required.", 3650654652],
-    [40, 3, 45, "Gemspec/DependencyVersion: Dependency version specification is required.", 3711630474],
-    [41, 3, 39, "Gemspec/DependencyVersion: Dependency version specification is required.", 1345440847],
-    [42, 3, 40, "Gemspec/DependencyVersion: Dependency version specification is required.", 1844711205],
-    [43, 3, 58, "Gemspec/DependencyVersion: Dependency version specification is required.", 2795510341],
-    [46, 3, 48, "Gemspec/DependencyVersion: Dependency version specification is required.", 3819206526],
-    [47, 3, 44, "Gemspec/DependencyVersion: Dependency version specification is required.", 997926854],
-    [48, 3, 39, "Gemspec/DependencyVersion: Dependency version specification is required.", 1249263682]
-  ],
-  "lib/gem_bench.rb:400171272": [
-    [25, 5, 21, "ThreadSafety/ClassAndModuleAttributes: Avoid mutating class and module attributes.", 1291041767],
-    [28, 7, 7, "ThreadSafety/InstanceVariableInClassMethod: Avoid instance variables in class methods.", 1242905064],
-    [32, 7, 7, "ThreadSafety/InstanceVariableInClassMethod: Avoid instance variables in class methods.", 1242905064],
-    [33, 7, 7, "ThreadSafety/InstanceVariableInClassMethod: Avoid instance variables in class methods.", 1242905064],
-    [37, 7, 7, "ThreadSafety/InstanceVariableInClassMethod: Avoid instance variables in class methods.", 1242905064],
-    [38, 7, 7, "ThreadSafety/InstanceVariableInClassMethod: Avoid instance variables in class methods.", 1242905064],
-    [43, 7, 7, "ThreadSafety/InstanceVariableInClassMethod: Avoid instance variables in class methods.", 1242905064]
+  "lib/gem_bench.rb:3402614684": [
+    [28, 5, 21, "ThreadSafety/ClassAndModuleAttributes: Avoid mutating class and module attributes.", 1291041767],
+    [31, 7, 7, "ThreadSafety/InstanceVariableInClassMethod: Avoid instance variables in class methods.", 1242905064],
+    [35, 7, 7, "ThreadSafety/InstanceVariableInClassMethod: Avoid instance variables in class methods.", 1242905064],
+    [36, 7, 7, "ThreadSafety/InstanceVariableInClassMethod: Avoid instance variables in class methods.", 1242905064],
+    [40, 7, 7, "ThreadSafety/InstanceVariableInClassMethod: Avoid instance variables in class methods.", 1242905064],
+    [41, 7, 7, "ThreadSafety/InstanceVariableInClassMethod: Avoid instance variables in class methods.", 1242905064],
+    [46, 7, 7, "ThreadSafety/InstanceVariableInClassMethod: Avoid instance variables in class methods.", 1242905064]
   ],
   "lib/gem_bench/gemfile_line_tokenizer.rb:4129754391": [
     [20, 49, 6, "Naming/InclusiveLanguage: Consider replacing 'master' with 'main', 'primary', or 'leader'.", 1464373753],
@@ -85,5 +81,9 @@
   ],
   "spec/gem_bench/team_spec.rb:4124190485": [
     [4, 20, 14, "RSpec/DescribedClass: Use `described_class` instead of `GemBench::Team`.", 3564205461]
+  ],
+  "spec/gem_bench_spec.rb:267936009": [
+    [1, 1, 0, "RSpec/SpecFilePathFormat: Spec path should end with `gem_bench/version*_spec.rb`.", 5381],
+    [3, 1, 32, "RSpec/FilePath: Spec path should end with `gem_bench/version*_spec.rb`.", 4129755814]
   ]
 }

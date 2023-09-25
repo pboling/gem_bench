@@ -1,0 +1,11 @@
+# frozen_string_literal: true
+
+git_source(:github) { |repo_name| "https://github.com/#{repo_name}" }
+
+source "https://rubygems.org"
+
+eval_gemfile "./contexts/core.gemfile"
+eval_gemfile "./contexts/coverage.gemfile"
+eval_gemfile "./contexts/testing.gemfile"
+
+gemspec path: "../"

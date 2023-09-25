@@ -1,0 +1,9 @@
+# frozen_string_literal: true
+
+source "https://rubygems.org"
+
+eval_gemfile "./contexts/core.gemfile"
+eval_gemfile "./contexts/style.gemfile"
+eval_gemfile "./contexts/testing.gemfile" # Because some RSpec plugins ship Rubocop Rules
+
+gemspec path: "../"

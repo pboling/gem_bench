@@ -25,6 +25,11 @@ You: ❨╯°□°❩╯︵┻━┻
 | expert support          |  [![Get help on Codementor](https://cdn.codementor.io/badges/get_help_github.svg)](https://www.codementor.io/peterboling?utm_source=github&utm_medium=button&utm_term=peterboling&utm_campaign=github) |
 | Spread ~♡ⓛⓞⓥⓔ♡~      |  [🌏](https://about.me/peter.boling), [👼](https://angel.co/peter-boling), [:shipit:](http://coderwall.com/pboling), [![Tweet Peter](https://img.shields.io/twitter/follow/galtzo.svg?style=social&label=Follow)](http://twitter.com/galtzo) |
 
+### New for 2.0.0 - Dropped Support for Ruby 2.0, 2.1, 2.2
+
+-- Required Ruby is now 2.3+
+- `VERSION` is now namespaced at `GemBench::Version::VERSION` and is enhanced by `version_gem`.
+
 ### New for 1.0.2 - Gemfile specs
 
 Version constraints are important.  Give the Gemfile some love in your CI build
@@ -117,7 +122,7 @@ If you are going to use the gem in your specs, you will need to add it to the te
 
 ## Usage
 
-Works with Ruby >= 2.0 due to use of named parameters.
+Works with Ruby >= 2.3.
 
 ### Example!
 
@@ -369,21 +374,9 @@ A future version will also look for initializers, because gems which have code t
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
-
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/pboling/gem_bench.
-
-If you see: `is feeling very lost right now` then I'd like to know.
-Create an issue and tell me about it, or fix it yo'sef.
-
-1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Added some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Make sure to add tests for it. This is important so I don't break it in a future version unintentionally.
-6. Create new Pull Request
+See [CONTRIBUTING.md](CONTRIBUTING.md)
 
 ## Versioning
 
@@ -399,7 +392,9 @@ dependency on this gem using the [Pessimistic Version Constraint][pvc] with two 
 
 For example:
 
-    spec.add_dependency 'gem_bench', '~> 0.0'
+    spec.add_dependency 'gem_bench', '~> 2.0'
+
+See [CHANGELOG.md](CHANGELOG.md) for list of releases.
 
 ## Legal
 

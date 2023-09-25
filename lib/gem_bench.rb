@@ -1,5 +1,8 @@
-require "gem_bench/version"
+# external gems
+require "version_gem"
 require "bundler" # This gem utilizes bundler as a tool.
+
+require "gem_bench/version"
 require "gem_bench/scout"
 require "gem_bench/player"
 require "gem_bench/team"
@@ -47,4 +50,8 @@ module GemBench
       })
     end
   end
+end
+
+GemBench::Version.class_eval do
+  extend VersionGem::Basic
 end
