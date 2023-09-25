@@ -1,4 +1,4 @@
-require "byebug"
+require "byebug" if ENV.fetch("DEBUG", "false").casecmp?("true")
 
 # External RSpec Matchers
 require "version_gem/rspec"
