@@ -14,16 +14,24 @@ You: ❨╯°□°❩╯︵┻━┻
 | download rank           |  [![Downloads Today](https://img.shields.io/gem/rd/gem_bench.svg)](https://github.com/pboling/gem_bench) |
 | version                 |  [![Version](https://img.shields.io/gem/v/gem_bench.svg)](https://rubygems.org/gems/gem_bench) |
 | dependencies            |  [![Depfu](https://badges.depfu.com/badges/865e7bb1d0d3eb3ba807fca7344e22d1/overview.svg)](https://depfu.com/github/pboling/gem_bench?project_id=5613) |
-| continuous integration  |  [![Build Status](https://travis-ci.org/pboling/gem_bench.svg?branch=master)](https://travis-ci.org/pboling/gem_bench) |
+| continuous integration  |  [![Current][🚎cwfi]][🚎cwf] [![Heads][🖐hwfi]][🖐hwf] [![Style][🧮swfi]][🧮swf] [![Coverage][📗cov-wfi]][📗cov-wf]|
 | test coverage           |  [![Test Coverage](https://api.codeclimate.com/v1/badges/80787f126e7a486b19af/test_coverage)](https://codeclimate.com/github/pboling/gem_bench/test_coverage) |
 | maintainability         |  [![Maintainability](https://api.codeclimate.com/v1/badges/80787f126e7a486b19af/maintainability)](https://codeclimate.com/github/pboling/gem_bench/maintainability) |
 | code triage             |  [![Open Source Helpers](https://www.codetriage.com/pboling/gem_bench/badges/users.svg)](https://www.codetriage.com/pboling/gem_bench) |
 | homepage                |  [on Github.com][homepage] |
 | documentation           |  [on Rdoc.info][documentation] |
-| inline documenation     |  [![Inline docs](http://inch-ci.org/github/pboling/gem_bench.png)](http://inch-ci.org/github/pboling/gem_bench) |
 | live chat               |  [![Join the chat at https://gitter.im/pboling/gem_bench](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/pboling/gem_bench?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) |
 | expert support          |  [![Get help on Codementor](https://cdn.codementor.io/badges/get_help_github.svg)](https://www.codementor.io/peterboling?utm_source=github&utm_medium=button&utm_term=peterboling&utm_campaign=github) |
-| Spread ~♡ⓛⓞⓥⓔ♡~      |  [🌏](https://about.me/peter.boling), [👼](https://angel.co/peter-boling), [:shipit:](http://coderwall.com/pboling), [![Tweet Peter](https://img.shields.io/twitter/follow/galtzo.svg?style=social&label=Follow)](http://twitter.com/galtzo) |
+| Spread ~♡ⓛⓞⓥⓔ♡~      |  [🌏](https://about.me/peter.boling), [👼](https://angel.co/peter-boling), [![Tweet Peter](https://img.shields.io/twitter/follow/galtzo.svg?style=social&label=Follow)](http://twitter.com/galtzo) |
+
+[🚎cwf]: https://github.com/rubocop-lts/rubocop-lts/actions/workflows/current.yml
+[🚎cwfi]: https://github.com/rubocop-lts/rubocop-lts/actions/workflows/current.yml/badge.svg
+[🖐hwf]: https://github.com/rubocop-lts/rubocop-lts/actions/workflows/heads.yml
+[🖐hwfi]: https://github.com/rubocop-lts/rubocop-lts/actions/workflows/heads.yml/badge.svg
+[🧮swf]: https://github.com/rubocop-lts/rubocop-lts/actions/workflows/style.yml
+[🧮swfi]: https://github.com/rubocop-lts/rubocop-lts/actions/workflows/style.yml/badge.svg
+[📗cov-wf]: https://github.com/rubocop-lts/rubocop-lts/actions/workflows/coverage.yml
+[📗cov-wfi]: https://github.com/rubocop-lts/rubocop-lts/actions/workflows/coverage.yml/badge.svg
 
 ### New for 2.0.0 - Dropped Support for Ruby 2.0, 2.1, 2.2
 
