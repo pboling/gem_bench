@@ -39,7 +39,7 @@ module GemBench
     def print
       using_path = benchers.count { |x| x.is_type?(:path) }
       puts <<~EOS
-        #{'      '}
+        #{"      "}
         The gems that need to be improved are:
 
         #{benchers.map(&:to_s).join("\n")}
@@ -55,7 +55,7 @@ module GemBench
           #{benchers.count { |x| x.is_type?(:git_branch) }} use git branch constraints.
           #{benchers.count { |x| x.is_type?(:git) }} use some other form of git constraint considered not strict enough.
           #{benchers.count { |x| x.is_type?(:unknown) }} gems seem to not have any constraint at all.
-          #{using_path} gems are using a local path. #{'WARNING!!!' if using_path > 0}
+          #{using_path} gems are using a local path. #{"WARNING!!!" if using_path > 0}
       EOS
     end
   end

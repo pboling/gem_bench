@@ -76,8 +76,8 @@ GEM
       parallel (~> 1.10)
       rainbow (>= 2.2.2, < 4.0)
       rubocop (~> 1.0)
-    rubocop-lts (4.1.1)
-      rubocop-ruby2_0 (>= 2.0.3, < 3)
+    rubocop-lts (10.1.1)
+      rubocop-ruby2_3 (>= 2.0.3, < 3)
       standard-rubocop-lts (>= 1.0.3, < 3)
       version_gem (>= 1.1.2, < 3)
     rubocop-md (1.2.0)
@@ -93,7 +93,7 @@ GEM
       rubocop (~> 1.33)
       rubocop-capybara (~> 2.17)
       rubocop-factory_bot (~> 2.22)
-    rubocop-ruby2_0 (2.0.5)
+    rubocop-ruby2_3 (2.0.5)
       rubocop-gradual (~> 0.3, >= 0.3.1)
       rubocop-md (~> 1.2)
       rubocop-rake (~> 0.6)
@@ -151,7 +151,7 @@ DEPENDENCIES
   redcarpet
   rspec
   rspec-block_is_expected
-  rubocop-lts (~> 4.1)
+  rubocop-lts (~> 10.1)
   rubocop-packaging (~> 0.5, >= 0.5.2)
   rubocop-rspec
   simplecov

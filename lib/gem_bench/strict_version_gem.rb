@@ -5,7 +5,7 @@ module GemBench
     class << self
       def from_line(all_lines, line, index, opts = {})
         tokenized_line = GemfileLineTokenizer.new(all_lines, line, index)
-        return nil unless tokenized_line.is_gem
+        return unless tokenized_line.is_gem
 
         new(
           tokenized_line.name,
@@ -14,7 +14,7 @@ module GemBench
           tokenized_line.valid,
           tokenized_line.relevant_lines,
           tokenized_line.index,
-          opts[:debug] == true ? tokenized_line : nil
+          (opts[:debug] == true) ? tokenized_line : nil,
         )
       end
     end
