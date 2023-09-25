@@ -66,7 +66,7 @@ Trim down app load times by keeping your worst players on the bench (useful for 
   spec.add_development_dependency("rake")
   spec.add_development_dependency("rspec")
   spec.add_development_dependency("rspec-block_is_expected")
-  spec.add_development_dependency("rubocop-lts", "~> 4.1") # Lint & Style Support for Ruby 2.0.0
+  spec.add_development_dependency("rubocop-lts", "~> 10.1") # Lint & Style Support for Ruby 2.3+
   spec.add_development_dependency("rubocop-packaging", "~> 0.5", ">=0.5.2")
   spec.add_development_dependency("rubocop-rspec")
   spec.add_development_dependency("simplecov")
