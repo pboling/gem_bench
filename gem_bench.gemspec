@@ -60,9 +60,7 @@ Trim down app load times by keeping your worst players on the bench (useful for 
   spec.add_development_dependency("yard-junk")
 
   spec.add_development_dependency("awesome_print")
-  spec.add_development_dependency("byebug")
   spec.add_development_dependency("gem-release", "~> 2.0")
-  spec.add_development_dependency("pry-byebug")
   spec.add_development_dependency("rake")
   spec.add_development_dependency("rspec")
   spec.add_development_dependency("rspec-block_is_expected")
