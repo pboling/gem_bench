@@ -22,7 +22,7 @@ You: ❨╯°□°❩╯︵┻━┻
 | documentation          | [on Rdoc.info][documentation]                                                                                                                                                                        |
 | live chat              | [![Join the chat][🏘chati]][🏘chat]                                                                                                                                                                         |
 | expert support         | [![Get help on Codementor](https://cdn.codementor.io/badges/get_help_github.svg)](https://www.codementor.io/peterboling?utm_source=github&utm_medium=button&utm_term=peterboling&utm_campaign=github) |
-| Spread ~♡ⓛⓞⓥⓔ♡~        | [🌏](https://about.me/peter.boling), [👼](https://angel.co/peter-boling), [![Tweet Peter](https://img.shields.io/twitter/follow/galtzo.svg?style=social&label=Follow)](http://twitter.com/galtzo)    |
+| Spread ~♡ⓛⓞⓥⓔ♡~        | [🌏](https://about.me/peter.boling) [👼](https://angel.co/peter-boling) [![Tweet Peter](https://img.shields.io/twitter/follow/galtzo.svg?style=social&label=Follow)](http://twitter.com/galtzo)    |
 
 [🚎cwf]: https://github.com/rubocop-lts/rubocop-lts/actions/workflows/current.yml
 [🚎cwfi]: https://github.com/rubocop-lts/rubocop-lts/actions/workflows/current.yml/badge.svg
@@ -157,6 +157,34 @@ Then find the file with the first occurrence of the regex in each:
 ```
 >> bad_context_maybes.map { |bcm| bcm.stats.map(&:first) }
 => [["/Users/pboling/.rvm/gems/ruby-2.4.0@foss/gems/byebug-9.0.6/lib/byebug/command.rb"], ["/Users/pboling/.rvm/gems/ruby-2.4.0@foss/gems/diff-lcs-1.3/lib/diff/lcs/hunk.rb"]]
+```
+
+### Find what gems have `RAILS_ENV` specific code!
+
+Let's try to find what libraries might be using a conditional guard to alter their behavior in a specific Rails environment.
+
+```
+# Not a perfect regex, but pretty good: https://rubular.com/r/b7tdIoYOVQM2RR
+# RAILS_ENV == "development"
+# Rails.env.development?
+# Rails.env == "development"
+# ENV["RAILS_ENV"] == "development"
+# ENV.fetch("RAILS_ENV") == "development"
+>> require "gem_bench"
+=> true
+>> conditional_rails_behavior_regex = /(ENV(\["|\.fetch\("))?rails(_|\.)env("\]|"\))?( == "|\.)development/i
+>> conditional_rails_behavior = GemBench.find(look_for_regex: conditional_rails_behavior_regex).starters
+=> [rack, actionpack, actioncable, actionmailer, rubocop, railties, rubocop-ruby2_7, sass, sass-rails]
+>> print conditional_rails_behavior.map {|gem| "#{gem.name} has Rails.env condition in #{gem.stats}" }.join("\n")
+rack has Rails.env condition in [["/Users/pboling/.asdf/installs/ruby/2.7.8/lib/ruby/gems/2.7.0/gems/rack-mini-profiler-3.1.0/lib/mini_profiler_rails/railtie.rb", 1154]]
+actionpack has Rails.env condition in [["/Users/pboling/.asdf/installs/ruby/2.7.8/lib/ruby/gems/2.7.0/gems/actionpack-3.2.22.5/lib/action_controller/metal/force_ssl.rb", 1377]]
+actioncable has Rails.env condition in [["/Users/pboling/.asdf/installs/ruby/2.7.8/lib/ruby/gems/2.7.0/gems/actioncable-5.2.8.1/lib/action_cable/engine.rb", 886]]
+actionmailer has Rails.env condition in [["/Users/pboling/.asdf/installs/ruby/2.7.8/lib/ruby/gems/2.7.0/gems/actionmailer-7.0.5/lib/action_mailer/railtie.rb", 807]]
+rubocop has Rails.env condition in [["/Users/pboling/.asdf/installs/ruby/2.7.8/lib/ruby/gems/2.7.0/gems/rubocop-ruby2_2-2.0.5/lib/rubocop/ruby2_2/railtie.rb", 131]]
+railties has Rails.env condition in [["/Users/pboling/.asdf/installs/ruby/2.7.8/lib/ruby/gems/2.7.0/gems/railties-3.2.22.5/lib/rails.rb", 2478]]
+rubocop-ruby2_7 has Rails.env condition in [["/Users/pboling/.asdf/installs/ruby/2.7.8/lib/ruby/gems/2.7.0/gems/rubocop-ruby2_7-2.0.5/lib/rubocop/ruby2_7/railtie.rb", 131]]
+sass has Rails.env condition in [["/Users/pboling/.asdf/installs/ruby/2.7.8/lib/ruby/gems/2.7.0/gems/sass-rails-5.1.0/lib/sass/rails/railtie.rb", 3349]]
+sass-rails has Rails.env condition in [["/Users/pboling/.asdf/installs/ruby/2.7.8/lib/ruby/gems/2.7.0/gems/sass-rails-5.1.0/lib/sass/rails/railtie.rb", 3349]]
 ```
 
 ### More Different Example!
