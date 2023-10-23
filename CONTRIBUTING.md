@@ -1,6 +1,6 @@
 ## Contributing
 
-Bug reports and pull requests are welcome on GitLab at [https://gitlab.com/rubocop-lts/standard-rubocop-lts][🚎src-main]
+Bug reports and pull requests are welcome on GitLab at [https://github.com/pboling/gem_bench][🚎src-main]
 . This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to
 the [code of conduct][conduct].
 
