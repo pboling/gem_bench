@@ -1,8 +1,0 @@
-if DEBUG_IDE
-  # See: https://github.com/ruby-debug/ruby-debug-ide#install-debugging-gems
-  gem "debase", "~> 0.2"
-  gem "ruby-debug-base", "~> 0.10"
-else
-  # See: https://gitlab.com/ivoanjo/pry-debugger-jruby
-  gem "pry-debugger-jruby", "~> 2.1"
-end
