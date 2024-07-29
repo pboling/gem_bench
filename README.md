@@ -1,11 +1,31 @@
 # GemBench
 
+Scene: You are a spectator at a game of Ruby Sports Gem Ball.
+
+Gem wearing jersey namespace **#23**:
+
+> "Put me in coach!"
+
+Other Gem, also wearing jersey namespace **#23**:
+
+> "Put me in coach!"
+
+Coach:
+
+> ❨╯°□°❩╯︵┻━┻ fine, but one of you change your jersey first!
+
+## What's it do?
+
 `gem_bench` is for static Gemfile and installed gem library source code analysis.
 
-`gem_bench` can also be used to trim down app load times by keeping your worst players on the bench.
+`gem_bench` can be used to re-namespace a gem at run-time so that you can run simultaneously:
 
-Gem: "Put me in coach!"
-You: ❨╯°□°❩╯︵┻━┻
+- two versions of the same library, or
+- two different things that happen to have a namespace collision,
+
+for benchmarking or other purposes.
+
+`gem_bench` can also be used to trim down app load times by keeping your worst players on the bench.
 
 | Project                | GemBench                                                                                                                                                                                             |
 |------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -34,6 +54,37 @@ You: ❨╯°□°❩╯︵┻━┻
 [📗cov-wfi]: https://github.com/rubocop-lts/rubocop-lts/actions/workflows/coverage.yml/badge.svg
 [🏘chat]: https://matrix.to/#/%23pboling_gem_bench:gitter.im
 [🏘chati]: https://badges.gitter.im/Join%20Chat.svg
+
+### New for 2.0.1 - `GemBench::Jersey`
+
+Allows you to re-namespace any gem.
+You can, for example, benchmark a gem against another version of itself.
+
+The gem `alt_memery` uses a namespace, `Memery`, that does not match the gem name.
+```ruby
+require "gem_bench/jersey"
+
+jersey = GemBench::Jersey.new(
+  gem_name: "alt_memery",
+  trades: {"Memery" => "AltMemery"},
+  metadata: {
+    something: "a value here",
+    something_else: :obviously,
+  },
+)
+jersey.doff_and_don
+# The re-namespaced constant is now available!
+AltMemery # => AltMemery
+jersey.as_klass # => AltMemery
+
+# The original, unmodified, gem is still there!
+require "alt_memery"
+
+Memery # => Memery
+# So you can use both!
+```
+
+NOTE: It is not required by default, so you do need to require the Jersey if you want to use it!
 
 ### New for 2.0.0 - Dropped Support for Ruby 2.0, 2.1, 2.2
 

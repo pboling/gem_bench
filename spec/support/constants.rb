@@ -1,0 +1,3 @@
+module Constants
+  ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+end
