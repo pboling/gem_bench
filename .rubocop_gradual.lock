@@ -1,5 +1,5 @@
 {
-  "gem_bench.gemspec:3127209845": [
+  "gem_bench.gemspec:1767564218": [
     [57, 3, 39, "Gemspec/DependencyVersion: Dependency version specification is required.", 837793628],
     [58, 3, 44, "Gemspec/DependencyVersion: Dependency version specification is required.", 4064900235],
     [60, 3, 48, "Gemspec/DependencyVersion: Dependency version specification is required.", 2848714075],
@@ -51,7 +51,6 @@
     [195, 5, 26, "RSpec/MultipleExpectations: Example has too many expectations [3/1].", 1356703934]
   ],
   "spec/gem_bench_spec.rb:1027238616": [
-    [1, 1, 0, "RSpec/SpecFilePathFormat: Spec path should end with `gem_bench/version*_spec.rb`.", 5381],
-    [1, 1, 32, "RSpec/FilePath: Spec path should end with `gem_bench/version*_spec.rb`.", 4129755814]
+    [1, 1, 32, "RSpec/SpecFilePathFormat: Spec path should end with `gem_bench/version*_spec.rb`.", 4129755814]
   ]
 }

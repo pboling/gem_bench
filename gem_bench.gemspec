@@ -66,4 +66,5 @@ Trim down app load times by keeping your worst players on the bench (useful for 
   spec.add_development_dependency("rubocop-packaging", "~> 0.5", ">=0.5.2")
   spec.add_development_dependency("rubocop-rspec")
   spec.add_development_dependency("simplecov")
+  spec.add_development_dependency("standard", ">= 1.35.1")
 end
