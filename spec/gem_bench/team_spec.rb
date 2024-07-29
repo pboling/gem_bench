@@ -1,7 +1,5 @@
-require "spec_helper"
-
 RSpec.describe GemBench::Team do
-  let(:instance) { GemBench::Team.new }
+  let(:instance) { described_class.new }
 
   describe "initialize" do
     it "does not raise error" do

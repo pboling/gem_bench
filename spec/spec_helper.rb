@@ -1,7 +1,9 @@
 require "byebug" if ENV.fetch("DEBUG", "false").casecmp?("true")
 
-# External RSpec Matchers
-require "version_gem/rspec"
+# External Gems
+require "byebug" # For debugging
+require "rspec/block_is_expected" # For RSpec Macros
+require "version_gem/rspec" # For RSpec Matchers
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure

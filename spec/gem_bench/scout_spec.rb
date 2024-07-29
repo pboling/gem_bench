@@ -1,7 +1,5 @@
-require "spec_helper"
-
 RSpec.describe GemBench::Scout do
-  let(:instance) { GemBench::Scout.new }
+  let(:instance) { described_class.new }
 
   describe "initialize" do
     it "does not raise error" do
@@ -10,7 +8,7 @@ RSpec.describe GemBench::Scout do
 
     context "check_gemfile" do
       context "is true" do
-        let(:instance) { GemBench::Scout.new(check_gemfile: true) }
+        let(:instance) { described_class.new(check_gemfile: true) }
 
         it "does not raise error" do
           expect { instance }.not_to raise_error
@@ -18,7 +16,7 @@ RSpec.describe GemBench::Scout do
       end
 
       context "is false" do
-        let(:instance) { GemBench::Scout.new(check_gemfile: false) }
+        let(:instance) { described_class.new(check_gemfile: false) }
 
         it "does not raise error" do
           expect { instance }.not_to raise_error
@@ -26,7 +24,7 @@ RSpec.describe GemBench::Scout do
       end
 
       context "is nil" do
-        let(:instance) { GemBench::Scout.new(check_gemfile: nil) }
+        let(:instance) { described_class.new(check_gemfile: nil) }
 
         it "does not raise error" do
           expect { instance }.not_to raise_error
@@ -64,11 +62,13 @@ RSpec.describe GemBench::Scout do
   end
 
   describe "#gemfile_trash" do
+    subject(:gemfile_trash) { instance.gemfile_trash }
+
     context "check_gemfile: true" do
-      let(:instance) { GemBench::Scout.new(check_gemfile: true) }
+      let(:instance) { described_class.new(check_gemfile: true) }
 
       it "does not raise error" do
-        expect { instance.gemfile_trash }.not_to raise_error
+        block_is_expected.not_to raise_error
       end
 
       it "sets gemfile_trash" do
@@ -82,10 +82,10 @@ RSpec.describe GemBench::Scout do
     end
 
     context "check_gemfile: false" do
-      let(:instance) { GemBench::Scout.new(check_gemfile: false) }
+      let(:instance) { described_class.new(check_gemfile: false) }
 
       it "does not raise error" do
-        expect { instance.gemfile_trash }.not_to raise_error
+        block_is_expected.not_to raise_error
       end
 
       it "sets gemfile_trash" do
@@ -98,10 +98,10 @@ RSpec.describe GemBench::Scout do
     end
 
     context "check_gemfile: nil" do
-      let(:instance) { GemBench::Scout.new(check_gemfile: nil) }
+      let(:instance) { described_class.new(check_gemfile: nil) }
 
       it "does not raise error" do
-        expect { instance.gemfile_trash }.not_to raise_error
+        block_is_expected.not_to raise_error
       end
 
       it "sets gemfile_trash" do
@@ -116,20 +116,22 @@ RSpec.describe GemBench::Scout do
   end
 
   describe "#gemfile_lines" do
+    subject(:gemfile_lines) { instance.gemfile_lines }
+
     context "check_gemfile: true" do
-      let(:instance) { GemBench::Scout.new(check_gemfile: true) }
+      let(:instance) { described_class.new(check_gemfile: true) }
 
       it "does not raise error" do
-        expect { instance.gemfile_lines }.not_to raise_error
+        block_is_expected.not_to raise_error
       end
 
       it "sets gemfile_lines" do
-        expect(instance.gemfile_lines).to be_an(Array)
+        expect(gemfile_lines).to be_an(Array)
       end
 
       it "gemfile_lines is not empty" do
-        expect(instance.gemfile_lines).not_to be_empty
-        expect(instance.gemfile_lines[0..1]).to eq([
+        expect(gemfile_lines).not_to be_empty
+        expect(gemfile_lines[0..1]).to eq([
           "source \"https://rubygems.org\"\n",
           "gem \"bundler\" # For specs!\n",
         ])
@@ -137,35 +139,35 @@ RSpec.describe GemBench::Scout do
     end
 
     context "check_gemfile: false" do
-      let(:instance) { GemBench::Scout.new(check_gemfile: false) }
+      let(:instance) { described_class.new(check_gemfile: false) }
 
       it "does not raise error" do
-        expect { instance.gemfile_lines }.not_to raise_error
+        block_is_expected.not_to raise_error
       end
 
       it "sets gemfile_lines" do
-        expect(instance.gemfile_lines).to be_an(Array)
+        expect(gemfile_lines).to be_an(Array)
       end
 
       it "gemfile_lines is empty" do
-        expect(instance.gemfile_lines).to be_empty
+        expect(gemfile_lines).to be_empty
       end
     end
 
     context "check_gemfile: nil" do
-      let(:instance) { GemBench::Scout.new(check_gemfile: nil) }
+      let(:instance) { described_class.new(check_gemfile: nil) }
 
       it "does not raise error" do
-        expect { instance.gemfile_lines }.not_to raise_error
+        block_is_expected.not_to raise_error
       end
 
       it "sets gemfile_lines" do
-        expect(instance.gemfile_lines).to be_an(Array)
+        expect(gemfile_lines).to be_an(Array)
       end
 
       it "gemfile_lines is not empty" do
-        expect(instance.gemfile_lines).not_to be_empty
-        expect(instance.gemfile_lines[0..1]).to eq([
+        expect(gemfile_lines).not_to be_empty
+        expect(gemfile_lines[0..1]).to eq([
           "source \"https://rubygems.org\"\n",
           "gem \"bundler\" # For specs!\n",
         ])
@@ -174,22 +176,24 @@ RSpec.describe GemBench::Scout do
   end
 
   describe "#loaded_gems" do
-    let(:instance) { GemBench::Scout.new }
+    subject(:loaded_gems) { instance.loaded_gems }
+
+    let(:instance) { described_class.new }
 
     it "does not raise error" do
-      expect { instance.loaded_gems }.not_to raise_error
+      block_is_expected.not_to raise_error
     end
 
     it "sets gemfile_lines" do
-      expect(instance.loaded_gems).to be_an(Array)
+      expect(loaded_gems).to be_an(Array)
     end
 
     it "is not empty" do
-      expect(instance.loaded_gems).not_to be_empty
+      expect(loaded_gems).not_to be_empty
     end
 
     it "includes dependencies" do
-      names = instance.loaded_gems.map { |tuple| tuple[0] }
+      names = loaded_gems.map { |tuple| tuple[0] }
       expect(names).to include("rspec")
       expect(names).to include("rake")
       expect(names).to include("bundler")
