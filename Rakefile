@@ -1,21 +1,43 @@
 require "bundler/gem_tasks"
 
-require "yard-junk/rake"
+begin
+  require "rspec/core/rake_task"
+  RSpec::Core::RakeTask.new(:spec)
+  desc("alias test task to spec")
+  task(test: :spec)
+rescue LoadError
+  task(:spec) do
+    warn("rspec is disabled")
+  end
+end
 
-YardJunk::Rake.define_task
+begin
+  require "yard-junk/rake"
 
-require "yard"
+  YardJunk::Rake.define_task
+rescue LoadError
+  task("yard:junk") do
+    warn("yard:junk is disabled")
+  end
+end
 
-YARD::Rake::YardocTask.new(:yard)
+begin
+  require "yard"
 
-require "rspec/core/rake_task"
+  YARD::Rake::YardocTask.new(:yard)
+rescue LoadError
+  task(:yard) do
+    warn("yard is disabled")
+  end
+end
 
-require "rubocop/lts"
+begin
+  require "rubocop/lts"
+  Rubocop::Lts.install_tasks
+rescue LoadError
+  task(:rubocop_gradual) do
+    warn("RuboCop (Gradual) is disabled")
+  end
+end
 
-Rubocop::Lts.install_tasks
-
-RSpec::Core::RakeTask.new(:spec)
-desc "alias test task to spec"
-task test: :spec
-
-task default: [:yard, :rubocop_gradual, :spec]
+task default: %i[spec rubocop_gradual yard yard:junk]

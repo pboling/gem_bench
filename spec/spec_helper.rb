@@ -1,21 +1,18 @@
-# External Gems
-require "byebug" if ENV.fetch("DEBUG", "false").casecmp?("true")
-require "rspec/block_is_expected" # For RSpec Macros
-require "version_gem/rspec" # For RSpec Matchers
+# RSpec Configs
+require "config/byebug"
+require "config/rspec/rspec_block_is_expected"
+require "config/rspec/rspec_core"
+require "config/rspec/version_gem"
 
-# This gem's helpers
-require_relative "support/constants"
-
-RSpec.configure do |config|
-  # Enable flags like --only-failures and --next-failure
-  config.example_status_persistence_file_path = ".rspec_status"
-
-  config.expect_with :rspec do |c|
-    c.syntax = :expect
-  end
+# Last thing before loading this gem is to setup code coverage
+begin
+  # This does not require "simplecov", but
+  require "kettle-soup-cover"
+  #   this next line has a side-effect of running `.simplecov`
+  require "simplecov" if defined?(Kettle::Soup::Cover) && Kettle::Soup::Cover::DO_COV
+rescue LoadError
+  nil
 end
 
-require "simplecov"
-SimpleCov.start
-
+# This library
 require "gem_bench"

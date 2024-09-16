@@ -41,6 +41,9 @@ module GemBench
           if e.message =~ /invalid byte sequence/
             puts "[GemBench] checking #{file_path} failed due to unparseable file content"
             false # Assume the likelihood of files with encoding issues that also contain railtie to be low, so: false.
+          else
+            puts "[GemBench] checking #{file_path} failed. Please report a bug to https://github.com/pboling/gembench/issues"
+            raise e
           end
         end
       end
@@ -71,6 +74,8 @@ module GemBench
         "gem '#{name}', '~> #{version}'"
       when :upgrade # when upgrading, and testing gem compatibility you want to try anything newer
         "gem '#{name}', '>= #{version}'"
+      else
+        raise ArgumentError, "Unknown format for #{self.class.name}#to_s"
       end
     end
 

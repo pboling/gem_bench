@@ -51,14 +51,17 @@ Trim down app load times by keeping your worst players on the bench (useful for 
 
   # Yes, it *is* actually a run-time dependency. This gem is sort of a bundler add-on.
   spec.add_runtime_dependency("bundler", ">= 1.14")
-  spec.add_runtime_dependency("version_gem", "~> 1.1", ">= 1.1.3")
+  spec.add_runtime_dependency("version_gem", "~> 1.1", ">= 1.1.4")
 
   # Documentation
-  spec.add_development_dependency("yard")
-  spec.add_development_dependency("yard-junk")
+  spec.add_development_dependency("yard", "~> 0.9", ">= 0.9.34")
+  spec.add_development_dependency("yard-junk", "~> 0.0.10")
+
+  # Coverage
+  spec.add_development_dependency("kettle-soup-cover", "~> 1.0", ">= 1.0.2")
 
   spec.add_development_dependency("awesome_print")
-  spec.add_development_dependency("gem-release", "~> 2.0")
+  spec.add_development_dependency("method_source", ">= 1.1.0")
   spec.add_development_dependency("rake")
   spec.add_development_dependency("rspec")
   spec.add_development_dependency("rspec-block_is_expected")

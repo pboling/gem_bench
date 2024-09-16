@@ -30,6 +30,31 @@ RSpec.describe GemBench::Scout do
           expect { instance }.not_to raise_error
         end
       end
+
+      context "is default" do
+        let(:instance) { described_class.new }
+
+        it "does not raise error" do
+          expect { instance }.not_to raise_error
+        end
+      end
+    end
+
+    context "bundler error" do
+      before do
+        allow(Bundler).to receive(:rubygems).and_raise(Bundler::GemfileNotFound)
+      end
+
+      let(:instance) { described_class.new }
+
+      it "does not raise error" do
+        expect { instance }.not_to raise_error
+      end
+
+      it "sets check_gemfile to false" do
+        expect(instance.check_gemfile?).to be(false)
+        expect(Bundler).to have_received(:rubygems)
+      end
     end
   end
 
@@ -113,6 +138,23 @@ RSpec.describe GemBench::Scout do
         expect(instance.gemfile_trash).to eq(["# Specify your gem's dependencies in gem_bench.gemspec\n"])
       end
     end
+
+    context "check_gemfile: default" do
+      let(:instance) { described_class.new }
+
+      it "does not raise error" do
+        block_is_expected.not_to raise_error
+      end
+
+      it "sets gemfile_trash" do
+        expect(instance.gemfile_trash).to be_an(Array)
+      end
+
+      it "gemfile_trash is not empty" do
+        expect(instance.gemfile_trash).not_to be_empty
+        expect(instance.gemfile_trash).to eq(["# Specify your gem's dependencies in gem_bench.gemspec\n"])
+      end
+    end
   end
 
   describe "#gemfile_lines" do
@@ -156,6 +198,26 @@ RSpec.describe GemBench::Scout do
 
     context "check_gemfile: nil" do
       let(:instance) { described_class.new(check_gemfile: nil) }
+
+      it "does not raise error" do
+        block_is_expected.not_to raise_error
+      end
+
+      it "sets gemfile_lines" do
+        expect(gemfile_lines).to be_an(Array)
+      end
+
+      it "gemfile_lines is not empty" do
+        expect(gemfile_lines).not_to be_empty
+        expect(gemfile_lines[0..1]).to eq([
+          "source \"https://rubygems.org\"\n",
+          "gem \"bundler\" # For specs!\n",
+        ])
+      end
+    end
+
+    context "check_gemfile: default" do
+      let(:instance) { described_class.new }
 
       it "does not raise error" do
         block_is_expected.not_to raise_error
