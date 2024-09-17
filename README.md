@@ -527,6 +527,19 @@ Made with [contributors-img][🖐contrib-rocks].
 [🖐contributors]: https://github.com/pboling/gem_bench/graphs/contributors
 [🖐contributors-img]: https://contrib.rocks/image?repo=pboling/gem_bench
 
+### Code Coverage
+
+[![Coverage Graph][🔑codecov-g]][🖇codecov]
+
+[🔑codecov-g]: https://codecov.io/gh/pboling/gem_bench/graphs/tree.svg?token=selEoMrZzA
+
+## 🪇 Code of Conduct
+
+Everyone interacting in this project's codebases, issue trackers,
+chat rooms and mailing lists is expected to follow the [code of conduct][🪇conduct].
+
+[🪇conduct]: CODE_OF_CONDUCT.md
+
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md)
