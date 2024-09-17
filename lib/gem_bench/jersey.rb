@@ -59,6 +59,7 @@ module GemBench
 
       puts "Doffing #{gem_path}" if verbose
       Dir.mktmpdir do |directory|
+        files = []
         Dir[File.join(gem_path, "lib", "**", "*.rb")].map do |file|
           if verbose
             puts file
@@ -85,12 +86,13 @@ module GemBench
             dir_path = File.join(directory, relative_path)
             Dir.mkdir(dir_path) unless Dir.exist?(dir_path)
             puts "creating #{filename} in #{dir_path}" if verbose
-            create_tempfile_copy(file, filename, dir_path, :dd1, &block)
+            files << create_tempfile_copy(file, filename, dir_path, :dd1, &block)
           else
             puts "directory not relative (#{directory}) for file #{filename}" if verbose
-            create_tempfile_copy(file, filename, directory, :dd2, &block)
+            files << create_tempfile_copy(file, filename, directory, :dd2, &block)
           end
         end
+        load_gem_copy(files)
       end
 
       nil
@@ -107,13 +109,29 @@ module GemBench
 
     private
 
-    def create_tempfile_copy(file, filename, directory, from, &block)
-      File.open(File.join(directory, "#{filename}.rb"), "w") do |tempfile|
-        new_jersey(file, tempfile, from, &block)
+    def load_gem_copy(files)
+      files.each do |filepath|
+        # begin
+        require filepath
+        # rescue LoadError => e
+        #   puts file.to_s
+        #   puts tempfile.path
+        #   puts e.class
+        #   puts e.message
+        # end
       end
     end
 
-    def new_jersey(file, tempfile, from)
+    # @return [String] the file path of the new copy of the original file
+    def create_tempfile_copy(file, filename, directory, from, &block)
+      # Value of block is returned from File.open
+      File.open(File.join(directory, "#{filename}.rb"), "w") do |file_copy|
+        new_jersey(file, file_copy, from, &block)
+      end
+    end
+
+    # @return [String] the file path of the new copy of the original file
+    def new_jersey(file, file_copy, from)
       nj = File.read(file)
       trades.each do |old_namespace, new_namespace|
         nj.gsub!(old_namespace, new_namespace)
@@ -121,19 +139,12 @@ module GemBench
       if verbose
         puts "new_jersey has from: #{from}"
         puts "new_jersey has file: #{file}"
-        puts "new_jersey path: #{tempfile.path}"
+        puts "new_jersey file_copy path: #{file_copy.path}"
       end
       nj = yield nj if block_given?
-      tempfile.write(nj)
-      tempfile.rewind
-      # begin
-      require tempfile.path
-      # rescue LoadError => e
-      #   puts file.to_s
-      #   puts tempfile.path
-      #   puts e.class
-      #   puts e.message
-      # end
+      file_copy.write(nj)
+      file_copy.close
+      file_copy.path
     end
   end
 end
