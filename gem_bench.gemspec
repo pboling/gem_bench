@@ -49,8 +49,8 @@ Trim down app load times by keeping your worst players on the bench (useful for 
   spec.require_paths = ["lib"]
 
   # Yes, it *is* actually a run-time dependency. This gem is sort of a bundler add-on.
-  spec.add_runtime_dependency("bundler", ">= 1.14")
-  spec.add_runtime_dependency("version_gem", "~> 1.1", ">= 1.1.4")
+  spec.add_dependency("bundler", ">= 1.14")
+  spec.add_dependency("version_gem", "~> 1.1", ">= 1.1.4")
 
   # Documentation
   spec.add_development_dependency("yard", "~> 0.9", ">= 0.9.34")

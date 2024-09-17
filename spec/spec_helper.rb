@@ -1,3 +1,6 @@
+# External library dependencies
+require "version_gem/ruby"
+
 # RSpec Configs
 require "config/byebug"
 require "config/rspec/rspec_block_is_expected"
