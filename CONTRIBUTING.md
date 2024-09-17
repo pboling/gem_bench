@@ -1,7 +1,7 @@
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at [https://github.com/pboling/gem_bench][🚎src-main]
-. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to
+Bug reports and pull requests are welcome on GitHub at [https://github.com/pboling/gem_bench][🚎src-main].
+This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to
 the [code of conduct][🤝conduct].
 
 To submit a patch, please fork the project and create a patch with tests. Once you're happy with it send a pull request

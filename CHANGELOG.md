@@ -11,10 +11,10 @@ and this project adheres to [Semantic Versioning v2](https://semver.org/spec/v2.
 ### Fixed
 ### Removed
 
-[2.0.1] SEP.16.2024
-COVERAGE:  65.43% -- 301/460 lines in 9 files
-BRANCH COVERAGE:  45.51% -- 76/167 branches in 9 branches
-52.17% documented
+[2.0.1] SEP.17.2024
+COVERAGE:  82.15% -- 382/465 lines in 9 files
+BRANCH COVERAGE:  58.08% -- 97/167 branches in 9 files
+51.72% documented
 ### Added
 * Ability to re-namespace and load copy of a gem alongside vanilla version for benchmarking via `GemBench::Jersey`
   * See: https://github.com/panorama-ed/memo_wise/pull/339
