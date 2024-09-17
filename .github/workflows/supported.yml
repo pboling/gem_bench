@@ -7,9 +7,6 @@ on:
   push:
     branches:
       - 'main'
-      - '*-maintenance'
-      - '*-dev'
-      - '*-stable'
     tags:
       - '!*' # Do not execute on tags
   pull_request:
