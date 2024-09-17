@@ -67,7 +67,7 @@ require "gem_bench/jersey"
 jersey = GemBench::Jersey.new(
   gem_name: "alt_memery",
   trades: {"Memery" => "AltMemery"},
-  metadata: {
+  metadata: { # optional, mostly used for benchmarking report output
     something: "a value here",
     something_else: :obviously,
   },
@@ -85,6 +85,12 @@ Memery # => Memery
 ```
 
 NOTE: It is not required by default, so you do need to require the Jersey if you want to use it!
+
+```ruby
+require "gem_bench/jersey"
+```
+
+For a real example, see: https://github.com/panorama-ed/memo_wise/pull/339
 
 ### New for 2.0.0 - Dropped Support for Ruby 2.0, 2.1, 2.2
 
@@ -301,7 +307,7 @@ In order to *also* see list gems may *not* be required at boot time you need to:
 1. Make sure you are in the root of a project with a Gemfile
 2. Make sure the gem is actually a dependency in the Gemfile
 
-So here's a [*fat* Gemfile][bundle-group-pattern] weighing in at 265 gem dependencies.  We'll use it for this example:
+So here's a [fat Gemfile][bundle-group-pattern] weighing in at 265 gem dependencies.  We'll use it for this example:
 
     ∴ bundle exec rails console
     Welcome to RAILS. You are using ruby 1.9.3p392 (2013-02-22 revision 39386) [x86_64-darwin12.2.1]. Have fun ;)

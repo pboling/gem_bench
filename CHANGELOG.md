@@ -11,6 +11,19 @@ and this project adheres to [Semantic Versioning v2](https://semver.org/spec/v2.
 ### Fixed
 ### Removed
 
+[2.0.1] SEP.16.2024
+COVERAGE:  65.43% -- 301/460 lines in 9 files
+BRANCH COVERAGE:  45.51% -- 76/167 branches in 9 branches
+52.17% documented
+### Added
+* Ability to re-namespace and load copy of a gem alongside vanilla version for benchmarking via `GemBench::Jersey`
+  * See: https://github.com/panorama-ed/memo_wise/pull/339
+* Many more tests
+* `kettle-soup-cover` for test coverage enforcement
+* Improved instructions for contributing
+### Fixed
+* Stopped swallowing `ArgumentError` in certain exceptional cases
+
 [2.0.0] SEP.25.2023
 ### Added
 * Compatible with Bundler 2+
