@@ -4,8 +4,11 @@
 
 <div align="center">
 
-[![Depfu](https://badges.depfu.com/badges/865e7bb1d0d3eb3ba807fca7344e22d1/overview.svg)](https://depfu.com/github/pboling/gem_bench?project_id=5613)                                                |
-[![Test Coverage](https://api.codeclimate.com/v1/badges/80787f126e7a486b19af/test_coverage)](https://codeclimate.com/github/pboling/gem_bench/test_coverage)                                         |
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
+[![Version](https://img.shields.io/gem/v/gem_bench.svg)](https://rubygems.org/gems/gem_bench)
+[![Downloads Today](https://img.shields.io/gem/rd/gem_bench.svg)](https://github.com/pboling/gem_bench)
+[![Depfu](https://badges.depfu.com/badges/865e7bb1d0d3eb3ba807fca7344e22d1/overview.svg)](https://depfu.com/github/pboling/gem_bench?project_id=5613)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/80787f126e7a486b19af/test_coverage)](https://codeclimate.com/github/pboling/gem_bench/test_coverage)
 [![Maintainability](https://api.codeclimate.com/v1/badges/80787f126e7a486b19af/maintainability)](https://codeclimate.com/github/pboling/gem_bench/maintainability)
 [![CI Supported Build][🚎s-wfi]][🚎s-wf]
 [![CI Unsupported Build][🚎us-wfi]][🚎us-wf]
@@ -32,24 +35,23 @@
 
 [![Liberapay Patrons][⛳liberapay-img]][⛳liberapay]
 [![Sponsor Me on Github][🖇sponsor-img]][🖇sponsor]
+[![Polar Shield][🖇polar-img]][🖇polar]
+[![Donate to my FLOSS or refugee efforts at ko-fi.com][🖇kofi-img]][🖇kofi]
+[![Donate to my FLOSS or refugee efforts using Patreon][🖇patreon-img]][🖇patreon]
 
 [⛳liberapay-img]: https://img.shields.io/liberapay/patrons/pboling.svg?logo=liberapay
 [⛳liberapay]: https://liberapay.com/pboling/donate
 [🖇sponsor-img]: https://img.shields.io/badge/Sponsor_Me!-pboling.svg?style=social&logo=github
 [🖇sponsor]: https://github.com/sponsors/pboling
+[🖇polar-img]: https://polar.sh/embed/seeks-funding-shield.svg?org=pboling
+[🖇polar]: https://polar.sh/pboling
+[🖇kofi-img]: https://img.shields.io/badge/buy%20me%20coffee-donate-yellow.svg
+[🖇kofi]: https://ko-fi.com/O5O86SNP4
+[🖇patreon-img]: https://img.shields.io/badge/patreon-donate-yellow.svg
+[🖇patreon]: https://patreon.com/galtzo
 
 <span class="badge-buymealatte">
 <a href="https://www.buymeacoffee.com/pboling"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a latte&emoji=&slug=pboling&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff" /></a>
-</span>
-<br>
-<span class="badge-polarshield">
-<a href="https://polar.sh/pboling"><img src="https://polar.sh/embed/seeks-funding-shield.svg?org=pboling" /></a>
-</span>
-<span class="badge-buymeacoffee">
-<a href="https://ko-fi.com/O5O86SNP4" target='_blank' title="Donate to my FLOSS or refugee efforts at ko-fi.com"><img src="https://img.shields.io/badge/buy%20me%20coffee-donate-yellow.svg" alt="Buy me coffee donation button" /></a>
-</span>
-<span class="badge-patreon">
-<a href="https://patreon.com/galtzo" title="Donate to my FLOSS or refugee efforts using Patreon"><img src="https://img.shields.io/badge/patreon-donate-yellow.svg" alt="Patreon donate button" /></a>
 </span>
 
 </div>
@@ -85,9 +87,6 @@ for benchmarking or other purposes.
 | Project                | GemBench                                                                                                                                                                                             |
 |------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | gem name               | [gem_bench](https://rubygems.org/gems/gem_bench)                                                                                                                                                     |
-| license                | [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)                                                                                           |
-| download rank          | [![Downloads Today](https://img.shields.io/gem/rd/gem_bench.svg)](https://github.com/pboling/gem_bench)                                                                                              |
-| version                | [![Version](https://img.shields.io/gem/v/gem_bench.svg)](https://rubygems.org/gems/gem_bench)                                                                                                        |
 | code triage            | [![Open Source Helpers](https://www.codetriage.com/pboling/gem_bench/badges/users.svg)](https://www.codetriage.com/pboling/gem_bench)                                                                |
 | homepage               | [on Github.com][homepage]                                                                                                                                                                            |
 | documentation          | [on Rdoc.info][documentation]                                                                                                                                                                        |
