@@ -21,7 +21,6 @@ Trim down app load times by keeping your worst players on the bench (useful for 
   spec.homepage = "http://github.com/pboling/gem_bench"
 
   spec.licenses = ["MIT"]
-  spec.platform = Gem::Platform::RUBY
   spec.required_ruby_version = ">= 2.3"
 
   spec.metadata["homepage_uri"] = "https://railsbling.com/tags/gem_bench/"
