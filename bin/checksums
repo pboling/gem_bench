@@ -1,9 +1,13 @@
 #!/usr/bin/env ruby
-# frozen_string_literal: true
 
+# Script from https://github.com/rubygems/guides/pull/325
 require "digest/sha2"
 
-VERSION_REGEX = /\d+\.\d+\.\d+(-.*)?/.freeze
+# Final clause of Regex `(?=\.gem)` is a positive lookahead assertion
+# See: https://learnbyexample.github.io/Ruby_Regexp/lookarounds.html#positive-lookarounds
+# Used to pattern match against a gem package name, which always ends with .gem.
+# The positive lookahead ensures it is present, and prevents it from being captured.
+VERSION_REGEX = /((\d+\.\d+\.\d+)([-.][0-9A-Za-z-]+)*)(?=\.gem)/
 
 gem_path_parts = ARGV.first&.split("/")
 
@@ -20,7 +24,7 @@ else
   raise "Unable to find gems #{gem_pkgs}" if gems.empty?
 
   # Sort by newest last
-  # [ "vc_ruby-2.3.9.gem", "vc_ruby-2.3.11-alpha.4.gem", "vc_ruby-2.3.15.gem", ... ]
+  # [ "my_gem-2.3.9.gem", "my_gem-2.3.11.pre.alpha.4.gem", "my_gem-2.3.15.gem", ... ]
   gems.sort_by! { |gem| Gem::Version.new(gem[VERSION_REGEX]) }
   gem_pkg = gems.last
   gem_path_parts = gem_pkg.split("/")
@@ -36,18 +40,21 @@ checksum256 = Digest::SHA256.new.hexdigest(File.read(gem_pkg))
 checksum256_path = "checksums/#{gem_name}.sha256"
 File.write(checksum256_path, checksum256)
 
-version = checksum256_path[VERSION_REGEX]
+version = gem_name[VERSION_REGEX]
 
-git_cmd = <<~GIT
+git_cmd = <<~GIT_MSG
   git add checksums/* && \
   git commit -m "🔒️ Checksums for v#{version}"
-GIT
+GIT_MSG
 
 puts <<~RESULTS
-  [GEM: #{gem_name}]
-  [VERSION: #{version}]
-  [CHECKSUM SHA256 PATH: #{checksum256_path}]
-  [CHECKSUM SHA512 PATH: #{checksum512_path}]
+  [ GEM: #{gem_name} ]
+  [ VERSION: #{version} ]
+  [ GEM PKG LOCATION: #{gem_pkg} ]
+  [ CHECKSUM SHA-256: #{checksum256} ]
+  [ CHECKSUM SHA-512: #{checksum512} ]
+  [ CHECKSUM SHA-256 PATH: #{checksum256_path} ]
+  [ CHECKSUM SHA-512 PATH: #{checksum512_path} ]
   
   ... Running ...
   
@@ -58,4 +65,3 @@ RESULTS
 # Any command placed after this will not be run:
 #   See: https://www.akshaykhot.com/call-shell-commands-in-ruby
 exec(git_cmd)
-# EOF
