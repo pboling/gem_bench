@@ -40,12 +40,12 @@ RSpec.describe GemBench::Scout do
       end
     end
 
-    context "bundler error" do
+    context "early bundler error" do
+      subject(:instance) { described_class.new }
+
       before do
         allow(Bundler).to receive(:rubygems).and_raise(Bundler::GemfileNotFound)
       end
-
-      let(:instance) { described_class.new }
 
       it "does not raise error" do
         expect { instance }.not_to raise_error
@@ -54,6 +54,33 @@ RSpec.describe GemBench::Scout do
       it "sets check_gemfile to false" do
         expect(instance.check_gemfile?).to be(false)
         expect(Bundler).to have_received(:rubygems)
+      end
+
+      it "sets gem_paths to empty" do
+        expect(instance.gem_paths).to be_empty
+        expect(Bundler).to have_received(:rubygems)
+      end
+    end
+
+    context "late bundler error" do
+      subject(:instance) { described_class.new }
+
+      before do
+        allow(Bundler).to receive(:bundle_path).and_raise(Bundler::GemfileNotFound)
+      end
+
+      it "does not raise error" do
+        expect { instance }.not_to raise_error
+      end
+
+      it "sets check_gemfile to false" do
+        expect(instance.check_gemfile?).to be(false)
+        expect(Bundler).to have_received(:bundle_path)
+      end
+
+      it "sets gem_paths to soemthing" do
+        expect(instance.gem_paths).to include(match(/\/gems/))
+        expect(Bundler).to have_received(:bundle_path)
       end
     end
   end
