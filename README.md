@@ -8,6 +8,7 @@
 [![Version](https://img.shields.io/gem/v/gem_bench.svg)](https://rubygems.org/gems/gem_bench)
 [![Downloads Today](https://img.shields.io/gem/rd/gem_bench.svg)](https://github.com/pboling/gem_bench)
 [![Depfu](https://badges.depfu.com/badges/865e7bb1d0d3eb3ba807fca7344e22d1/overview.svg)](https://depfu.com/github/pboling/gem_bench?project_id=2688)
+[![CodeCov][🖇codecov-img♻️]][🖇codecov]
 [![Test Coverage](https://api.codeclimate.com/v1/badges/80787f126e7a486b19af/test_coverage)](https://codeclimate.com/github/pboling/gem_bench/test_coverage)
 [![Maintainability](https://api.codeclimate.com/v1/badges/80787f126e7a486b19af/maintainability)](https://codeclimate.com/github/pboling/gem_bench/maintainability)
 [![CI Supported Build][🚎s-wfi]][🚎s-wf]
@@ -16,6 +17,8 @@
 [![CI Coverage Build][🚎cov-wfi]][🚎cov-wf]
 [![CI Heads Build][🚎hd-wfi]][🚎hd-wf]
 
+[🖇codecov-img♻️]: https://codecov.io/gh/pboling/gem_bench/graph/badge.svg?token=selEoMrZzA
+[🖇codecov]: https://codecov.io/gh/pboling/gem_bench
 [🚎s-wf]: https://github.com/pboling/gem_bench/actions/workflows/supported.yml
 [🚎s-wfi]: https://github.com/pboling/gem_bench/actions/workflows/supported.yml/badge.svg
 [🚎us-wf]: https://github.com/pboling/gem_bench/actions/workflows/unsupported.yml
@@ -517,7 +520,21 @@ How much faster will my app boot loading 45 fewer gems?  A bit.
 This gem determines which gems need to be loaded at Rails' boot time by looking for Railties and Engines.
 A future version will also look for initializers, because gems which have code that runs (e.g. configuration) in an initializer also need to be loaded at boot time.
 
-## Contributors
+## 🤝 Contributing
+
+See [CONTRIBUTING.md][🤝contributing]
+
+[🤝contributing]: CONTRIBUTING.md
+
+### Code Coverage
+
+If you need some ideas of where to help, you could work on adding more code coverage.
+
+[![Coverage Graph][🔑codecov-g]][🖇codecov]
+
+[🔑codecov-g]: https://codecov.io/gh/pboling/gem_bench/graphs/tree.svg?token=selEoMrZzA
+
+## 🌈 Contributors
 
 [![Contributors][🖐contributors-img]][🖐contributors]
 
@@ -527,11 +544,15 @@ Made with [contributors-img][🖐contrib-rocks].
 [🖐contributors]: https://github.com/pboling/gem_bench/graphs/contributors
 [🖐contributors-img]: https://contrib.rocks/image?repo=pboling/gem_bench
 
-### Code Coverage
+## Star History
 
-[![Coverage Graph][🔑codecov-g]][🖇codecov]
-
-[🔑codecov-g]: https://codecov.io/gh/pboling/gem_bench/graphs/tree.svg?token=selEoMrZzA
+<a href="https://star-history.com/#pboling/gem_bench&Date">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=pboling/gem_bench&type=Date&theme=dark" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=pboling/gem_bench&type=Date" />
+   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=pboling/gem_bench&type=Date" />
+ </picture>
+</a>
 
 ## 🪇 Code of Conduct
 
@@ -540,38 +561,56 @@ chat rooms and mailing lists is expected to follow the [code of conduct][🪇con
 
 [🪇conduct]: CODE_OF_CONDUCT.md
 
-## Contributing
+## 📌 Versioning
 
-See [CONTRIBUTING.md](CONTRIBUTING.md)
+This Library adheres to [Semantic Versioning 2.0.0][📌semver].
+Violations of this scheme should be reported as bugs.
+Specifically, if a minor or patch version is released that breaks backward compatibility,
+a new version should be immediately released that restores compatibility.
+Breaking changes to the public API will only be introduced with new major versions.
 
-## Versioning
+To get a better understanding of how SemVer is intended to work over a project's lifetime,
+read this article from the creator of SemVer:
 
-This library aims to adhere to [Semantic Versioning 2.0.0][semver].
-Violations of this scheme should be reported as bugs. Specifically,
-if a minor or patch version is released that breaks backward
-compatibility, a new version should be immediately released that
-restores compatibility. Breaking changes to the public API will
-only be introduced with new major versions.
+- ["Major Version Numbers are Not Sacred"][📌major-versions-not-sacred]
 
-As a result of this policy, you can (and should) specify a
-dependency on this gem using the [Pessimistic Version Constraint][pvc] with two digits of precision.
+As a result of this policy, you can (and should) specify a dependency on these libraries using
+the [Pessimistic Version Constraint][📌pvc] with two digits of precision.
 
 For example:
 
-    spec.add_dependency 'gem_bench', '~> 2.0'
+```ruby
+spec.add_dependency 'gem_bench', '~> 2.0'
+```
 
-See [CHANGELOG.md](CHANGELOG.md) for list of releases.
+See [CHANGELOG.md][📌changelog] for list of releases.
 
-## Legal
+[comment]: <> ( 📌 VERSIONING LINKS )
 
-* [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
-* Copyright (c) 2013 - 2014, 2016 - 2020, 2023 [Peter H. Boling][peterboling] of [Rails Bling][railsbling]
+[📌pvc]: http://guides.rubygems.org/patterns/#pessimistic-version-constraint
+[📌semver]: http://semver.org/
+[📌major-versions-not-sacred]: https://tom.preston-werner.com/2022/05/23/major-version-numbers-are-not-sacred.html
+[📌changelog]: CHANGELOG.md
 
-[semver]: http://semver.org/
-[pvc]: http://docs.rubygems.org/read/chapter/16#page74
-[bundle-group-pattern]: https://gist.github.com/pboling/4564780
+## 📄 License
+
+The gem is available as open source under the terms of
+the [MIT License][📄license] [![License: MIT][📄license-img]][📄license-ref].
+See [LICENSE.txt][📄license] for the official [Copyright Notice][📄copyright-notice-explainer].
+
+[comment]: <> ( 📄 LEGAL LINKS )
+
+[📄copyright-notice-explainer]: https://opensource.stackexchange.com/questions/5778/why-do-licenses-such-as-the-mit-license-specify-a-single-year
+[📄license]: LICENSE.txt
+[📄license-ref]: https://opensource.org/licenses/MIT
+[📄license-img]: https://img.shields.io/badge/License-MIT-green.svg
+
+### © Copyright
+
+* Copyright (c) 2013 - 2014, 2016 - 2020, 2023 - 2024 [Peter H. Boling][peterboling] of [Rails Bling][railsbling]
+
 [railsbling]: http://www.railsbling.com
 [peterboling]: http://www.peterboling.com
-[coderwall]: http://coderwall.com/pboling
+[bundle-group-pattern]: https://gist.github.com/pboling/4564780
 [documentation]: http://rdoc.info/github/pboling/gem_bench/frames
 [homepage]: https://github.com/pboling/gem_bench
