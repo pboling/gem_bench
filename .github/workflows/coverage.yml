@@ -46,7 +46,7 @@ jobs:
 
     runs-on: ubuntu-latest
     steps:
-      - uses: amancevice/setup-code-climate@v0
+      - uses: amancevice/setup-code-climate@v2
         name: CodeClimate Install
         if: ${{ github.event_name != 'pull_request' }}
         with:
