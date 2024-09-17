@@ -103,6 +103,7 @@ Allows you to re-namespace any gem.
 You can, for example, benchmark a gem against another version of itself.
 
 The gem `alt_memery` uses a namespace, `Memery`, that does not match the gem name.
+
 ```ruby
 require "gem_bench/jersey"
 
@@ -136,7 +137,7 @@ For a real example, see: https://github.com/panorama-ed/memo_wise/pull/339
 
 ### New for 2.0.0 - Dropped Support for Ruby 2.0, 2.1, 2.2
 
--- Required Ruby is now 2.3+
+- Required Ruby is now 2.3+
 - `VERSION` is now namespaced at `GemBench::Version::VERSION` and is enhanced by `version_gem`.
 
 ### New for 1.0.2 - Gemfile specs
@@ -144,6 +145,7 @@ For a real example, see: https://github.com/panorama-ed/memo_wise/pull/339
 Version constraints are important.  Give the Gemfile some love in your CI build
 
 Create a `spec/gemfile_spec.rb` like:
+
 ```ruby
 Rspec.describe("Gemfile") do
   it("has version constraint on every gem") do
@@ -244,6 +246,7 @@ irb: warn: can't alias context from irb_context.
 ```
 
 Find out what gems may be causing it by defining `context`!
+
 ```
 >> require 'gem_bench'
 => true
@@ -252,7 +255,9 @@ Find out what gems may be causing it by defining `context`!
 [GemBench] Detected 11 loaded gems + 2 loaded gems which GemBench is configured to ignore.
 => [byebug, diff-lcs]
 ```
+
 Then find the file with the first occurrence of the regex in each:
+
 ```
 >> bad_context_maybes.map { |bcm| bcm.stats.map(&:first) }
 => [["/Users/pboling/.rvm/gems/ruby-2.4.0@foss/gems/byebug-9.0.6/lib/byebug/command.rb"], ["/Users/pboling/.rvm/gems/ruby-2.4.0@foss/gems/diff-lcs-1.3/lib/diff/lcs/hunk.rb"]]
