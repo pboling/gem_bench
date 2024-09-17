@@ -177,8 +177,13 @@ For string version constraints anything is allowed (e.g. `'~> 1.0'`), as it assu
 
 Search the Ruby source code of all the gems loaded by your Gemfile for a specified regex, to find out which gems have wat DRAGONS.
 
-Gem: "I have no wat DRAGONS!"
-You: ❨╯°□°❩╯︵┻━┻
+Gem:
+
+> "I have no wat DRAGONS!"`
+
+You:
+
+> ❨╯°□°❩╯︵┻━┻ Yes you do!
 
 ```
 >> puts GemBench.find(look_for_regex: /wat/).starters.map {|gem| "#{gem.name} has wat DRAGONS at #{gem.stats}" }.join("\n")
