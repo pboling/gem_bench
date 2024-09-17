@@ -20,7 +20,10 @@ BRANCH COVERAGE:  58.08% -- 97/167 branches in 9 files
   * See: https://github.com/panorama-ed/memo_wise/pull/339
 * Many more tests
 * `kettle-soup-cover` for test coverage enforcement
+* Better documentation
 * Improved instructions for contributing
+### Changed
+* Improved `bin/checksums`
 ### Fixed
 * Stopped swallowing `ArgumentError` in certain exceptional cases
 
