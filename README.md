@@ -87,18 +87,38 @@ for benchmarking or other purposes.
 
 `gem_bench` can also be used to trim down app load times by keeping your worst players on the bench.
 
-| Project                | GemBench                                                                                                                                                                                             |
-|------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| gem name               | [gem_bench](https://rubygems.org/gems/gem_bench)                                                                                                                                                     |
-| code triage            | [![Open Source Helpers](https://www.codetriage.com/pboling/gem_bench/badges/users.svg)](https://www.codetriage.com/pboling/gem_bench)                                                                |
-| homepage               | [on Github.com][homepage]                                                                                                                                                                            |
-| documentation          | [on Rdoc.info][documentation]                                                                                                                                                                        |
-| live chat              | [![Join the chat][🏘chati]][🏘chat]                                                                                                                                                                         |
-| expert support         | [![Get help on Codementor](https://cdn.codementor.io/badges/get_help_github.svg)](https://www.codementor.io/peterboling?utm_source=github&utm_medium=button&utm_term=peterboling&utm_campaign=github) |
-| Spread ~♡ⓛⓞⓥⓔ♡~        | [🌏](https://about.me/peter.boling) [👼](https://angel.co/peter-boling) [![Tweet Peter](https://img.shields.io/twitter/follow/galtzo.svg?style=social&label=Follow)](http://twitter.com/galtzo)    |
+| Project        | GemBench                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+|----------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| gem name       | [gem_bench](https://rubygems.org/gems/gem_bench)                                                                                                                                                                                                                                                                                                                                                                                                      |
+| code triage    | [![Open Source Helpers](https://www.codetriage.com/pboling/gem_bench/badges/users.svg)](https://www.codetriage.com/pboling/gem_bench)                                                                                                                                                                                                                                                                                                                 |
+| homepage       | [on Github.com][homepage]                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| documentation  | [on Rdoc.info][documentation]                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| live chat      | [![Join the chat][🏘chati]][🏘chat]                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| expert support | [![Get help on Codementor](https://cdn.codementor.io/badges/get_help_github.svg)](https://www.codementor.io/peterboling?utm_source=github&utm_medium=button&utm_term=peterboling&utm_campaign=github)                                                                                                                                                                                                                                                 |
+| `...` 💖       | [![Liberapay Patrons][⛳liberapay-img]][⛳liberapay] [![Sponsor Me][🖇sponsor-img]][🖇sponsor] [![Follow Me on LinkedIn][🖇linkedin-img]][🖇linkedin] [![Find Me on WellFound:][✌️wellfound-img]][✌️wellfound] [![Find Me on CrunchBase][💲crunchbase-img]][💲crunchbase] [![My LinkTree][🌳linktree-img]][🌳linktree] [![Follow Me on Ruby.Social][🐘ruby-mast-img]][🐘ruby-mast] [![Tweet @ Peter][🐦tweet-img]][🐦tweet] [💻][coderme] [🌏][aboutme] |
 
 [🏘chat]: https://matrix.to/#/%23pboling_gem_bench:gitter.im
 [🏘chati]: https://badges.gitter.im/Join%20Chat.svg
+
+<!-- 7️⃣ spread 💖 -->
+[🐦tweet-img]: https://img.shields.io/twitter/follow/galtzo.svg?style=social&label=Follow%20%40galtzo
+[🐦tweet]: http://twitter.com/galtzo
+[🚎blog]: http://www.railsbling.com/tags/gem_bench/
+[🚎blog-img]: https://img.shields.io/badge/blog-railsbling-brightgreen.svg?style=flat
+[🖇linkedin]: http://www.linkedin.com/in/peterboling
+[🖇linkedin-img]: https://img.shields.io/badge/PeterBoling-blue?style=plastic&logo=linkedin
+[✌️wellfound]: https://angel.co/u/peter-boling
+[✌️wellfound-img]: https://img.shields.io/badge/peter--boling-orange?style=plastic&logo=wellfound
+[💲crunchbase]: https://www.crunchbase.com/person/peter-boling
+[💲crunchbase-img]: https://img.shields.io/badge/peter--boling-purple?style=plastic&logo=crunchbase
+[🐘ruby-mast]: https://ruby.social/@galtzo
+[🐘ruby-mast-img]: https://img.shields.io/mastodon/follow/109447111526622197?domain=https%3A%2F%2Fruby.social&style=plastic&logo=mastodon&label=Ruby%20%40galtzo
+[🌳linktree]: https://linktr.ee/galtzo
+[🌳linktree-img]: https://img.shields.io/badge/galtzo-purple?style=plastic&logo=linktree
+
+<!-- Maintainer Contact Links -->
+[aboutme]: https://about.me/peter.boling
+[coderme]: https://coderwall.com/Peter%20Boling
 
 ### New for 2.0.1 - `GemBench::Jersey`
 
