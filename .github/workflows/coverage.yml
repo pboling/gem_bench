@@ -1,9 +1,11 @@
 name: Code Coverage
 
 env:
-  CI_CODECOV: true
-  COVER_ALL: true
-  COVERAGE: true
+  K_SOUP_COV_MIN_BRANCH: 45
+  K_SOUP_COV_MIN_LINE: 65
+  K_SOUP_COV_MIN_HARD: true
+  K_SOUP_COV_DO: true
+  K_SOUP_COV_COMMAND_NAME: "MiniTest Coverage"
 
 on:
   push:
@@ -51,7 +53,7 @@ jobs:
           cc_test_reporter_id: ${{ secrets.CC_TEST_REPORTER_ID }}
 
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup Ruby & Bundle
         uses: ruby/setup-ruby@v1

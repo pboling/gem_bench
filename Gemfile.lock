@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    gem_bench (2.0.0)
+    gem_bench (2.0.1)
       bundler (>= 1.14)
       version_gem (~> 1.1, >= 1.1.4)
 

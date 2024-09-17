@@ -1,5 +1,60 @@
 # GemBench
 
+<div id="badges">
+
+<div align="center">
+
+[![Depfu](https://badges.depfu.com/badges/865e7bb1d0d3eb3ba807fca7344e22d1/overview.svg)](https://depfu.com/github/pboling/gem_bench?project_id=5613)                                                |
+[![Test Coverage](https://api.codeclimate.com/v1/badges/80787f126e7a486b19af/test_coverage)](https://codeclimate.com/github/pboling/gem_bench/test_coverage)                                         |
+[![Maintainability](https://api.codeclimate.com/v1/badges/80787f126e7a486b19af/maintainability)](https://codeclimate.com/github/pboling/gem_bench/maintainability)
+[![CI Supported Build][🚎s-wfi]][🚎s-wf]
+[![CI Unsupported Build][🚎us-wfi]][🚎us-wf]
+[![CI Style Build][🚎st-wfi]][🚎st-wf]
+[![CI Coverage Build][🚎cov-wfi]][🚎cov-wf]
+[![CI Heads Build][🚎hd-wfi]][🚎hd-wf]
+
+[🚎s-wf]: https://github.com/pboling/gem_bench/actions/workflows/supported.yml
+[🚎s-wfi]: https://github.com/pboling/gem_bench/actions/workflows/supported.yml/badge.svg
+[🚎us-wf]: https://github.com/pboling/gem_bench/actions/workflows/unsupported.yml
+[🚎us-wfi]: https://github.com/pboling/gem_bench/actions/workflows/unsupported.yml/badge.svg
+[🚎st-wf]: https://github.com/pboling/gem_bench/actions/workflows/style.yml
+[🚎st-wfi]: https://github.com/pboling/gem_bench/actions/workflows/style.yml/badge.svg
+[🚎cov-wf]: https://github.com/pboling/gem_bench/actions/workflows/coverage.yml
+[🚎cov-wfi]: https://github.com/pboling/gem_bench/actions/workflows/coverage.yml/badge.svg
+[🚎hd-wf]: https://github.com/pboling/gem_bench/actions/workflows/heads.yml
+[🚎hd-wfi]: https://github.com/pboling/gem_bench/actions/workflows/heads.yml/badge.svg
+
+</div>
+
+-----
+
+<div align="center">
+
+[![Liberapay Patrons][⛳liberapay-img]][⛳liberapay]
+[![Sponsor Me on Github][🖇sponsor-img]][🖇sponsor]
+
+[⛳liberapay-img]: https://img.shields.io/liberapay/patrons/pboling.svg?logo=liberapay
+[⛳liberapay]: https://liberapay.com/pboling/donate
+[🖇sponsor-img]: https://img.shields.io/badge/Sponsor_Me!-pboling.svg?style=social&logo=github
+[🖇sponsor]: https://github.com/sponsors/pboling
+
+<span class="badge-buymealatte">
+<a href="https://www.buymeacoffee.com/pboling"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a latte&emoji=&slug=pboling&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff" /></a>
+</span>
+<br>
+<span class="badge-polarshield">
+<a href="https://polar.sh/pboling"><img src="https://polar.sh/embed/seeks-funding-shield.svg?org=pboling" /></a>
+</span>
+<span class="badge-buymeacoffee">
+<a href="https://ko-fi.com/O5O86SNP4" target='_blank' title="Donate to my FLOSS or refugee efforts at ko-fi.com"><img src="https://img.shields.io/badge/buy%20me%20coffee-donate-yellow.svg" alt="Buy me coffee donation button" /></a>
+</span>
+<span class="badge-patreon">
+<a href="https://patreon.com/galtzo" title="Donate to my FLOSS or refugee efforts using Patreon"><img src="https://img.shields.io/badge/patreon-donate-yellow.svg" alt="Patreon donate button" /></a>
+</span>
+
+</div>
+</div>
+
 Scene: You are a spectator at a game of Ruby Sports Gem Ball.
 
 Gem wearing jersey namespace **#23**:
@@ -33,10 +88,6 @@ for benchmarking or other purposes.
 | license                | [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)                                                                                           |
 | download rank          | [![Downloads Today](https://img.shields.io/gem/rd/gem_bench.svg)](https://github.com/pboling/gem_bench)                                                                                              |
 | version                | [![Version](https://img.shields.io/gem/v/gem_bench.svg)](https://rubygems.org/gems/gem_bench)                                                                                                        |
-| dependencies           | [![Depfu](https://badges.depfu.com/badges/865e7bb1d0d3eb3ba807fca7344e22d1/overview.svg)](https://depfu.com/github/pboling/gem_bench?project_id=5613)                                                |
-| continuous integration | [![Current][🚎cwfi]][🚎cwf] [![Heads][🖐hwfi]][🖐hwf] [![Style][🧮swfi]][🧮swf] [![Coverage][📗cov-wfi]][📗cov-wf]                                                                                   |
-| test coverage          | [![Test Coverage](https://api.codeclimate.com/v1/badges/80787f126e7a486b19af/test_coverage)](https://codeclimate.com/github/pboling/gem_bench/test_coverage)                                         |
-| maintainability        | [![Maintainability](https://api.codeclimate.com/v1/badges/80787f126e7a486b19af/maintainability)](https://codeclimate.com/github/pboling/gem_bench/maintainability)                                   |
 | code triage            | [![Open Source Helpers](https://www.codetriage.com/pboling/gem_bench/badges/users.svg)](https://www.codetriage.com/pboling/gem_bench)                                                                |
 | homepage               | [on Github.com][homepage]                                                                                                                                                                            |
 | documentation          | [on Rdoc.info][documentation]                                                                                                                                                                        |
@@ -44,14 +95,6 @@ for benchmarking or other purposes.
 | expert support         | [![Get help on Codementor](https://cdn.codementor.io/badges/get_help_github.svg)](https://www.codementor.io/peterboling?utm_source=github&utm_medium=button&utm_term=peterboling&utm_campaign=github) |
 | Spread ~♡ⓛⓞⓥⓔ♡~        | [🌏](https://about.me/peter.boling) [👼](https://angel.co/peter-boling) [![Tweet Peter](https://img.shields.io/twitter/follow/galtzo.svg?style=social&label=Follow)](http://twitter.com/galtzo)    |
 
-[🚎cwf]: https://github.com/rubocop-lts/rubocop-lts/actions/workflows/current.yml
-[🚎cwfi]: https://github.com/rubocop-lts/rubocop-lts/actions/workflows/current.yml/badge.svg
-[🖐hwf]: https://github.com/rubocop-lts/rubocop-lts/actions/workflows/heads.yml
-[🖐hwfi]: https://github.com/rubocop-lts/rubocop-lts/actions/workflows/heads.yml/badge.svg
-[🧮swf]: https://github.com/rubocop-lts/rubocop-lts/actions/workflows/style.yml
-[🧮swfi]: https://github.com/rubocop-lts/rubocop-lts/actions/workflows/style.yml/badge.svg
-[📗cov-wf]: https://github.com/rubocop-lts/rubocop-lts/actions/workflows/coverage.yml
-[📗cov-wfi]: https://github.com/rubocop-lts/rubocop-lts/actions/workflows/coverage.yml/badge.svg
 [🏘chat]: https://matrix.to/#/%23pboling_gem_bench:gitter.im
 [🏘chati]: https://badges.gitter.im/Join%20Chat.svg
 
@@ -467,12 +510,13 @@ A future version will also look for initializers, because gems which have code t
 
 ## Contributors
 
-[![Contributors](https://contrib.rocks/image?repo=pboling/gitmoji-regex)][🖐contributors]
+[![Contributors][🖐contributors-img]][🖐contributors]
 
-Made with [contributors-img][contrib-rocks].
+Made with [contributors-img][🖐contrib-rocks].
 
+[🖐contrib-rocks]: https://contrib.rocks
 [🖐contributors]: https://github.com/pboling/gem_bench/graphs/contributors
-[contrib-rocks]: https://contrib.rocks
+[🖐contributors-img]: https://contrib.rocks/image?repo=pboling/gem_bench
 
 ## Contributing
 

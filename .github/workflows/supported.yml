@@ -1,4 +1,4 @@
-name: Ruby HEAD Support
+name: Supported Ruby Matrix
 
 env:
   K_SOUP_COV_DO: false
@@ -37,20 +37,16 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        experimental: [true]
-        rubygems:
-          - latest
-        bundler:
-          - latest
-        gemfile:
-          - vanilla
-        ruby:
-          - "ruby-head"
-          # NOTE: jruby-head is still @ Ruby 3.1 compat
-          - "jruby-head"
-          # NOTE: truffleruby-head is still @ Ruby 3.1 compat
-          - "truffleruby-head"
-    continue-on-error: ${{ matrix.experimental || endsWith(matrix.ruby, 'head') }}
+        include:
+          - ruby: "3.3"
+            rubygems: latest
+            bundler: latest
+            gemfile: vanilla
+          - ruby: "3.1"
+            rubygems: latest
+            bundler: latest
+            gemfile: vanilla
+          #- Ruby 3.2 tests are run by coverage.yml
     steps:
       - name: Checkout
         uses: actions/checkout@v4

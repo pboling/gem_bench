@@ -1,4 +1,4 @@
-name: Ruby HEAD Support
+name: Unsupported (EOL) Ruby Matrix
 
 env:
   K_SOUP_COV_DO: false
@@ -7,9 +7,6 @@ on:
   push:
     branches:
       - 'main'
-      - '*-maintenance'
-      - '*-dev'
-      - '*-stable'
     tags:
       - '!*' # Do not execute on tags
   pull_request:
@@ -17,9 +14,6 @@ on:
       - '*'
   # Allow manually triggering the workflow.
   workflow_dispatch:
-
-permissions:
-  contents: read
 
 # Cancels all previous workflow runs for the same branch that have not yet completed.
 concurrency:
@@ -30,26 +24,22 @@ concurrency:
 jobs:
   test:
     name: Specs - Ruby ${{ matrix.ruby }}${{ matrix.name_extra || '' }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     if: "!contains(github.event.commits[0].message, '[ci skip]') && !contains(github.event.commits[0].message, '[skip ci]')"
     env: # $BUNDLE_GEMFILE must be set at the job level, so it is set for all steps
       BUNDLE_GEMFILE: ${{ github.workspace }}/gemfiles/${{ matrix.gemfile }}.gemfile
     strategy:
       fail-fast: false
       matrix:
-        experimental: [true]
-        rubygems:
-          - latest
-        bundler:
-          - latest
-        gemfile:
-          - vanilla
-        ruby:
-          - "ruby-head"
-          # NOTE: jruby-head is still @ Ruby 3.1 compat
-          - "jruby-head"
-          # NOTE: truffleruby-head is still @ Ruby 3.1 compat
-          - "truffleruby-head"
+        include:
+          - ruby: "3.0"
+            rubygems:  "3.3.27"
+            bundler: none
+            gemfile: vanilla
+          - ruby: "2.7"
+            rubygems:  "3.3.27"
+            bundler: none
+            gemfile: vanilla
     continue-on-error: ${{ matrix.experimental || endsWith(matrix.ruby, 'head') }}
     steps:
       - name: Checkout

@@ -1,4 +1,4 @@
-name: Code Style
+name: Ruby - Style
 
 on:
   push:
@@ -26,12 +26,13 @@ jobs:
         ruby:
           - "3.2"
     runs-on: ubuntu-latest
+    continue-on-error: ${{ matrix.experimental || endsWith(matrix.ruby, 'head') }}
     env: # $BUNDLE_GEMFILE must be set at the job level, so it is set for all steps
       BUNDLE_GEMFILE: ${{ github.workspace }}/gemfiles/${{ matrix.gemfile }}.gemfile
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
-      - name: Setup Ruby & Bundle
+        uses: actions/checkout@v4
+      - name: Setup Ruby & RubyGems
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.ruby }}
@@ -39,4 +40,4 @@ jobs:
           bundler: ${{ matrix.bundler }}
           bundler-cache: true
       - name: Run RuboCop
-        run: bundle exec rake rubocop_gradual
+        run: bundle exec rake rubocop_gradual:check
