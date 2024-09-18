@@ -249,11 +249,11 @@ You *may not* need to add this gem to your project.
 
 Install the gem and add to the application's Gemfile by executing:
 
-    $ bundle add active_security
+    $ bundle add gem_bench
 
 If bundler is not being used to manage dependencies, install the gem by executing:
 
-    $ gem install active_security
+    $ gem install gem_bench
 
 <details>
     <summary>Installation Options</summary>
