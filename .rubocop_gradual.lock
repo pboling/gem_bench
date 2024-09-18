@@ -1,10 +1,10 @@
 {
-  "gem_bench.gemspec:13925933": [
-    [64, 3, 48, "Gemspec/DependencyVersion: Dependency version specification is required.", 2848714075],
-    [66, 3, 39, "Gemspec/DependencyVersion: Dependency version specification is required.", 1345440847],
-    [67, 3, 40, "Gemspec/DependencyVersion: Dependency version specification is required.", 1844711205],
-    [68, 3, 58, "Gemspec/DependencyVersion: Dependency version specification is required.", 2795510341],
-    [71, 3, 48, "Gemspec/DependencyVersion: Dependency version specification is required.", 3819206526]
+  "gem_bench.gemspec:2928251739": [
+    [65, 3, 48, "Gemspec/DependencyVersion: Dependency version specification is required.", 2848714075],
+    [67, 3, 39, "Gemspec/DependencyVersion: Dependency version specification is required.", 1345440847],
+    [68, 3, 40, "Gemspec/DependencyVersion: Dependency version specification is required.", 1844711205],
+    [69, 3, 58, "Gemspec/DependencyVersion: Dependency version specification is required.", 2795510341],
+    [74, 3, 48, "Gemspec/DependencyVersion: Dependency version specification is required.", 3819206526]
   ],
   "lib/gem_bench.rb:3402614684": [
     [28, 5, 21, "ThreadSafety/ClassAndModuleAttributes: Avoid mutating class and module attributes.", 1291041767],
