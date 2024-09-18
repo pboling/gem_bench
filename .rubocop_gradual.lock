@@ -1,5 +1,5 @@
 {
-  "gem_bench.gemspec:2928251739": [
+  "gem_bench.gemspec:1858665184": [
     [65, 3, 48, "Gemspec/DependencyVersion: Dependency version specification is required.", 2848714075],
     [67, 3, 39, "Gemspec/DependencyVersion: Dependency version specification is required.", 1345440847],
     [68, 3, 40, "Gemspec/DependencyVersion: Dependency version specification is required.", 1844711205],
