@@ -63,13 +63,21 @@
 </div>
 </div>
 
-Scene: You are a spectator at a game of Ruby Sports Gem Ball.
+## What's it do?
 
-Gem wearing jersey namespace **#23**:
+🏁 Copy & Re-namespace any gem to benchmark side-by-side with `benchmarks-ips`!
+
+👯 For example, many of the ~dozen Memoization gems use the same namespaces (`Memoist`, `Memery`, etc).
+In order to compare them side-by-side one of them must be re-namespaced.
+
+<details>
+  <summary>Scene: Spectator at a game of Ruby Sports Gem Ball</summary>
+
+Gem wearing jersey **#23**:
 
 > "Put me in coach!"
 
-Other Gem, also wearing jersey namespace **#23**:
+Other Gem, also wearing jersey **#23**:
 
 > "Put me in coach!"
 
@@ -77,18 +85,16 @@ Coach:
 
 > ❨╯°□°❩╯︵┻━┻ fine, but one of you change your jersey first!
 
-## What's it do?
+</details>
 
-`gem_bench` is for static Gemfile and installed gem library source code analysis.
+🤩 Benchmark trunk against released version of a library!
 
-`gem_bench` can be used to re-namespace a gem at run-time so that you can run simultaneously:
+🧐 A `git clone` build can now be run against the latest public release build, side-by-side, by re-namespacing one of them.
 
-- two versions of the same library, or
-- two different things that happen to have a namespace collision,
+🕵️‍♀️ Static Gemfile and installed gem library source code analysis.
+Regex search through all of a project's source code, including installed Bundler dependencies.
 
-for benchmarking or other purposes.
-
-`gem_bench` can also be used to trim down app load times by keeping your worst players on the bench.
+🛟 Trim down app load times, such as on Heroku, by finding and keeping your worst players on the bench.
 
 | Project        | GemBench                                                                                                                                                                                                                                                                                                                                                                                                                                              |
 |----------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -203,11 +209,14 @@ For string version constraints anything is allowed (e.g. `'~> 1.0'`), as it assu
 
 Search the Ruby source code of all the gems loaded by your Gemfile for a specified regex, to find out which gems have wat DRAGONS.
 
+<details>
+  <summary>Scene: Rubiana Jones is searching for WAT Dragon relics in dusty bins of source code</summary>
+
 Gem:
 
 > "I have no wat DRAGONS!"`
 
-You:
+Rubiana Jones:
 
 > ❨╯°□°❩╯︵┻━┻ Yes you do!
 
@@ -222,6 +231,8 @@ byebug has wat DRAGONS at [["/Users/pboling/.rvm/gems/ruby-2.4.0@foss/gems/byebu
 NOTE: The number (954, above) is not a line number. The file which contains the text `wat` was the 954th file evaluated, i.e. the number doesn't matter.
 NOTE: This is a contrived example.  The occurrence of `wat` in byebug is meaningless: `byebug/commands/frame.rb:34` has `        if there is a front end also watching over things.`.  This is just an example!  You can find anything you want, perhaps even something important!
 
+</details>
+
 It is a fact of RubyGems that many of them do not need to be loaded by your app at boot time.
 It is a fact of Bundler that you don't know which ones need to be 'required' while staring at the Gemfile.
 It is a fact of Heroku that you only have 60, 75, or 120 ([by special request](https://devcenter.heroku.com/articles/error-codes#h20-app-boot-timeout)) precious seconds to get your app loaded before ❨╯°□°❩╯︵┻━┻
@@ -232,11 +243,22 @@ You can even use it to evaluate your project's actual Gemfile for easy peasy boo
 
 ## Installation
 
-You *may not* need to add this gem to your project.  You have three options, 1, 2 or BEST:
+You *may not* need to add this gem to your project.
+
+Install the gem and add to the application's Gemfile by executing:
+
+    $ bundle add active_security
+
+If bundler is not being used to manage dependencies, install the gem by executing:
+
+    $ gem install active_security
+
+<details>
+    <summary>Installation Options</summary>
 
 ### Option 1
 
-Just install it, and require it in your`irb`/`console` session when you want to use it.  However, if you load your console with `bundle exec` then you only have access to gems in the gemfile, so either load without `bundle exec` or add it to the `Gemfile`.
+Just install it, and require it in your `irb` or `console` session when you want to use it.  However, if you load your console with `bundle exec` then you only have access to gems in the gemfile, so either load without `bundle exec` or add it to the `Gemfile`.
 
     $ gem install gem_bench
 
@@ -262,13 +284,16 @@ If you are going to use the gem in your specs, you will need to add it to the te
 
     gem 'gem_bench', :group => :test
 
+</details>
+
 ## Usage
 
 Works with Ruby >= 2.3.
 
-### Example!
+### Examples
 
-Getting tired of seeing this `irb` warning, perhaps?
+<details>
+    <summary>Getting tired of seeing this `irb` warning, perhaps?</summary>
 
 ```
 $ bundle exec rails console
@@ -294,7 +319,10 @@ Then find the file with the first occurrence of the regex in each:
 => [["/Users/pboling/.rvm/gems/ruby-2.4.0@foss/gems/byebug-9.0.6/lib/byebug/command.rb"], ["/Users/pboling/.rvm/gems/ruby-2.4.0@foss/gems/diff-lcs-1.3/lib/diff/lcs/hunk.rb"]]
 ```
 
-### Find what gems have `RAILS_ENV` specific code!
+</details>
+
+<details>
+  <summary>Find what gems have `RAILS_ENV` specific code!</summary>
 
 Let's try to find what libraries might be using a conditional guard to alter their behavior in a specific Rails environment.
 
@@ -322,7 +350,10 @@ sass has Rails.env condition in [["/Users/pboling/.asdf/installs/ruby/2.7.8/lib/
 sass-rails has Rails.env condition in [["/Users/pboling/.asdf/installs/ruby/2.7.8/lib/ruby/gems/2.7.0/gems/sass-rails-5.1.0/lib/sass/rails/railtie.rb", 3349]]
 ```
 
-### More Different Example!
+</details>
+
+<details>
+  <summary> Basic Gemfile Analysis</summary>
 
 Fire up an `irb` session or a `rails console` and then:
 
@@ -378,7 +409,10 @@ If you run the check against a real app's Gemfile it will find numerous primary 
 
 In a random directory, in an irb session, where there is no Gemfile in sight it will give a lot more information.
 
-### Advanced Usage
+</details>
+
+<details>
+  <summary>Advanced Gemfile Analysis</summary>
 
 In order to *also* see list gems may *not* be required at boot time you need to:
 
@@ -537,6 +571,8 @@ will find new suggested exclusions.
 How much faster will my app boot loading 45 fewer gems?  A bit.
 
 **Note:** Some of the gems in the list above should have been excluded.  They are now excluded as of `gem_bench` version 0.0.4.
+
+</details>
 
 ## Future
 
