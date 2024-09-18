@@ -16,6 +16,7 @@
 [![CI Style Build][🚎st-wfi]][🚎st-wf]
 [![CI Coverage Build][🚎cov-wfi]][🚎cov-wf]
 [![CI Heads Build][🚎hd-wfi]][🚎hd-wf]
+[![CI Ancient Build][🚎an-wfi]][🚎an-wf]
 
 [🖇codecov-img♻️]: https://codecov.io/gh/pboling/gem_bench/graph/badge.svg?token=selEoMrZzA
 [🖇codecov]: https://codecov.io/gh/pboling/gem_bench
@@ -29,6 +30,8 @@
 [🚎cov-wfi]: https://github.com/pboling/gem_bench/actions/workflows/coverage.yml/badge.svg
 [🚎hd-wf]: https://github.com/pboling/gem_bench/actions/workflows/heads.yml
 [🚎hd-wfi]: https://github.com/pboling/gem_bench/actions/workflows/heads.yml/badge.svg
+[🚎an-wf]: https://github.com/pboling/gem_bench/actions/workflows/ancient.yml
+[🚎an-wfi]: https://github.com/pboling/gem_bench/actions/workflows/ancient.yml/badge.svg
 
 </div>
 
