@@ -63,12 +63,14 @@
 </div>
 </div>
 
+[benchmarking-example]: https://github.com/panorama-ed/memo_wise/pull/339
+
 ## What's it do?
 
 🏁 Copy & Re-namespace any gem to benchmark side-by-side with `benchmarks-ips`!
 
 👯 For example, many of the ~dozen Memoization gems use the same namespaces (`Memoist`, `Memery`, etc).
-In order to compare them side-by-side one of them must be re-namespaced.
+In order to compare them side-by-side one of them must be re-namespaced. ([working example][benchmarking-example])
 
 <details>
   <summary>Scene: Spectator at a game of Ruby Sports Gem Ball</summary>
@@ -87,9 +89,9 @@ Coach:
 
 </details>
 
-🤩 Benchmark trunk against released version of a library!
+🤩 Benchmark trunk against released version of a library! ([working example][benchmarking-example])
 
-🧐 A `git clone` build can now be run against the latest public release build, side-by-side, by re-namespacing one of them.
+🧐 A `git clone` build can now be run against the latest public release build, side-by-side, by re-namespacing one of them. ([working example][benchmarking-example])
 
 🕵️‍♀️ Static Gemfile and installed gem library source code analysis.
 Regex search through all of a project's source code, including installed Bundler dependencies.
