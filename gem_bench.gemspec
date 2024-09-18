@@ -14,10 +14,12 @@ Gem::Specification.new do |spec|
   spec.cert_chain = ["certs/pboling.pem"]
   spec.signing_key = File.expand_path("~/.ssh/gem-private_key.pem") if $PROGRAM_NAME.end_with?("gem")
 
-  spec.summary = "Static Gemfile and installed gem library source code analysis"
-  spec.description = "Enforce Gemfile version constraints
-Regex search across all installed gem's source code to find issues quickly
-Trim down app load times by keeping your worst players on the bench (useful for beating Heroku slug load time cutoff)"
+  spec.summary = "Benchmark different versions of same or similar gems & Static Gemfile and installed gem library source code analysis"
+  spec.description = "* Benchmark different versions of same or similar gems
+* Copy & Re-namespace any gem to benchmark side-by-side with `benchmarks-ips`
+* Enforce Gemfile version constraints
+* Regex search across all installed gem's source code to find issues quickly
+* Trim down app load times by keeping your worst players on the bench (useful for beating Heroku slug load time cutoff)"
   spec.homepage = "http://github.com/pboling/gem_bench"
 
   spec.licenses = ["MIT"]
