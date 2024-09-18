@@ -46,7 +46,7 @@ jobs:
         gemfile:
           - coverage
         ruby:
-          - "3.2"
+          - "3.3"
 
     steps:
       - uses: amancevice/setup-code-climate@v2

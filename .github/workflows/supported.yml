@@ -35,7 +35,8 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - ruby: "3.3"
+          #- Ruby 3.3 tests are run by coverage.yml
+          - ruby: "3.2"
             rubygems: latest
             bundler: latest
             gemfile: vanilla
@@ -43,7 +44,6 @@ jobs:
             rubygems: latest
             bundler: latest
             gemfile: vanilla
-          #- Ruby 3.2 tests are run by coverage.yml
     steps:
       - name: Checkout
         uses: actions/checkout@v4

@@ -36,10 +36,6 @@ jobs:
             rubygems:  "3.3.27"
             bundler: none
             gemfile: vanilla
-          - ruby: "2.7"
-            rubygems:  "3.3.27"
-            bundler: none
-            gemfile: vanilla
     continue-on-error: ${{ matrix.experimental || endsWith(matrix.ruby, 'head') }}
     steps:
       - name: Checkout
