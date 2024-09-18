@@ -6,8 +6,8 @@ source "https://rubygems.org"
 # On CI we only need the gemspecs' dependencies (including development dependencies).
 # Exceptions, if any, will be found in gemfiles/*.gemfile
 
-gem"bundler", ">= 1.14"
-gem"version_gem", "~> 1.1", ">= 1.1.4"
+gem "bundler", ">= 1.14"
+gem "version_gem", "~> 1.1", ">= 1.1.4"
 
 gem "method_source", ">= 1.1.0"
 gem "rake"
