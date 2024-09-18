@@ -20,7 +20,7 @@ Gem::Specification.new do |spec|
 * Enforce Gemfile version constraints
 * Regex search across all installed gem's source code to find issues quickly
 * Trim down app load times by keeping your worst players on the bench (useful for beating Heroku slug load time cutoff)"
-  spec.homepage = "http://github.com/pboling/gem_bench"
+  spec.homepage = "http://github.com/pboling/#{spec.name}"
 
   spec.licenses = ["MIT"]
   spec.required_ruby_version = ">= 2.3"
