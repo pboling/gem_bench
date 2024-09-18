@@ -61,11 +61,14 @@ Gem::Specification.new do |spec|
   # Coverage
   spec.add_development_dependency("kettle-soup-cover", "~> 1.0", ">= 1.0.2")
 
+  # Unit tests
   spec.add_development_dependency("awesome_print")
   spec.add_development_dependency("method_source", ">= 1.1.0")
   spec.add_development_dependency("rake")
   spec.add_development_dependency("rspec")
   spec.add_development_dependency("rspec-block_is_expected")
+
+  # Linting
   spec.add_development_dependency("rubocop-lts", "~> 10.1") # Lint & Style Support for Ruby 2.3+
   spec.add_development_dependency("rubocop-packaging", "~> 0.5", ">=0.5.2")
   spec.add_development_dependency("rubocop-rspec")
