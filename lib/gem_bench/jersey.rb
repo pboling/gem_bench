@@ -110,15 +110,14 @@ module GemBench
     private
 
     def load_gem_copy(files)
+      puts "Requiring copy of #{gem_name} with: #{files.inspect}" if verbose
+      # These are absolute file paths, so they can use `require`
       files.each do |filepath|
-        # begin
+        # But files required here may not load their own internal files properly if they are still using `require`.
+        # Since Ruby 2.2, best practice for ruby libraries is to use require_relative for internal files,
+        #   and require for external files and dependencies.
+        # Ref: https://github.com/panorama-ed/memo_wise/issues/349
         require filepath
-        # rescue LoadError => e
-        #   puts file.to_s
-        #   puts tempfile.path
-        #   puts e.class
-        #   puts e.message
-        # end
       end
     end
 

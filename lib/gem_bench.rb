@@ -2,13 +2,14 @@
 require "version_gem"
 require "bundler" # This gem utilizes bundler as a tool.
 
-require "gem_bench/version"
-require "gem_bench/scout"
-require "gem_bench/player"
-require "gem_bench/team"
-require "gem_bench/gemfile_line_tokenizer"
-require "gem_bench/strict_version_gem"
-require "gem_bench/strict_version_requirement"
+# this library
+require_relative "gem_bench/version"
+require_relative "gem_bench/scout"
+require_relative "gem_bench/player"
+require_relative "gem_bench/team"
+require_relative "gem_bench/gemfile_line_tokenizer"
+require_relative "gem_bench/strict_version_gem"
+require_relative "gem_bench/strict_version_requirement"
 
 module GemBench
   USAGE = "[GemBench] Usage: Require another gem in this session to evaluate it.\n\tExample:\n\t\trequire 'rails'\n\t\tGemBench.check({verbose: true})\n"
