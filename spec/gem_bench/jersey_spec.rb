@@ -14,8 +14,8 @@ RSpec.describe GemBench::Jersey do
   let(:gem_name) { "method_source" }
   let(:old_namespace) { "MethodSource" }
   let!(:alphabet) { "ABCDEFGHIJKLMNOPQRSTUVWXYZ" }
-  let(:new_namespace) { "#{alphabet[rand(26)]}#{alphabet[rand(26)].downcase}#{alphabet[rand(26)].downcase}#{alphabet[rand(26)]}#{alphabet[rand(26)].downcase}#{alphabet[rand(26)].downcase}#{alphabet[rand(26)]}#{alphabet[rand(26)].downcase}#{alphabet[rand(26)].downcase}" }
-  let(:trades) { {old_namespace => new_namespace} }
+  let(:donned_namespace) { "#{alphabet[rand(26)]}#{alphabet[rand(26)].downcase}#{alphabet[rand(26)].downcase}#{alphabet[rand(26)]}#{alphabet[rand(26)].downcase}#{alphabet[rand(26)].downcase}#{alphabet[rand(26)]}#{alphabet[rand(26)].downcase}#{alphabet[rand(26)].downcase}" }
+  let(:trades) { {old_namespace => donned_namespace} }
   let(:metadata) { {} }
   let(:verbose) { false }
   let(:instance) { described_class.new(**args) }
@@ -68,27 +68,52 @@ RSpec.describe GemBench::Jersey do
     end
   end
 
-  describe "#primary_namespace" do
-    subject(:primary_namespace) { instance.primary_namespace }
+  describe "#doffed_primary_namespace" do
+    subject(:doffed_primary_namespace) { instance.doffed_primary_namespace }
 
     it "does not raise error" do
       block_is_expected.not_to raise_error
     end
 
-    it "returns first new namespace" do
-      expect(primary_namespace).to eq(new_namespace)
+    it "returns first original namespace" do
+      expect(doffed_primary_namespace).to eq(old_namespace)
     end
 
     context "when multiple namespaces" do
       let(:trades) do
         {
           "Blue" => "Green",
-          old_namespace => new_namespace,
+          old_namespace => donned_namespace,
+        }
+      end
+
+      it "returns first original namespace" do
+        expect(doffed_primary_namespace).to eq("Blue")
+      end
+    end
+  end
+
+  describe "#donned_primary_namespace" do
+    subject(:donned_primary_namespace) { instance.donned_primary_namespace }
+
+    it "does not raise error" do
+      block_is_expected.not_to raise_error
+    end
+
+    it "returns first new namespace" do
+      expect(donned_primary_namespace).to eq(donned_namespace)
+    end
+
+    context "when multiple namespaces" do
+      let(:trades) do
+        {
+          "Blue" => "Green",
+          old_namespace => donned_namespace,
         }
       end
 
       it "returns first new namespace" do
-        expect(primary_namespace).to eq("Green")
+        expect(donned_primary_namespace).to eq("Green")
       end
     end
   end
@@ -104,7 +129,7 @@ RSpec.describe GemBench::Jersey do
 
     context "when not doffed and donned" do
       it "raises error" do
-        block_is_expected.to raise_error(NameError, "uninitialized constant #{new_namespace}")
+        block_is_expected.to raise_error(NameError, "uninitialized constant #{donned_namespace}")
       end
     end
 
@@ -116,7 +141,7 @@ RSpec.describe GemBench::Jersey do
       end
 
       it "returns a module/class with name of new namespace" do
-        expect(as_klass.name).to eq(new_namespace)
+        expect(as_klass.name).to eq(donned_namespace)
       end
     end
   end

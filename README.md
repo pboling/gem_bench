@@ -163,7 +163,42 @@ NOTE: It is not required by default, so you do need to require the Jersey if you
 require "gem_bench/jersey"
 ```
 
+#### Usage
+
+If the original gem defines multiple top-level namespaces,
+they can all be renamed by providing more key value pairs in `trades`.
+If the original gem monkey patches other libraries,
+that behavior can't be isolated, so YMMV.
+
+NOTE: Non-top-level namespaces do not need to be renamed,
+as they are isolated within their parent namespace.
+
+#### Example
+
 For a real example, see: https://github.com/panorama-ed/memo_wise/pull/339
+
+#### Naming: Why `doff_and_don`?
+
+> Wouldn't "copy_gem" make sense?
+
+Actually copy is an overloaded term, which creates confusion in this use case.
+This method Generates a temp directory, and creates a copy of a gem within it.
+Re-namespaces the copy according to the `trades` configuration.
+Then requires each file of the "copied gem", resulting
+in a loaded gem that will not have namespace
+collisions when loaded alongside the original-namespaced gem.
+Note that "copied gem" in the previous sentence is ambiguous without the supporting context.
+The "copied gem" can mean either the original, or the "copy", which is why this gem refers to
+a "doffed gem" (the original) and a "donned gem" (the copy).
+
+Also because `Jersey`.  Duh...
+
+#### Advanced Usage
+
+If a block is provided the contents of each file will be yielded to the block,
+after all namespace substitutions from `trades` are complete, but before the contents
+are written to the donned (re-namespaced) gem. The return value of the block will be
+written to the file in this scenario.
 
 ### New for 2.0.0 - Dropped Support for Ruby 2.0, 2.1, 2.2
 
