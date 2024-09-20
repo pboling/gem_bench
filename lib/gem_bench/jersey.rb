@@ -136,7 +136,7 @@ module GemBench
       end
       files.each do |filepath|
         # But files required here may not load their own internal files properly if they are still using `require`.
-        # Since Ruby 2.2, best practice for ruby libraries is to use require_relative for internal files,
+        # Since Ruby 1.9.2, best practice for ruby libraries is to use require_relative for internal files,
         #   and require for external files and dependencies.
         # Ref: https://github.com/panorama-ed/memo_wise/issues/349
         # We *can* use `require` *here*, because filepath here is an absolute paths
