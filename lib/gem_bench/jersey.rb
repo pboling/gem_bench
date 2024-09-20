@@ -1,33 +1,32 @@
 # Std Libs Dependencies
 require "tmpdir"
 
-# Re-write a gem to a temp directory, re-namespace the primary namespace of that gem module, and load it.
-# If the original gem defines multiple top-level namespaces, they can all be renamed by providing more key value pairs.
-# If the original gem monkey patches other libraries, that behavior can't be isolated, so YMMV.
-#
-# NOTE: Non-top-level namespaces do not need to be renamed, as they are isolated within their parent namespace.
-#
-# Usage
-#
-#   jersey = GemBench::Jersey.new(
-#     gem_name: "alt_memery"
-#     trades: {
-#       "Memery" => "AltMemery"
-#     },
-#     metadata: {
-#       something: "a value here",
-#       something_else: :obviously,
-#     },
-#   )
-#   jersey.doff_and_don
-#   # The re-namespaced constant is now available!
-#   AltMemery # => AltMemery
-#
-# Benchmarking Example
-#
-#   See: https://github.com/panorama-ed/memo_wise/blob/main/benchmarks/benchmarks.rb
-#
 module GemBench
+  # Re-write a gem to a temp directory, re-namespace the primary namespace of that gem module, and load it.
+  # If the original gem defines multiple top-level namespaces, they can all be renamed by providing more key value pairs.
+  # If the original gem monkey patches other libraries, that behavior can't be isolated, so YMMV.
+  #
+  # NOTE: Non-top-level namespaces do not need to be renamed, as they are isolated within their parent namespace.
+  #
+  # Usage
+  #
+  #   jersey = GemBench::Jersey.new(
+  #     gem_name: "alt_memery"
+  #     trades: {
+  #       "Memery" => "AltMemery"
+  #     },
+  #     metadata: {
+  #       something: "a value here",
+  #       something_else: :obviously,
+  #     },
+  #   )
+  #   jersey.doff_and_don
+  #   # The re-namespaced constant is now available!
+  #   AltMemery # => AltMemery
+  #
+  # Benchmarking Example
+  #
+  #   See: https://github.com/panorama-ed/memo_wise/blob/main/benchmarks/benchmarks.rb
   class Jersey
     attr_reader :gem_name
     attr_reader :gem_path

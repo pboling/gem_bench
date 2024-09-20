@@ -1,11 +1,13 @@
 module GemBench
+  # Helps determine if a gem dependency is "valid" according to the strict rules of:
+  #   - every gem must have a version requirement of some sort
   class StrictVersionGem
     attr_reader :name, :version, :version_type, :valid, :relevant_lines, :index, :tokenized_line
 
     class << self
       def from_line(all_lines, line, index, opts = {})
         tokenized_line = GemfileLineTokenizer.new(all_lines, line, index)
-        return unless tokenized_line.is_gem
+        return unless tokenized_line.parse_success
 
         new(
           tokenized_line.name,

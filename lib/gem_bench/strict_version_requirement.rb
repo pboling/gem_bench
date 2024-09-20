@@ -1,9 +1,10 @@
 module GemBench
+  # Helps enforce a version requirement for every dependency in a Gemfile
   class StrictVersionRequirement
     attr_reader :gemfile_path, :gems, :starters, :benchers, :verbose
 
     def initialize(options = {})
-      @gemfile_path = "#{Dir.pwd}/Gemfile"
+      @gemfile_path = options.fetch(:gemfile_path, "#{Dir.pwd}/Gemfile")
       file = File.open(gemfile_path)
       # Get all lines as an array
       all_lines = file.readlines

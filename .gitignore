@@ -17,3 +17,6 @@
 .ruby-version
 
 *.gemfile.lock
+
+# direnv - brew install direnv
+.env.local

@@ -30,8 +30,7 @@ RSpec.describe GemBench::Player do
       stub_const("GemBench::DO_NOT_SCAN", ["gem_bench"])
       expect { instance.set_starter("margarine") }
         .to change(instance, :state)
-        .from(nil)
-        .to(:bench)
+        .from(nil).to(:bench)
       stub_const("GemBench::DO_NOT_SCAN", [])
     end
 
@@ -79,7 +78,7 @@ RSpec.describe GemBench::Player do
       expect(instance.to_s).to eq("gem_bench")
     end
 
-    context "unknown format" do
+    context "when unknown format" do
       subject(:player_to_string) { instance.to_s(:smartypants) }
 
       it "raises error with unknown format" do
@@ -120,9 +119,13 @@ RSpec.describe GemBench::Player do
     context "when state is nil" do
       let(:state) { nil }
 
-      context "when checked is falsey" do
-        it "returns string" do
+      context "when checked" do
+        it "is falsey" do
           expect(instance.checked).to be_falsey
+        end
+
+        it "returns string" do
+          instance.checked
           expect(how).to eq("gem_bench had no files to evaluate.")
         end
       end

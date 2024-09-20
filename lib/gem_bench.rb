@@ -26,29 +26,41 @@ module GemBench
   }
 
   class << self
-    attr_accessor :roster
-
-    def check(verbose: false)
-      @roster = GemBench::Team.new({verbose: verbose})
+    def check(verbose: false, gemfile_path: nil)
+      options = {
+        verbose: verbose,
+      }
+      options[:gemfile_path] = gemfile_path if gemfile_path
+      GemBench::Team.new(**options)
     end
 
-    def versions_present?(verbose: false)
-      @roster = GemBench::StrictVersionRequirement.new({verbose: verbose})
-      @roster.versions_present?
+    def versions_present?(verbose: false, gemfile_path: nil)
+      options = {
+        verbose: verbose,
+      }
+      options[:gemfile_path] = gemfile_path if gemfile_path
+      GemBench::StrictVersionRequirement.new(**options).versions_present?
     end
 
-    def list_missing_version_constraints(verbose: false)
-      @roster = GemBench::StrictVersionRequirement.new({verbose: verbose})
-      @roster.list_missing_version_constraints
+    def list_missing_version_constraints(verbose: false, gemfile_path: nil)
+      options = {
+        verbose: verbose,
+      }
+      options[:gemfile_path] = gemfile_path if gemfile_path
+      GemBench::StrictVersionRequirement.new(**options).list_missing_version_constraints
     end
 
     def find(look_for_regex: GemBench::RAILTIE_REGEX,
-      exclude_file_pattern_regex_proc: GemBench::EXCLUDE_FILE_PATTERN_REGEX_PROC, verbose: false)
-      @roster = GemBench::Team.new({
+      exclude_file_pattern_regex_proc: GemBench::EXCLUDE_FILE_PATTERN_REGEX_PROC,
+      verbose: false,
+      gemfile_path: nil)
+      options = {
+        verbose: verbose,
         look_for_regex: look_for_regex,
         exclude_file_pattern_regex_proc: exclude_file_pattern_regex_proc,
-        verbose: verbose,
-      })
+      }
+      options[:gemfile_path] = gemfile_path if gemfile_path
+      GemBench::Team.new(**options)
     end
   end
 end

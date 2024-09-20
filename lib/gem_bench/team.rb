@@ -1,6 +1,11 @@
 require "forwardable"
 
 module GemBench
+  # It doesn't make sense to use Team unless the Gemfile you want to evaluate is currently loaded.
+  # For example:
+  #   - if you are in a rails console, and want to evaluate the Gemfile of the Rails app, that's great!
+  #   - if you are in a context with no Gemfile loaded, or a different Gemfile loaded than the one you want to evaluate,
+  #     this class may not give sensible results. This is because it checks loaded gems via RubyGems and Bundler.
   class Team
     EXCLUDE = %w[
       bundler
@@ -34,13 +39,16 @@ module GemBench
       :current_gemfile_suggestions,
       :bad_ideas
 
-    def initialize(options = {})
+    def initialize(**options)
       @look_for_regex = options[:look_for_regex]
       # find: Find gems containing specific strings in code
       # bench: Find gems that can probably be benched (require: false) in the Gemfile
       @check_type = @look_for_regex ? :find : :bench
       @benching = @check_type == :bench
-      @scout = GemBench::Scout.new(check_gemfile: options[:check_gemfile] || benching?)
+      @scout = GemBench::Scout.new(
+        check_gemfile: options.fetch(:check_gemfile, benching?),
+        gemfile_path: options.fetch(:gemfile_path, "#{Dir.pwd}/Gemfile"),
+      )
       @exclude_file_pattern_regex_proc = options[:exclude_file_pattern_regex_proc].respond_to?(:call) ? options[:exclude_file_pattern_regex_proc] : GemBench::EXCLUDE_FILE_PATTERN_REGEX_PROC
       # Among the loaded gems there may be some that did not need to be.
       @excluded, @all = @scout.loaded_gems.partition { |x| EXCLUDE.include?(x[0]) }
@@ -192,13 +200,13 @@ module GemBench
     end
 
     def check(player)
-      gem_paths.each do |path|
+      gem_paths.detect do |path|
         glob_path = "#{path}/#{player.file_path_glob}"
-        file_paths = Dir.glob("#{glob_path}")
+        file_paths = Dir.glob(glob_path)
         puts "[GemBench] checking #{player} at #{glob_path} (#{file_paths.length} files)" if extra_verbose?
-        file_paths.each do |file_path|
+        file_paths.detect do |file_path|
           player.set_starter(file_path, line_match: look_for_regex)
-          return if player.starter?
+          player.starter?
         end
       end
     end

@@ -1,4 +1,6 @@
 module GemBench
+  # Each gem either needs to be required at boot time or not.
+  # Player helps determine which gems can use `require: false` in the Gemfile to cut down load times.
   class Player
     # MAJOR.MINOR split on point length == 2
     # MAJOR.MINOR.PATCH split on point length == 3

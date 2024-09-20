@@ -156,20 +156,20 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  awesome_print
+  awesome_print (~> 1.9)
   bundler
-  byebug
+  byebug (>= 2.0.3)
   gem_bench!
   kettle-soup-cover (~> 1.0, >= 1.0.2)
   method_source (>= 1.1.0)
   pry-byebug
-  rake
-  rspec
-  rspec-block_is_expected
+  rake (>= 10)
+  rspec (~> 3.13)
+  rspec-block_is_expected (~> 1.0, >= 1.0.6)
   rubocop-lts (~> 10.1)
   rubocop-packaging (~> 0.5, >= 0.5.2)
-  rubocop-rspec
-  standard (>= 1.40)
+  rubocop-rspec (~> 3.0)
+  standard (~> 1.40)
   yard (~> 0.9, >= 0.9.34)
   yard-junk (~> 0.0.10)
 

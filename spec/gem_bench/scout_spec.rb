@@ -6,8 +6,8 @@ RSpec.describe GemBench::Scout do
       expect { instance }.not_to raise_error
     end
 
-    context "check_gemfile" do
-      context "is true" do
+    context "when check_gemfile" do
+      context "when true" do
         let(:instance) { described_class.new(check_gemfile: true) }
 
         it "does not raise error" do
@@ -15,7 +15,7 @@ RSpec.describe GemBench::Scout do
         end
       end
 
-      context "is false" do
+      context "when false" do
         let(:instance) { described_class.new(check_gemfile: false) }
 
         it "does not raise error" do
@@ -23,7 +23,7 @@ RSpec.describe GemBench::Scout do
         end
       end
 
-      context "is nil" do
+      context "when nil" do
         let(:instance) { described_class.new(check_gemfile: nil) }
 
         it "does not raise error" do
@@ -31,7 +31,7 @@ RSpec.describe GemBench::Scout do
         end
       end
 
-      context "is default" do
+      context "when default" do
         let(:instance) { described_class.new }
 
         it "does not raise error" do
@@ -40,7 +40,7 @@ RSpec.describe GemBench::Scout do
       end
     end
 
-    context "early bundler error" do
+    context "when early bundler error" do
       subject(:instance) { described_class.new }
 
       before do
@@ -51,18 +51,34 @@ RSpec.describe GemBench::Scout do
         expect { instance }.not_to raise_error
       end
 
-      it "sets check_gemfile to false" do
-        expect(instance.check_gemfile?).to be(false)
-        expect(Bundler).to have_received(:rubygems)
+      context "when #check_gemfile?" do
+        subject(:check_gemfile) { instance.check_gemfile? }
+
+        it "sets check_gemfile to false" do
+          expect(check_gemfile).to be(false)
+        end
+
+        it "uses Bundler's bundle_path" do
+          check_gemfile
+          expect(Bundler).to have_received(:rubygems)
+        end
       end
 
-      it "sets gem_paths to empty" do
-        expect(instance.gem_paths).to be_empty
-        expect(Bundler).to have_received(:rubygems)
+      context "when #gem_paths" do
+        subject(:gem_paths) { instance.gem_paths }
+
+        it "sets gem_paths to empty" do
+          expect(gem_paths).to be_empty
+        end
+
+        it "uses Bundler's bundle_path" do
+          gem_paths
+          expect(Bundler).to have_received(:rubygems)
+        end
       end
     end
 
-    context "late bundler error" do
+    context "when late bundler error" do
       subject(:instance) { described_class.new }
 
       before do
@@ -73,14 +89,30 @@ RSpec.describe GemBench::Scout do
         expect { instance }.not_to raise_error
       end
 
-      it "sets check_gemfile to false" do
-        expect(instance.check_gemfile?).to be(false)
-        expect(Bundler).to have_received(:bundle_path)
+      context "when #check_gemfile?" do
+        subject(:check_gemfile) { instance.check_gemfile? }
+
+        it "sets gem_paths to something" do
+          expect(check_gemfile).to be(false)
+        end
+
+        it "uses Bundler's bundle_path" do
+          check_gemfile
+          expect(Bundler).to have_received(:bundle_path)
+        end
       end
 
-      it "sets gem_paths to soemthing" do
-        expect(instance.gem_paths).to include(match(/\/gems/))
-        expect(Bundler).to have_received(:bundle_path)
+      context "when #gem_paths" do
+        subject(:gem_paths) { instance.gem_paths }
+
+        it "sets gem_paths to something" do
+          expect(gem_paths).to include(match(/\/gems/))
+        end
+
+        it "uses Bundler's bundle_path" do
+          gem_paths
+          expect(Bundler).to have_received(:bundle_path)
+        end
       end
     end
   end
@@ -116,7 +148,7 @@ RSpec.describe GemBench::Scout do
   describe "#gemfile_trash" do
     subject(:gemfile_trash) { instance.gemfile_trash }
 
-    context "check_gemfile: true" do
+    context "when check_gemfile: true" do
       let(:instance) { described_class.new(check_gemfile: true) }
 
       it "does not raise error" do
@@ -127,13 +159,19 @@ RSpec.describe GemBench::Scout do
         expect(instance.gemfile_trash).to be_an(Array)
       end
 
-      it "gemfile_trash is not empty" do
-        expect(instance.gemfile_trash).not_to be_empty
-        expect(instance.gemfile_trash).to eq(["# Specify your gem's dependencies in gem_bench.gemspec\n"])
+      it "gemfile_trash is not empty" do # rubocop:disable RSpec/ExampleLength
+        expect(instance.gemfile_trash)
+          .to eq(
+            [
+              "# For complexity!\n",
+              "# (this syntax is not supported by gem_bench, but also shouldn't make it blow up)\n",
+              "# Specify your gem's dependencies in gem_bench.gemspec\n",
+            ],
+          )
       end
     end
 
-    context "check_gemfile: false" do
+    context "when check_gemfile: false" do
       let(:instance) { described_class.new(check_gemfile: false) }
 
       it "does not raise error" do
@@ -149,7 +187,7 @@ RSpec.describe GemBench::Scout do
       end
     end
 
-    context "check_gemfile: nil" do
+    context "when check_gemfile: nil" do
       let(:instance) { described_class.new(check_gemfile: nil) }
 
       it "does not raise error" do
@@ -160,13 +198,19 @@ RSpec.describe GemBench::Scout do
         expect(instance.gemfile_trash).to be_an(Array)
       end
 
-      it "gemfile_trash is not empty" do
-        expect(instance.gemfile_trash).not_to be_empty
-        expect(instance.gemfile_trash).to eq(["# Specify your gem's dependencies in gem_bench.gemspec\n"])
+      it "gemfile_trash is not empty" do # rubocop:disable RSpec/ExampleLength
+        expect(instance.gemfile_trash)
+          .to eq(
+            [
+              "# For complexity!\n",
+              "# (this syntax is not supported by gem_bench, but also shouldn't make it blow up)\n",
+              "# Specify your gem's dependencies in gem_bench.gemspec\n",
+            ],
+          )
       end
     end
 
-    context "check_gemfile: default" do
+    context "when check_gemfile: default" do
       let(:instance) { described_class.new }
 
       it "does not raise error" do
@@ -177,9 +221,14 @@ RSpec.describe GemBench::Scout do
         expect(instance.gemfile_trash).to be_an(Array)
       end
 
-      it "gemfile_trash is not empty" do
-        expect(instance.gemfile_trash).not_to be_empty
-        expect(instance.gemfile_trash).to eq(["# Specify your gem's dependencies in gem_bench.gemspec\n"])
+      it "gemfile_trash is not empty" do # rubocop:disable RSpec/ExampleLength
+        expect(instance.gemfile_trash).to eq(
+          [
+            "# For complexity!\n",
+            "# (this syntax is not supported by gem_bench, but also shouldn't make it blow up)\n",
+            "# Specify your gem's dependencies in gem_bench.gemspec\n",
+          ],
+        )
       end
     end
   end
@@ -187,7 +236,7 @@ RSpec.describe GemBench::Scout do
   describe "#gemfile_lines" do
     subject(:gemfile_lines) { instance.gemfile_lines }
 
-    context "check_gemfile: true" do
+    context "when check_gemfile: true" do
       let(:instance) { described_class.new(check_gemfile: true) }
 
       it "does not raise error" do
@@ -199,7 +248,6 @@ RSpec.describe GemBench::Scout do
       end
 
       it "gemfile_lines is not empty" do
-        expect(gemfile_lines).not_to be_empty
         expect(gemfile_lines[0..1]).to eq([
           "source \"https://rubygems.org\"\n",
           "gem \"bundler\" # For specs!\n",
@@ -207,7 +255,7 @@ RSpec.describe GemBench::Scout do
       end
     end
 
-    context "check_gemfile: false" do
+    context "when check_gemfile: false" do
       let(:instance) { described_class.new(check_gemfile: false) }
 
       it "does not raise error" do
@@ -223,7 +271,7 @@ RSpec.describe GemBench::Scout do
       end
     end
 
-    context "check_gemfile: nil" do
+    context "when check_gemfile: nil" do
       let(:instance) { described_class.new(check_gemfile: nil) }
 
       it "does not raise error" do
@@ -235,7 +283,6 @@ RSpec.describe GemBench::Scout do
       end
 
       it "gemfile_lines is not empty" do
-        expect(gemfile_lines).not_to be_empty
         expect(gemfile_lines[0..1]).to eq([
           "source \"https://rubygems.org\"\n",
           "gem \"bundler\" # For specs!\n",
@@ -243,7 +290,7 @@ RSpec.describe GemBench::Scout do
       end
     end
 
-    context "check_gemfile: default" do
+    context "when check_gemfile: default" do
       let(:instance) { described_class.new }
 
       it "does not raise error" do
@@ -255,7 +302,6 @@ RSpec.describe GemBench::Scout do
       end
 
       it "gemfile_lines is not empty" do
-        expect(gemfile_lines).not_to be_empty
         expect(gemfile_lines[0..1]).to eq([
           "source \"https://rubygems.org\"\n",
           "gem \"bundler\" # For specs!\n",
@@ -283,9 +329,7 @@ RSpec.describe GemBench::Scout do
 
     it "includes dependencies" do
       names = loaded_gems.map { |tuple| tuple[0] }
-      expect(names).to include("rspec")
-      expect(names).to include("rake")
-      expect(names).to include("bundler")
+      expect(names).to include("rspec", "rake", "bundler")
     end
   end
 end

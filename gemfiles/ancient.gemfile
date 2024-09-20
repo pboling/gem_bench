@@ -16,3 +16,8 @@ gem "method_source", ">= 1.1.0"
 gem "rake"
 gem "rspec"
 gem "rspec-block_is_expected"
+
+# For debugging, casecmp is only available in Ruby 2.4+
+if RUBY_VERSION > "2.4" && ENV.fetch("DEBUG", "false").casecmp?("true")
+  gem "byebug"
+end
