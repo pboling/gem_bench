@@ -252,7 +252,7 @@ module GemBench
       )
     end
 
-    # @returns [Array[String]] - each line following the current line, which is not a gem line
+    # @return [Array[String]] - each line following the current line, which is not a gem line
     def following_non_gem_lines
       all_lines[(index + 1)..-1]
         .reject { |x| x.strip.empty? || x.match(GemBench::TRASH_REGEX) }
