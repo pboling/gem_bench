@@ -12,9 +12,9 @@ and this project adheres to [Semantic Versioning v2](https://semver.org/spec/v2.
 ### Removed
 
 ## [2.0.4] SEP.20.2024
-COVERAGE:  98.19% -- 488/497 lines in 9 files
-BRANCH COVERAGE:  88.95% -- 161/181 branches in 9 files
-58.06% documented
+- COVERAGE:  98.19% -- 488/497 lines in 9 files
+- BRANCH COVERAGE:  88.95% -- 161/181 branches in 9 files
+- 58.06% documented
 ### Added
 - More Documentation
 - Almost 100% test coverage
@@ -36,9 +36,9 @@ BRANCH COVERAGE:  88.95% -- 161/181 branches in 9 files
 - Copyright years
 
 ## [2.0.2] SEP.17.2024
-COVERAGE:  82.15% -- 382/465 lines in 9 files
-BRANCH COVERAGE:  58.79% -- 97/165 branches in 9 files
-51.72% documented
+- COVERAGE:  82.15% -- 382/465 lines in 9 files
+- BRANCH COVERAGE:  58.79% -- 97/165 branches in 9 files
+- 51.72% documented
 ### Added
 - CI for Ancient Rubies
   - Ruby 2.3
@@ -51,9 +51,9 @@ BRANCH COVERAGE:  58.79% -- 97/165 branches in 9 files
 - Gemspec description & Summary
 
 ## [2.0.1] SEP.17.2024
-COVERAGE:  82.15% -- 382/465 lines in 9 files
-BRANCH COVERAGE:  58.08% -- 97/167 branches in 9 files
-51.72% documented
+- COVERAGE:  82.15% -- 382/465 lines in 9 files
+- BRANCH COVERAGE:  58.08% -- 97/167 branches in 9 files
+- 51.72% documented
 ### Added
 - Ability to re-namespace and load copy of a gem alongside vanilla version for benchmarking via `GemBench::Jersey`
   - See: https://github.com/panorama-ed/memo_wise/pull/339
