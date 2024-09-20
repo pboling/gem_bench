@@ -24,6 +24,8 @@ module GemBench
       cancan
       friendly_id
       faker
+      capistrano3-puma
+      wkhtmltopdf-binary
     ]
     # A comment preceding the require: false anywhere on the line should not be considered an active require: false
     extend Forwardable
