@@ -12,10 +12,12 @@ source "https://rubygems.org"
 gem "bundler", ">= 1.14"
 gem "version_gem", "~> 1.1", ">= 1.1.4"
 
+gem "faker", "~> 3.4", ">= 3.4.2"
 gem "method_source", ">= 1.1.0"
 gem "rake"
 gem "rspec"
 gem "rspec-block_is_expected"
+gem "super_diff"
 
 # For debugging, casecmp is only available in Ruby 2.4+
 if RUBY_VERSION > "2.4" && ENV.fetch("DEBUG", "false").casecmp?("true")

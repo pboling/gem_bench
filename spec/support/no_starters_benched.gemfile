@@ -1,0 +1,7 @@
+source "https://rubygems.org"
+
+git_source(:github) { |repo_name| "https://github.com/#{repo_name}" }
+
+# starter: a gem that needs to be loaded when bundler normally loads gems
+# bencher: a gem that can, or should, have require: false to delay loading until after bootstrap
+gem "test-unit", "~> 3.6", require: false

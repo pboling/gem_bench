@@ -11,14 +11,26 @@ and this project adheres to [Semantic Versioning v2](https://semver.org/spec/v2.
 ### Fixed
 ### Removed
 
+## [2.0.5] SEP.21.2024
+- COVERAGE:  99.80% -- 495/496 lines in 9 files
+- BRANCH COVERAGE:  94.35% -- 167/177 branches in 9 files
+- 58.87% documented
+### Added
+- More specs
+- More documentation
+- Even closer to 100% test coverage
+### Fixed
+- Documentation errors
+- Minor improvements to logic and performance (a bit more idiomatic Ruby)
+
 ## [2.0.4] SEP.20.2024
 - COVERAGE:  98.19% -- 488/497 lines in 9 files
 - BRANCH COVERAGE:  88.95% -- 161/181 branches in 9 files
 - 58.06% documented
 ### Added
-- More Documentation
+- More documentation
 - Almost 100% test coverage
-- Thread Safety (removed `GemBench.roster`, which was effectively never used internally)
+- Thread safety (removed `GemBench.roster`, which was effectively never used internally)
 - Performance improvements
 ### Fixed
 - Can now handle more variations of Ruby syntax in the Gemfile analyzer

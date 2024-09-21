@@ -6,6 +6,13 @@ module GemBench
   #   - if you are in a rails console, and want to evaluate the Gemfile of the Rails app, that's great!
   #   - if you are in a context with no Gemfile loaded, or a different Gemfile loaded than the one you want to evaluate,
   #     this class may not give sensible results. This is because it checks loaded gems via RubyGems and Bundler.
+  #
+  # Terminology:
+  #
+  # starter: a gem that needs to be loaded when bundler normally loads gems
+  #
+  # bencher: a gem that can, or should, have require: false to delay loading until after bootstrap
+  #
   class Team
     EXCLUDE = %w[
       bundler
@@ -53,8 +60,8 @@ module GemBench
       )
       @exclude_file_pattern_regex_proc = options[:exclude_file_pattern_regex_proc].respond_to?(:call) ? options[:exclude_file_pattern_regex_proc] : GemBench::EXCLUDE_FILE_PATTERN_REGEX_PROC
       # Among the loaded gems there may be some that did not need to be.
-      @excluded, @all = @scout.loaded_gems.partition { |x| EXCLUDE.include?(x[0]) }
-      exclusions = " + #{excluded.length} loaded gems which GemBench is configured to ignore.\n" if @excluded.length > 0
+      exclude!
+      exclusions = " + #{excluded.length} loaded gems which GemBench is configured to ignore.\n" if excluded.any?
       @starters = []
       @benchers = []
       @current_gemfile_suggestions = []
@@ -70,11 +77,11 @@ module GemBench
         false
       end
       puts "[GemBench] Will search for gems in #{gem_paths.inspect}\n#{if benching?
-                                                                         @scout.check_gemfile? ? "[GemBench] Will check Gemfile at #{gemfile_path}.\n" : "[GemBench] No Gemfile found.\n"
+                                                                         check_gemfile? ? "[GemBench] Will check Gemfile at #{gemfile_path}.\n" : "[GemBench] No Gemfile found.\n"
                                                                        else
                                                                          ""
                                                                        end}#{bad_ideas ? "[GemBench] Will show bad ideas.  Be Careful.\n" : ""}[GemBench] Detected #{all.length} loaded gems#{exclusions}"
-      compare_gemfile if benching? && @scout.check_gemfile?
+      compare_gemfile if benching? && check_gemfile?
       self.print if verbose
     end
 
@@ -82,6 +89,7 @@ module GemBench
       starters.map { |starter| starter.to_s(format) }
     end
 
+    # @return void
     def print
       string = ""
       if all.empty?
@@ -92,7 +100,7 @@ module GemBench
         else
           "[GemBench] Found no gems containing #{look_for_regex} in Ruby code.\n"
         end
-      elsif starters.length > 0
+      else
         string << "\n#{GemBench::USAGE}" unless check_gemfile?
         string << if benching?
           "[GemBench] We found a Rails::Railtie or Rails::Engine in the following files. However, it is possible that there are false positives, so you may want to verify that this is the case.\n\n"
@@ -116,18 +124,15 @@ module GemBench
         starters.each_with_index do |starter, index|
           string << "#{starter.info(index + 1)}\n"
         end
-        if extra_verbose? && !benching? && benchers.length > 0
+        if extra_verbose? && !benching? && benchers.any?
           string << "[GemBench] #{benchers.length} out of #{all.length} evaluated gems did not contain #{look_for_regex}. They are:\n"
           benchers.each_with_index do |bencher, index|
             string << "#{bencher.info(index + 1)}\n"
           end
         end
-      else
-        string << "[GemBench] Congrats! All gems appear clean.\n"
-        string << "\n#{GemBench::USAGE}" unless check_gemfile?
       end
       if check_gemfile? && benching?
-        if current_gemfile_suggestions.length > 0
+        if current_gemfile_suggestions.any?
           string << "[GemBench] Evaluated #{all.length} gems and Gemfile at #{gemfile_path}.\n[GemBench] Here are #{current_gemfile_suggestions.length} suggestions for improvement:\n"
           current_gemfile_suggestions.each_with_index do |player, index|
             string << "#{player.suggest(index + 1)}\n"
@@ -159,7 +164,7 @@ module GemBench
 
     def prepare_bad_ideas
       string = ""
-      if benchers.length > 0
+      if benchers.any?
         gemfile_instruction = check_gemfile? ? "" : "To safely evaluate a Gemfile:\n\t1. Make sure you are in the root of a project with a Gemfile\n\t2. Make sure the gem is actually a dependency in the Gemfile\n"
         string << "[GemBench] Evaluated #{all.length} loaded gems and found #{benchers.length} which may be able to skip boot loading (require: false).\n*** => WARNING <= ***: Be careful adding non-primary dependencies to your Gemfile as it is generally a bad idea.\n#{gemfile_instruction}"
         benchers.each_with_index do |player, index|
@@ -222,6 +227,10 @@ module GemBench
     end
 
     private
+
+    def exclude!
+      self.excluded, self.all = loaded_gems.partition { |x| EXCLUDE.include?(x[0]) }
+    end
 
     def extra_verbose?
       verbose == "extra"

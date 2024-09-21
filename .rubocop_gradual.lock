@@ -1,0 +1,23 @@
+{
+  "spec/gem_bench/team_spec.rb:1266648289": [
+    [39, 7, 21, "RSpec/MultipleExpectations: Example has too many expectations [2/1].", 4057686576],
+    [39, 7, 463, "RSpec/ExampleLength: Example has too many lines. [12/5]", 717044346],
+    [238, 9, 22, "RSpec/MultipleExpectations: Example has too many expectations [2/1].", 837383149],
+    [247, 9, 39, "RSpec/MultipleExpectations: Example has too many expectations [2/1].", 3959041976],
+    [258, 11, 20, "RSpec/MultipleExpectations: Example has too many expectations [2/1].", 608832949],
+    [258, 11, 969, "RSpec/ExampleLength: Example has too many lines. [15/5]", 3322102119],
+    [276, 19, 17, "RSpec/ContextWording: Context description should match /^when\\b/, /^with\\b/, or /^without\\b/.", 1188500192],
+    [281, 13, 20, "RSpec/MultipleExpectations: Example has too many expectations [2/1].", 608832949],
+    [281, 13, 1001, "RSpec/ExampleLength: Example has too many lines. [15/5]", 252278759],
+    [302, 15, 20, "RSpec/MultipleExpectations: Example has too many expectations [2/1].", 608832949],
+    [302, 15, 1174, "RSpec/ExampleLength: Example has too many lines. [16/5]", 1786252903],
+    [328, 9, 18, "RSpec/MultipleExpectations: Example has too many expectations [2/1].", 2487416927],
+    [342, 9, 22, "RSpec/MultipleExpectations: Example has too many expectations [2/1].", 837383149],
+    [351, 9, 39, "RSpec/MultipleExpectations: Example has too many expectations [2/1].", 3959041976],
+    [362, 11, 20, "RSpec/MultipleExpectations: Example has too many expectations [2/1].", 608832949],
+    [362, 11, 956, "RSpec/ExampleLength: Example has too many lines. [15/5]", 1208468539],
+    [383, 13, 20, "RSpec/MultipleExpectations: Example has too many expectations [2/1].", 608832949],
+    [383, 13, 1083, "RSpec/ExampleLength: Example has too many lines. [16/5]", 3055949499],
+    [408, 9, 18, "RSpec/MultipleExpectations: Example has too many expectations [2/1].", 2487416927]
+  ]
+}

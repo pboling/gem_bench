@@ -28,6 +28,29 @@ RSpec.describe GemBench::Team do
         block_is_expected.to not_raise_error
       end
     end
+
+    context "when excluded" do
+      it "excludes the excluded gems" do
+        expect(instance.excluded.map(&:first).sort).to eq(%w(bundler faker gem_bench))
+      end
+    end
+
+    context "when not excluded" do
+      it "excludes nothing" do
+        allow(GemBench::Scout).to receive(:new).and_return(
+          instance_double(
+            GemBench::Scout,
+            "instance.scout",
+            loaded_gems: [["rspec", "4.0.0"]],
+            gem_paths: [],
+            gemfile_path: "",
+            "check_gemfile?": false,
+          ),
+        )
+        expect(instance.excluded.map(&:first).sort).to be_empty
+        expect(GemBench::Scout).to have_received(:new)
+      end
+    end
   end
 
   describe "#print" do
@@ -202,6 +225,190 @@ RSpec.describe GemBench::Team do
           it "succeeds" do
             block_is_expected.to not_raise_error
           end
+        end
+      end
+    end
+
+    context "with no starters" do
+      let(:scout) { GemBench::Scout.new(check_gemfile: check_gemfile, **scout_options) }
+      let(:scout_options) { {gemfile_path: File.join(File.dirname(__FILE__), "..", "support", "no_starters_benchable.gemfile")} }
+      let(:check_gemfile) { nil } # when nil it can default to true
+
+      context "when :all empty" do
+        it "evaluates nothing" do
+          allow(scout).to receive(:loaded_gems).and_return([])
+          allow(GemBench::Scout).to receive(:new).and_return(scout)
+          block_is_expected.to not_raise_error.and output(include("[GemBench] No gems were evaluated by GemBench.\n")).to_stdout
+          expect(GemBench::Scout).to have_received(:new)
+        end
+      end
+
+      context "when :starters empty" do
+        it "finds no gems to load at boot time" do
+          allow(scout).to receive(:loaded_gems).and_return([["test-unit", "3.6.2"]])
+          allow(GemBench::Scout).to receive(:new).and_return(scout)
+          block_is_expected.to not_raise_error.and output(include("[GemBench] Found no gems that need to load at boot time.\n")).to_stdout
+          expect(GemBench::Scout).to have_received(:new)
+        end
+
+        context "when bad ideas" do
+          let(:options) { {bad_ideas: true} }
+          let(:check_gemfile) { false }
+
+          it "shows bad ideas" do
+            allow(scout).to receive(:loaded_gems).and_return([["test-unit", "3.6.2"]])
+            allow(GemBench::Scout).to receive(:new).and_return(scout)
+            block_is_expected.to not_raise_error.and output(
+              include(
+                <<~OUT.chomp,
+                  [GemBench] Evaluated 1 loaded gems and found 1 which may be able to skip boot loading (require: false).
+                  *** => WARNING <= ***: Be careful adding non-primary dependencies to your Gemfile as it is generally a bad idea.
+                  To safely evaluate a Gemfile:
+                  \t1. Make sure you are in the root of a project with a Gemfile
+                  \t2. Make sure the gem is actually a dependency in the Gemfile
+                  \t[BE CAREFUL] 1) gem 'test-unit', '~> 3.6', require: false
+                OUT
+              ),
+            ).to_stdout
+            expect(GemBench::Scout).to have_received(:new)
+          end
+
+          context "already benched" do
+            let(:scout_options) { {gemfile_path: File.join(File.dirname(__FILE__), "..", "support", "no_starters_benched.gemfile")} }
+            let(:options) { {bad_ideas: true} }
+            let(:check_gemfile) { false }
+
+            it "shows bad ideas" do
+              allow(scout).to receive(:loaded_gems).and_return([["test-unit", "3.6.2"]])
+              allow(GemBench::Scout).to receive(:new).and_return(scout)
+              block_is_expected.to not_raise_error.and output(
+                include(
+                  <<~OUT.chomp,
+                    [GemBench] Evaluated 1 loaded gems and found 1 which may be able to skip boot loading (require: false).
+                    *** => WARNING <= ***: Be careful adding non-primary dependencies to your Gemfile as it is generally a bad idea.
+                    To safely evaluate a Gemfile:
+                    \t1. Make sure you are in the root of a project with a Gemfile
+                    \t2. Make sure the gem is actually a dependency in the Gemfile
+                    \t[BE CAREFUL] 1) gem 'test-unit', '~> 3.6', require: false
+                  OUT
+                ),
+              ).to_stdout
+              expect(GemBench::Scout).to have_received(:new)
+            end
+
+            context "when check gemfile" do
+              let(:check_gemfile) { true }
+
+              it "shows bad ideas" do
+                allow(scout).to receive(:loaded_gems).and_return([["test-unit", "3.6.2"]])
+                allow(GemBench::Scout).to receive(:new).and_return(scout)
+                block_is_expected.to not_raise_error.and output(
+                  include(
+                    <<~OUT.chomp,
+                      [GemBench] Will show bad ideas.  Be Careful.
+                      [GemBench] Detected 1 loaded gems
+                      [GemBench] Found no gems that need to load at boot time.
+                      [GemBench] Evaluated 1 gems against your Gemfile but found no primary dependencies which can safely skip require on boot (require: false).
+                      [GemBench] Evaluated 1 loaded gems and found 1 which may be able to skip boot loading (require: false).
+                      *** => WARNING <= ***: Be careful adding non-primary dependencies to your Gemfile as it is generally a bad idea.
+                      \t[BE CAREFUL] 1) gem 'test-unit', '~> 3.6', require: false
+                    OUT
+                  ),
+                ).to_stdout
+                expect(GemBench::Scout).to have_received(:new)
+              end
+            end
+          end
+        end
+      end
+
+      context "when :look_for_regex" do
+        let(:options) { {look_for_regex: /luke-i-am-your-mother/} }
+
+        it "tries to find" do
+          allow(GemBench::Scout).to receive(:new).and_return(scout)
+          block_is_expected.to not_raise_error.and output(include("[GemBench] Found no gems containing (?-mix:luke-i-am-your-mother) in Ruby code.\n")).to_stdout
+          expect(GemBench::Scout).to have_received(:new)
+        end
+      end
+    end
+
+    context "with no benchers" do
+      let(:scout) { GemBench::Scout.new(check_gemfile: check_gemfile, **scout_options) }
+      let(:scout_options) { {gemfile_path: File.join(File.dirname(__FILE__), "..", "support", "no_benchers.gemfile")} }
+      let(:check_gemfile) { nil } # when nil it can default to true
+
+      context "when :all empty" do
+        it "evaluates nothing" do
+          allow(scout).to receive(:loaded_gems).and_return([])
+          allow(GemBench::Scout).to receive(:new).and_return(scout)
+          block_is_expected.to not_raise_error.and output(include("[GemBench] No gems were evaluated by GemBench.\n")).to_stdout
+          expect(GemBench::Scout).to have_received(:new)
+        end
+      end
+
+      context "when :starters empty" do
+        it "finds no gems to load at boot time" do
+          allow(scout).to receive(:loaded_gems).and_return([["rspec", "3.13.0"]])
+          allow(GemBench::Scout).to receive(:new).and_return(scout)
+          block_is_expected.to not_raise_error.and output(include("[GemBench] Found no gems that need to load at boot time.\n")).to_stdout
+          expect(GemBench::Scout).to have_received(:new)
+        end
+
+        context "when bad ideas" do
+          let(:options) { {bad_ideas: true} }
+          let(:check_gemfile) { false }
+
+          it "shows bad ideas" do
+            allow(scout).to receive(:loaded_gems).and_return([["rspec", "3.13.0"]])
+            allow(GemBench::Scout).to receive(:new).and_return(scout)
+            block_is_expected.to not_raise_error.and output(
+              include(
+                <<~OUT.chomp,
+                  [GemBench] Evaluated 1 loaded gems and found 1 which may be able to skip boot loading (require: false).
+                  *** => WARNING <= ***: Be careful adding non-primary dependencies to your Gemfile as it is generally a bad idea.
+                  To safely evaluate a Gemfile:
+                  \t1. Make sure you are in the root of a project with a Gemfile
+                  \t2. Make sure the gem is actually a dependency in the Gemfile
+                  \t[BE CAREFUL] 1) rspec had no files to evaluate.
+                OUT
+              ),
+            ).to_stdout
+            expect(GemBench::Scout).to have_received(:new)
+          end
+
+          context "when check gemfile" do
+            let(:check_gemfile) { true }
+
+            it "shows bad ideas" do
+              allow(scout).to receive(:loaded_gems).and_return([["rspec", "3.13.0"]])
+              allow(GemBench::Scout).to receive(:new).and_return(scout)
+              block_is_expected.to not_raise_error.and output(
+                include(
+                  <<~OUT.chomp,
+                    [GemBench] Will show bad ideas.  Be Careful.
+                    [GemBench] Detected 1 loaded gems
+                    [GemBench] Found no gems that need to load at boot time.
+                    [GemBench] Evaluated 1 gems and Gemfile at /Users/pboling/src/my/gem_bench/spec/gem_bench/../support/no_benchers.gemfile.
+                    [GemBench] Here are 1 suggestions for improvement:
+                    \t[SUGGESTION] 1) rspec had no files to evaluate.
+                    [GemBench] Evaluated 1 gems against your Gemfile but found no primary dependencies which can safely skip require on boot (require: false).
+                  OUT
+                ),
+              ).to_stdout
+              expect(GemBench::Scout).to have_received(:new)
+            end
+          end
+        end
+      end
+
+      context "when :look_for_regex" do
+        let(:options) { {look_for_regex: /luke-i-am-your-mother/} }
+
+        it "tries to find" do
+          allow(GemBench::Scout).to receive(:new).and_return(scout)
+          block_is_expected.to not_raise_error.and output(include("[GemBench] Found no gems containing (?-mix:luke-i-am-your-mother) in Ruby code.\n")).to_stdout
+          expect(GemBench::Scout).to have_received(:new)
         end
       end
     end
