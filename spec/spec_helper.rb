@@ -1,6 +1,5 @@
 # External library dependencies
 require "version_gem/ruby"
-require "super_diff/rspec"
 
 # RSpec Configs
 require "config/byebug"

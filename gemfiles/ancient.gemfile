@@ -16,7 +16,6 @@ gem "method_source", ">= 1.1.0"
 gem "rake"
 gem "rspec"
 gem "rspec-block_is_expected"
-gem "super_diff"
 
 # Need test-unit be loaded by bundler for evaluation in specs
 gem "test-unit", "~> 3.6"
@@ -25,3 +24,6 @@ gem "test-unit", "~> 3.6"
 if RUBY_VERSION > "2.4" && ENV.fetch("DEBUG", "false").casecmp?("true")
   gem "byebug"
 end
+
+# this gem
+gem "gem_bench", path: "../"

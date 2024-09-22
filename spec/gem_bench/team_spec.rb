@@ -31,7 +31,7 @@ RSpec.describe GemBench::Team do
 
     context "when excluded" do
       it "excludes the excluded gems" do
-        expect(instance.excluded.map(&:first).sort).to eq(%w(bundler faker gem_bench))
+        expect(instance.excluded.map(&:first).sort).to eq(%w(bundler gem_bench))
       end
     end
 
