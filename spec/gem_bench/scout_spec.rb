@@ -165,7 +165,6 @@ RSpec.describe GemBench::Scout do
             [
               "# For complexity!\n",
               "# (this syntax is not supported by gem_bench, but also shouldn't make it blow up)\n",
-              "# Need faker be loaded by bundler for evaluation in specs\n",
               "# Need test-unit be loaded by bundler for evaluation in specs\n",
               "# Specify your gem's dependencies in gem_bench.gemspec\n",
             ],
@@ -206,7 +205,6 @@ RSpec.describe GemBench::Scout do
             [
               "# For complexity!\n",
               "# (this syntax is not supported by gem_bench, but also shouldn't make it blow up)\n",
-              "# Need faker be loaded by bundler for evaluation in specs\n",
               "# Need test-unit be loaded by bundler for evaluation in specs\n",
               "# Specify your gem's dependencies in gem_bench.gemspec\n",
             ],
@@ -230,7 +228,6 @@ RSpec.describe GemBench::Scout do
           [
             "# For complexity!\n",
             "# (this syntax is not supported by gem_bench, but also shouldn't make it blow up)\n",
-            "# Need faker be loaded by bundler for evaluation in specs\n",
             "# Need test-unit be loaded by bundler for evaluation in specs\n",
             "# Specify your gem's dependencies in gem_bench.gemspec\n",
           ],

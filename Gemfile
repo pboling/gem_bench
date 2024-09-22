@@ -10,8 +10,6 @@ gem <<~GEM_NAME.chomp
   pry-byebug
 GEM_NAME
 
-# Need faker be loaded by bundler for evaluation in specs
-gem "faker", "~> 3.4", ">= 3.4.2"
 # Need test-unit be loaded by bundler for evaluation in specs
 gem "test-unit", "~> 3.6"
 

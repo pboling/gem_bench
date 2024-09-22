@@ -384,15 +384,15 @@ RSpec.describe GemBench::Team do
               allow(scout).to receive(:loaded_gems).and_return([["rspec", "3.13.0"]])
               allow(GemBench::Scout).to receive(:new).and_return(scout)
               out1 = <<~OUT1.chomp
-                       [GemBench] Will show bad ideas.  Be Careful.
-                       [GemBench] Detected 1 loaded gems
-                       [GemBench] Found no gems that need to load at boot time.
-                     OUT1
+                [GemBench] Will show bad ideas.  Be Careful.
+                [GemBench] Detected 1 loaded gems
+                [GemBench] Found no gems that need to load at boot time.
+              OUT1
               out2 = <<~OUT2.chomp
-                       [GemBench] Here are 1 suggestions for improvement:
-                       \t[SUGGESTION] 1) rspec had no files to evaluate.
-                       [GemBench] Evaluated 1 gems against your Gemfile but found no primary dependencies which can safely skip require on boot (require: false).
-                     OUT2
+                [GemBench] Here are 1 suggestions for improvement:
+                \t[SUGGESTION] 1) rspec had no files to evaluate.
+                [GemBench] Evaluated 1 gems against your Gemfile but found no primary dependencies which can safely skip require on boot (require: false).
+              OUT2
               block_is_expected.to not_raise_error.and output(include(out1, out2)).to_stdout
               expect(GemBench::Scout).to have_received(:new)
             end

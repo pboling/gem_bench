@@ -1,5 +1,5 @@
 {
-  "spec/gem_bench/team_spec.rb:1266648289": [
+  "spec/gem_bench/team_spec.rb:544152244": [
     [39, 7, 21, "RSpec/MultipleExpectations: Example has too many expectations [2/1].", 4057686576],
     [39, 7, 463, "RSpec/ExampleLength: Example has too many lines. [12/5]", 717044346],
     [238, 9, 22, "RSpec/MultipleExpectations: Example has too many expectations [2/1].", 837383149],
@@ -17,7 +17,7 @@
     [362, 11, 20, "RSpec/MultipleExpectations: Example has too many expectations [2/1].", 608832949],
     [362, 11, 956, "RSpec/ExampleLength: Example has too many lines. [15/5]", 1208468539],
     [383, 13, 20, "RSpec/MultipleExpectations: Example has too many expectations [2/1].", 608832949],
-    [383, 13, 1083, "RSpec/ExampleLength: Example has too many lines. [16/5]", 3055949499],
-    [408, 9, 18, "RSpec/MultipleExpectations: Example has too many expectations [2/1].", 2487416927]
+    [383, 13, 931, "RSpec/ExampleLength: Example has too many lines. [14/5]", 581654106],
+    [406, 9, 18, "RSpec/MultipleExpectations: Example has too many expectations [2/1].", 2487416927]
   ]
 }
