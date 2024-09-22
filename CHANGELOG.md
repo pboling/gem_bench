@@ -18,7 +18,7 @@ and this project adheres to [Semantic Versioning v2](https://semver.org/spec/v2.
 ### Added
 - More specs
 - More documentation
-- Even closer to 100% test coverage
+- 0.2% remaining to 100% test coverage (line)
 ### Fixed
 - Documentation errors
 - Minor improvements to logic and performance (a bit more idiomatic Ruby)
@@ -29,7 +29,7 @@ and this project adheres to [Semantic Versioning v2](https://semver.org/spec/v2.
 - 58.06% documented
 ### Added
 - More documentation
-- Almost 100% test coverage
+- 1.81% remaining to 100% test coverage (line)
 - Thread safety (removed `GemBench.roster`, which was effectively never used internally)
 - Performance improvements
 - Support for specifying arbitrary `:gemfile_path` in most class initializers
