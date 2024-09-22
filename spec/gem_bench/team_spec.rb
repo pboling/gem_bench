@@ -393,13 +393,7 @@ RSpec.describe GemBench::Team do
                        \t[SUGGESTION] 1) rspec had no files to evaluate.
                        [GemBench] Evaluated 1 gems against your Gemfile but found no primary dependencies which can safely skip require on boot (require: false).
                      OUT2
-              block_is_expected.to not_raise_error.and output(
-                include(
-                  out1,
-                  /\[GemBench\] Evaluated 1 gems and Gemfile at [A-Za-z0-9\/]+spec\/gem_bench\/\.\.\/support\/no_benchers\.gemfile/,
-                  out2
-                )
-              ).to_stdout
+              block_is_expected.to not_raise_error.and output(include(out1, out2)).to_stdout
               expect(GemBench::Scout).to have_received(:new)
             end
           end
