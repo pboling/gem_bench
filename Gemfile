@@ -10,8 +10,10 @@ gem <<~GEM_NAME.chomp
   pry-byebug
 GEM_NAME
 
-# Need this to be loaded by bundler, to exercise the "excluded" logic, since faker is excluded.
-gem "faker"
+# Need faker be loaded by bundler for evaluation in specs
+gem "faker", "~> 3.4", ">= 3.4.2"
+# Need test-unit be loaded by bundler for evaluation in specs
+gem "test-unit", "~> 3.6"
 
 # Specify your gem's dependencies in gem_bench.gemspec
 gemspec
