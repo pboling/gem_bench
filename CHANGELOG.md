@@ -32,6 +32,7 @@ and this project adheres to [Semantic Versioning v2](https://semver.org/spec/v2.
 - Almost 100% test coverage
 - Thread safety (removed `GemBench.roster`, which was effectively never used internally)
 - Performance improvements
+- Support for specifying arbitrary `:gemfile_path` in most class initializers
 ### Fixed
 - Can now handle more variations of Ruby syntax in the Gemfile analyzer
 - `require_relative` > `require` for internal files (except for `spec` => `lib`)
