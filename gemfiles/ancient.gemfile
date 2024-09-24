@@ -6,9 +6,10 @@ source "https://rubygems.org"
 # On CI we only need the gemspecs' dependencies (including development dependencies).
 # Exceptions, if any, will be found in gemfiles/*.gemfile
 
-# In the ancient gemfile we also do not load the gemspec's dependencies
-#   because they target Ruby 2.7+
-# Thus we load the runtime dependencies of the gem here.
+# In the ancient gemfile we only load the gemspec's runtime dependencies
+# i.e. we do not load the gemspec's development dependencies,
+#   because they target Ruby 3.0+
+# Thus we load the necessary development dependencies of the gem here.
 gem "bundler", ">= 1.14"
 gem "version_gem", "~> 1.1", ">= 1.1.4"
 
